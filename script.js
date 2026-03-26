@@ -4,7 +4,8 @@
  */
 
 // --- 1. CONFIG & DATA ---
-const API_URL = 'https://peda-backend-ppi0.onrender.com/api/contact';
+// .trim() ensures no accidental spaces break the connection
+const API_URL = 'https://peda-backend-ppi0.onrender.com/api/contact'.trim();
 
 const translations = {
     en: {
@@ -77,9 +78,8 @@ function translatePage(lang) {
     });
 }
 
-// --- 3. UI HANDLERS (Theme, Nav, Dropdowns) ---
+// --- 3. UI HANDLERS ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial language
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     translatePage(savedLang);
 
@@ -89,36 +89,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const langDrop = document.getElementById('lang-dropdown');
     const themeBtn = document.getElementById('theme-toggle');
 
-    // Theme Toggle
     themeBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // Mobile Nav Toggle
     navToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
         navMenu?.classList.toggle('hidden');
         langDrop?.classList.add('hidden');
     });
 
-    // Language Dropdown Toggle
     langBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         langDrop?.classList.toggle('hidden');
         navMenu?.classList.add('hidden');
     });
 
-    // Close everything when clicking outside
     document.addEventListener('click', () => {
         navMenu?.classList.add('hidden');
         langDrop?.classList.add('hidden');
     });
 });
 
-// --- 4. BACKEND CONNECTION (Contact Form) ---
-const contactForm = document.querySelector('form');
+// --- 4. BACKEND CONNECTION (FIXED) ---
+const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -128,49 +124,51 @@ if (contactForm) {
         const t = translations[lang];
         const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-        // 1. Grab & Trim Values
+        // Grab Inputs
         const nameVal = document.getElementById('name')?.value.trim();
         const emailVal = document.getElementById('email')?.value.trim();
         const subjectVal = document.getElementById('subject')?.value;
         const messageVal = document.getElementById('message')?.value.trim();
 
-        // 2. REQUIRED CHECK: If any box is empty, stop here
         if (!nameVal || !emailVal || !subjectVal || !messageVal) {
             alert(t.form_error || "Please fill all boxes.");
             return;
         }
 
-        // 3. Start Loading
+        // Loading State
         submitBtn.disabled = true;
-        const originalText = submitBtn.innerText;
+        const originalHTML = submitBtn.innerHTML;
         submitBtn.innerText = "...";
-
-        const formData = {
-            name: nameVal,
-            email: emailVal,
-            subject: subjectVal,
-            message: messageVal
-        };
 
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                mode: 'cors', // Crucial for cross-domain requests
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: nameVal,
+                    email: emailVal,
+                    subject: subjectVal,
+                    message: messageVal
+                })
             });
 
             if (response.ok) {
                 alert(t.alert_success);
                 contactForm.reset();
             } else {
-                throw new Error("Server Error");
+                const errText = await response.text();
+                console.error("Server Response Error:", errText);
+                throw new Error("Backend rejection");
             }
         } catch (error) {
-            console.error("API Error:", error);
+            console.error("FETCH ERROR:", error);
             alert(t.alert_error);
         } finally {
             submitBtn.disabled = false;
-            submitBtn.innerText = originalText;
+            submitBtn.innerHTML = originalHTML;
         }
     });
 }
@@ -189,10 +187,10 @@ window.moveSlide = (dir) => {
     slider.style.transform = `translateX(${slidePos * multiplier * 100}%)`;
 };
 
-// --- 6. BACK TO TOP BUTTON ---
+// --- 6. BACK TO TOP ---
 const btt = document.getElementById('backToTop');
 if (btt) {
-    window.onscroll = () => {
+    window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             btt.style.opacity = "1";
             btt.style.transform = "translateY(0)";
@@ -200,6 +198,6 @@ if (btt) {
             btt.style.opacity = "0";
             btt.style.transform = "translateY(20px)";
         }
-    };
+    });
     btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 }
