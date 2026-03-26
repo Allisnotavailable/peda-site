@@ -3,66 +3,9 @@
  * Handles: Live Cloud API, Translations, Theme, Mobile Nav, & Slider
  */
 
-// --- UPDATED LIVE URL ---
+// --- 1. CONFIG & DATA ---
 const API_URL = 'https://peda-backend-ppi0.onrender.com/api/contact';
 
-// Replace Section 4 in your script.js with this:
-const contactForm = document.getElementById('contact-form');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const lang = localStorage.getItem('selectedLang') || 'en';
-        const t = translations[lang];
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-        // 1. Grab Values
-        const nameVal = document.getElementById('name').value.trim();
-        const emailVal = document.getElementById('email').value.trim();
-        const subjectVal = document.getElementById('subject').value;
-        const messageVal = document.getElementById('message').value.trim();
-
-        // 2. EXTRA SECURITY CHECK (Ensure all boxes are filled)
-        if (!nameVal || !emailVal || !subjectVal || !messageVal) {
-            alert("Please fill in all boxes before sending.");
-            return;
-        }
-
-        // 3. Start Loading State
-        submitBtn.disabled = true;
-        const originalText = submitBtn.innerText;
-        submitBtn.innerText = "...";
-
-        const formData = {
-            name: nameVal,
-            email: emailVal,
-            subject: subjectVal,
-            message: messageVal
-        };
-
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-
-            if (response.ok) {
-                alert(t.alert_success);
-                contactForm.reset();
-            } else {
-                throw new Error("Server Error");
-            }
-        } catch (error) {
-            console.error("API Error:", error);
-            alert(t.alert_error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerText = originalText;
-        }
-    });
-}
 const translations = {
     en: {
         nav_home: "Home", nav_services: "Services", nav_contact: "Contact Us",
@@ -75,7 +18,8 @@ const translations = {
         contact_subject: "Select Subject", opt_question: "General Question", 
         opt_delivery: "Delivery Inquiry", send_btn: "Send Message",
         alert_success: "Success! Your message has been sent to the factory.",
-        alert_error: "Error: Could not connect to the server. Please try again later."
+        alert_error: "Error: Could not connect to the server. Please try again later.",
+        form_error: "Please fill in all boxes before sending."
     },
     ar: {
         nav_home: "الرئيسية", nav_services: "الخدمات", nav_contact: "اتصل بنا",
@@ -88,7 +32,8 @@ const translations = {
         contact_subject: "اختر الموضوع", opt_question: "سؤال عام", 
         opt_delivery: "استفسار عن التوصيل", send_btn: "إرسال الرسالة",
         alert_success: "تم بنجاح! تم إرسال رسالتك إلى المصنع.",
-        alert_error: "خطأ: تعذر الاتصال بالسيرفر. يرجى المحاولة لاحقاً."
+        alert_error: "خطأ: تعذر الاتصال بالسيرفر. يرجى المحاولة لاحقاً.",
+        form_error: "يرجى ملء جميع الحقول قبل الإرسال."
     },
     ku: {
         nav_home: "سەرەکی", nav_services: "خزمەتگوزارییەکان", nav_contact: "پەیوەندی",
@@ -101,7 +46,8 @@ const translations = {
         contact_subject: "بابەت هەڵبژێرە", opt_question: "پسیاری گشتی", 
         opt_delivery: "داواکاری گەیاندن", send_btn: "ناردنی نامە",
         alert_success: "سەرکەوتوو بوو! نامەکەت بۆ کارگەکە ناردرا.",
-        alert_error: "هەڵە: ناتوانرێت پەیوەندی بە سێرڤەرەوە بکرێت. تکایە دواتر هەوڵ بدەرەوە."
+        alert_error: "هەڵە: ناتوانرێت پەیوەندی بە سێرڤەرەوە بکرێت. تکایە دواتر هەوڵ بدەرەوە.",
+        form_error: "تکایە هەموو خانەکان پڕبکەرەوە پێش ناردن."
     }
 };
 
@@ -131,41 +77,44 @@ function translatePage(lang) {
     });
 }
 
-// Initialize Language
+// --- 3. UI HANDLERS (Theme, Nav, Dropdowns) ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Set initial language
     const savedLang = localStorage.getItem('selectedLang') || 'en';
     translatePage(savedLang);
-});
 
-// --- 3. UI HANDLERS (Theme, Nav, Dropdowns) ---
-document.addEventListener('click', (e) => {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const langBtn = document.getElementById('lang-btn');
     const langDrop = document.getElementById('lang-dropdown');
     const themeBtn = document.getElementById('theme-toggle');
 
-    // Theme Toggle Logic
-    if (themeBtn && themeBtn.contains(e.target)) {
+    // Theme Toggle
+    themeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
         document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
+    });
 
-    // Toggle Mobile Navigation
-    if (navToggle && navToggle.contains(e.target)) {
-        navMenu.classList.toggle('hidden');
-        if (langDrop) langDrop.classList.add('hidden');
-    } 
-    // Toggle Language Dropdown
-    else if (langBtn && langBtn.contains(e.target)) {
-        langDrop.classList.toggle('hidden');
-        if (navMenu) navMenu.classList.add('hidden');
-    }
-    // Close dropdowns when clicking outside
-    else {
-        if (navMenu) navMenu.classList.add('hidden');
-        if (langDrop) langDrop.classList.add('hidden');
-    }
+    // Mobile Nav Toggle
+    navToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navMenu?.classList.toggle('hidden');
+        langDrop?.classList.add('hidden');
+    });
+
+    // Language Dropdown Toggle
+    langBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langDrop?.classList.toggle('hidden');
+        navMenu?.classList.add('hidden');
+    });
+
+    // Close everything when clicking outside
+    document.addEventListener('click', () => {
+        navMenu?.classList.add('hidden');
+        langDrop?.classList.add('hidden');
+    });
 });
 
 // --- 4. BACKEND CONNECTION (Contact Form) ---
@@ -179,17 +128,28 @@ if (contactForm) {
         const t = translations[lang];
         const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-        // Prevent double-clicking
+        // 1. Grab & Trim Values
+        const nameVal = document.getElementById('name')?.value.trim();
+        const emailVal = document.getElementById('email')?.value.trim();
+        const subjectVal = document.getElementById('subject')?.value;
+        const messageVal = document.getElementById('message')?.value.trim();
+
+        // 2. REQUIRED CHECK: If any box is empty, stop here
+        if (!nameVal || !emailVal || !subjectVal || !messageVal) {
+            alert(t.form_error || "Please fill all boxes.");
+            return;
+        }
+
+        // 3. Start Loading
         submitBtn.disabled = true;
         const originalText = submitBtn.innerText;
         submitBtn.innerText = "...";
 
-        // Map your HTML IDs to the backend data
         const formData = {
-            name: document.getElementById('name')?.value || "Guest",
-            email: document.getElementById('email')?.value || "No Email",
-            subject: document.getElementById('subject')?.value || "question",
-            message: document.getElementById('message')?.value || ""
+            name: nameVal,
+            email: emailVal,
+            subject: subjectVal,
+            message: messageVal
         };
 
         try {
@@ -203,7 +163,7 @@ if (contactForm) {
                 alert(t.alert_success);
                 contactForm.reset();
             } else {
-                throw new Error("Server error");
+                throw new Error("Server Error");
             }
         } catch (error) {
             console.error("API Error:", error);
