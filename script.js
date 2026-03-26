@@ -4,7 +4,6 @@
  */
 
 // --- 1. CONFIG & DATA ---
-// .trim() ensures no accidental spaces break the connection
 const API_URL = 'https://peda-backend-ppi0.onrender.com/api/contact'.trim();
 
 const translations = {
@@ -23,7 +22,7 @@ const translations = {
     footer_location: "Duhok Industrial City",
     current_name: "English",
     ph_name: "Full Name",
-    ph_email: "Email",
+    ph_phone: "Phone Number", // Added
     ph_msg: "How can we help?",
     contact_subject: "Select Subject",
     opt_question: "General Question",
@@ -48,7 +47,7 @@ const translations = {
     footer_location: "مدينة دهوك الصناعية",
     current_name: "العربية",
     ph_name: "الاسم الكامل",
-    ph_email: "البريد الإلكتروني",
+    ph_phone: "رقم الهاتف", // Added
     ph_msg: "كيف يمكننا مساعدتك؟",
     contact_subject: "اختر الموضوع",
     opt_question: "سؤال عام",
@@ -73,7 +72,7 @@ const translations = {
     footer_location: "شاری پیشەسازی دهۆک",
     current_name: "Kurdî",
     ph_name: "ناوی تەواو",
-    ph_email: "ئیمەیڵ",
+    ph_phone: "ژمارەی مۆبایل", // Added
     ph_msg: "چۆن دەتوانین یارمەتیت بدەین؟",
     contact_subject: "بابەت هەڵبژێرە",
     opt_question: "پسیاری گشتی",
@@ -146,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- 4. BACKEND CONNECTION (FIXED) ---
+// --- 4. BACKEND CONNECTION ---
 const contactForm = document.getElementById('contact-form');
 
 if (contactForm) {
@@ -157,13 +156,13 @@ if (contactForm) {
         const t = translations[lang];
         const submitBtn = contactForm.querySelector('button[type="submit"]');
 
-        // Grab Inputs
+        // Grab Inputs - Updated 'email' to 'phone'
         const nameVal = document.getElementById('name')?.value.trim();
-        const emailVal = document.getElementById('email')?.value.trim();
+        const phoneVal = document.getElementById('phone')?.value.trim();
         const subjectVal = document.getElementById('subject')?.value;
         const messageVal = document.getElementById('message')?.value.trim();
 
-        if (!nameVal || !emailVal || !subjectVal || !messageVal) {
+        if (!nameVal || !phoneVal || !subjectVal || !messageVal) {
             alert(t.form_error || "Please fill all boxes.");
             return;
         }
@@ -176,13 +175,13 @@ if (contactForm) {
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                mode: 'cors', // Crucial for cross-domain requests
+                mode: 'cors',
                 headers: { 
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     name: nameVal,
-                    email: emailVal,
+                    phone: "+964 " + phoneVal, // Attaching prefix for backend
                     subject: subjectVal,
                     message: messageVal
                 })
@@ -192,8 +191,6 @@ if (contactForm) {
                 alert(t.alert_success);
                 contactForm.reset();
             } else {
-                const errText = await response.text();
-                console.error("Server Response Error:", errText);
                 throw new Error("Backend rejection");
             }
         } catch (error) {
