@@ -18,21 +18,32 @@
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans">
 
-    <header class="bg-slate-50 dark:bg-slate-800 py-2 px-6 flex justify-between items-center text-sm border-b dark:border-slate-700">
-        <div class="flex gap-4">
-            <span class="hidden md:inline"><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
-            <span><i class="fas fa-phone text-blue-600 mr-1"></i> +964 750 000 0000</span>
+<header class="bg-slate-50 dark:bg-slate-800 py-2 px-6 flex justify-between items-center text-sm border-b dark:border-slate-700">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+            <span class="hidden lg:inline"><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                <a href="tel:009647510990010" class="hover:text-blue-600 transition-colors">
+                    <i class="fas fa-phone text-blue-600 mr-1"></i> 0751 099 0010
+                </a>
+                <a href="tel:009647763330010" class="hover:text-blue-600 transition-colors">
+                    <i class="fas fa-phone text-blue-600 mr-1"></i> 0776 333 0010
+                </a>
+            </div>
         </div>
         <div class="flex items-center gap-6">
             <div class="relative">
-                <button id="lang-btn" class="flex items-center gap-2 font-semibold hover:text-blue-600 outline-none"><i class="fas fa-globe text-blue-500"></i><span id="current-lang">English</span></button>
+                <button id="lang-btn" class="flex items-center gap-2 font-semibold hover:text-blue-600 outline-none">
+                    <i class="fas fa-globe text-blue-500"></i><span id="current-lang">English</span>
+                </button>
                 <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border dark:border-slate-700 z-[100] overflow-hidden">
                     <button onclick="translatePage('en')" class="w-full text-left px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700">English</button>
                     <button onclick="translatePage('ar')" class="w-full text-right px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700 border-t dark:border-slate-700">العربية</button>
                     <button onclick="translatePage('ku')" class="w-full text-right px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700 border-t dark:border-slate-700">Kurdî</button>
                 </div>
             </div>
-            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-yellow-400"><i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i></button>
+            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-yellow-400">
+                <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
+            </button>
         </div>
     </header>
 
