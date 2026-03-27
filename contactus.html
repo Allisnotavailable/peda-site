@@ -68,11 +68,11 @@
     </nav>
 
     <main class="max-w-4xl mx-auto px-6 py-16">
-        <div class="bg-white dark:bg-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-[2.5rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800">
+        <div class="bg-white dark:bg-slate-900 shadow-2xl rounded-[2.5rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800">
             
-            <div class="mb-10">
+            <div class="mb-10 text-center md:text-left">
                 <h1 class="text-4xl font-black mb-2 text-slate-800 dark:text-white uppercase tracking-tight" data-key="nav_contact">Contact Us</h1>
-                <div class="h-1.5 w-20 bg-blue-600 rounded-full"></div>
+                <div class="h-1.5 w-20 bg-blue-600 rounded-full mx-auto md:mx-0"></div>
             </div>
             
             <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -80,7 +80,7 @@
                 <div class="md:col-span-2">
                     <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_name">Full Name</label>
                     <input type="text" id="name" required placeholder="Name"
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all">
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all">
                 </div>
 
                 <div class="md:col-span-1">
@@ -88,14 +88,14 @@
                     <div class="relative flex items-center">
                         <span class="absolute left-4 font-bold text-blue-600">+964</span>
                         <input type="tel" id="phone" required placeholder="7XX XXX XXXX"
-                            class="w-full p-4 pl-16 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all">
+                            class="w-full p-4 pl-16 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all">
                     </div>
                 </div>
 
                 <div class="md:col-span-1">
                     <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="contact_subject">Subject</label>
                     <select id="subject" required 
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all cursor-pointer appearance-none">
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all cursor-pointer">
                         <option value="" disabled selected data-key="contact_subject">Select Subject</option>
                         <option value="question" data-key="opt_question">General Question</option>
                         <option value="delivery" data-key="opt_delivery">Delivery Inquiry</option>
@@ -105,11 +105,11 @@
                 <div class="md:col-span-2">
                     <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_msg">Message</label>
                     <textarea id="message" rows="5" required placeholder="How can we help?"
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all resize-none"></textarea>
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all resize-none"></textarea>
                 </div>
 
                 <div class="md:col-span-2 pt-4">
-                    <button type="submit" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xl rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all active:scale-[0.98]" data-key="send_btn">
+                    <button type="submit" id="submit-btn" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-all active:scale-95" data-key="send_btn">
                         Send Message
                     </button>
                 </div>
