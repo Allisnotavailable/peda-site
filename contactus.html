@@ -16,9 +16,9 @@
         }
     </script>
 </head>
-<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans">
 
-    <header class="bg-slate-50 dark:bg-slate-800 py-2 px-6 flex justify-between items-center text-sm border-b dark:border-slate-700">
+    <header class="bg-white dark:bg-slate-900 py-2 px-6 flex justify-between items-center text-sm border-b dark:border-slate-800">
         <div class="flex flex-col md:flex-row gap-2 md:gap-6">
             <span class="hidden lg:inline"><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
             <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
@@ -41,7 +41,7 @@
                     <button onclick="translatePage('ku')" class="w-full text-right px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700 border-t dark:border-slate-700">Kurdî</button>
                 </div>
             </div>
-            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-yellow-400">
+            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-yellow-400">
                 <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
             </button>
         </div>
@@ -53,7 +53,11 @@
         </a>
         <div class="relative">
             <button id="nav-toggle" class="p-2 focus:outline-none">
-                <div class="space-y-1.5"><span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span><span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span><span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span></div>
+                <div class="space-y-1.5">
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
+                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
+                </div>
             </button>
             <div id="nav-menu" class="hidden absolute right-0 mt-4 w-52 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700 overflow-hidden ring-1 ring-black/5">
                 <a href="index.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-bold" data-key="nav_home">Home</a>
@@ -63,45 +67,52 @@
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-20">
-        <div class="bg-white dark:bg-slate-800 shadow-2xl rounded-3xl p-10 border dark:border-slate-700">
-            <h1 class="text-3xl font-black mb-8 border-l-4 border-blue-600 pl-4 uppercase" data-key="nav_contact">Contact Us</h1>
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <div class="bg-white dark:bg-slate-900 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rounded-[2.5rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800">
             
-            <form id="contact-form" class="space-y-6">
-                <div>
-                    <label class="block mb-2 font-bold text-sm uppercase tracking-wide text-slate-500" data-key="ph_name">Full Name</label>
+            <div class="mb-10">
+                <h1 class="text-4xl font-black mb-2 text-slate-800 dark:text-white uppercase tracking-tight" data-key="nav_contact">Contact Us</h1>
+                <div class="h-1.5 w-20 bg-blue-600 rounded-full"></div>
+            </div>
+            
+            <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="md:col-span-2">
+                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_name">Full Name</label>
                     <input type="text" id="name" required placeholder="Name"
-                        class="w-full p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all">
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all">
                 </div>
 
-                <div>
-                    <label class="block mb-2 font-bold text-sm uppercase tracking-wide text-slate-500" data-key="ph_phone">Phone Number</label>
+                <div class="md:col-span-1">
+                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_phone">Phone Number</label>
                     <div class="relative flex items-center">
-                        <span class="absolute left-4 font-bold text-slate-400">+964</span>
+                        <span class="absolute left-4 font-bold text-blue-600">+964</span>
                         <input type="tel" id="phone" required placeholder="7XX XXX XXXX"
-                            class="w-full p-4 pl-16 rounded-2xl bg-slate-100 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all">
+                            class="w-full p-4 pl-16 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all">
                     </div>
                 </div>
 
-                <div>
-                    <label class="block mb-2 font-bold text-sm uppercase tracking-wide text-slate-500" data-key="contact_subject">Subject</label>
+                <div class="md:col-span-1">
+                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="contact_subject">Subject</label>
                     <select id="subject" required 
-                        class="w-full p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all cursor-pointer">
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all cursor-pointer appearance-none">
                         <option value="" disabled selected data-key="contact_subject">Select Subject</option>
                         <option value="question" data-key="opt_question">General Question</option>
                         <option value="delivery" data-key="opt_delivery">Delivery Inquiry</option>
                     </select>
                 </div>
 
-                <div>
-                    <label class="block mb-2 font-bold text-sm uppercase tracking-wide text-slate-500" data-key="ph_msg">Message</label>
+                <div class="md:col-span-2">
+                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_msg">Message</label>
                     <textarea id="message" rows="5" required placeholder="How can we help?"
-                        class="w-full p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all resize-none"></textarea>
+                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white dark:focus:bg-slate-800 transition-all resize-none"></textarea>
                 </div>
 
-                <button type="submit" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-blue-500/20 transition-all active:scale-95" data-key="send_btn">
-                    Send Message
-                </button>
+                <div class="md:col-span-2 pt-4">
+                    <button type="submit" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xl rounded-2xl shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all active:scale-[0.98]" data-key="send_btn">
+                        Send Message
+                    </button>
+                </div>
             </form>
         </div>
     </main>
