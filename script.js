@@ -12,7 +12,7 @@ const translations = {
     en: {
         chem_page_tag: "Professional Formulation",
         chem_page_title: "Chemical Solutions",
-        chem_page_subtitle: "Engineered in Duhok for exceptional purity and performance across industrial, commercial, and residential sectors.",
+        chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial, commercial, and residential sectors.",
         prod_1_title: "Heavy-Duty Degreaser",
         prod_1_desc: "A high-performance solvent engineered to break down complex greases, oils, and industrial contaminants from machinery, automotive surfaces, and factory flooring.",
         prod_2_title: "Multi-Surface Cleaner",
@@ -45,7 +45,7 @@ const translations = {
     ar: {
 chem_page_tag: "تركيبات احترافية",
 chem_page_title: "الحلول الكيميائية",
-chem_page_subtitle: "تم تصميمها في دهوك لضمان نقاء وأداء استثنائيين في القطاعات الصناعية والتجارية والسكنية.",
+chem_page_subtitle: "تم تصميمها في كوردستان لضمان نقاء وأداء استثنائيين في القطاعات الصناعية والتجارية والسكنية.",
 prod_1_title: "مزيل الشحوم القوي",
 prod_1_desc: "مذيب عالي الأداء مصمم لتفكيك الشحوم والزيوت والملوثات الصناعية المعقدة من الآلات والمركبات وأرضيات المصانع.",
 prod_2_title: "منظف متعدد الأسطح",
@@ -78,7 +78,7 @@ prod_request_info: "طلب مواصفات التركيبة",
     ku: {
         chem_page_tag: "داڕشتنا پرۆفیشناڵ",
 chem_page_title: "چارەسەریێن کیمیاوی",
-chem_page_subtitle: "ل دهۆکێ هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازی، بازرگانی و نیشتەجێبوونێدا.",
+chem_page_subtitle: "ل کوردستان هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازی، بازرگانی و نیشتەجێبوونێدا.",
 prod_1_title: "چەوریبەرێ بهێز",
 prod_1_desc: "حەلالکەرەکێ پرۆفیشناڵ بۆ ژناڤبرنا چەوری و رۆن و پیسیێن پیشەسازی لسەر ئامێر و ترۆمبێل و عەردێ کارگەهان.",
 prod_2_title: "پاقژکەرێ گشتی",
