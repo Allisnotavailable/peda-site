@@ -10,6 +10,16 @@ const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 // --- 1. TRANSLATION DICTIONARY ---
 const translations = {
     en: {
+        chem_page_tag: "Professional Formulation",
+        chem_page_title: "Chemical Solutions",
+        chem_page_subtitle: "Engineered in Duhok for exceptional purity and performance across industrial, commercial, and residential sectors.",
+        prod_1_title: "Heavy-Duty Degreaser",
+        prod_1_desc: "A high-performance solvent engineered to break down complex greases, oils, and industrial contaminants from machinery, automotive surfaces, and factory flooring.",
+        prod_2_title: "Multi-Surface Cleaner",
+        prod_2_desc: "Our flagship versatile detergent for all hard surfaces. Concentrated formula lifts grime effectively without residues, suitable for commercial maintenance and janitorial use.",
+        prod_3_title: "Medical Disinfectant",
+        prod_3_desc: "Hospital-grade disinfectant formulated for critical sterilization. Meets high purity standards for eliminate pathogens in medical environments, clinics, and laboratories.",
+        prod_request_info: "Request Formulation Specs",
         card_title_clean: "Chemical",
         card_desc_clean: "High-performance industrial detergents and professional cleaning solutions for all sectors.",
         nav_home: "Home",
@@ -33,6 +43,16 @@ const translations = {
         send_btn: "Send Message"
     },
     ar: {
+chem_page_tag: "تركيبات احترافية",
+chem_page_title: "الحلول الكيميائية",
+chem_page_subtitle: "تم تصميمها في دهوك لضمان نقاء وأداء استثنائيين في القطاعات الصناعية والتجارية والسكنية.",
+prod_1_title: "مزيل الشحوم القوي",
+prod_1_desc: "مذيب عالي الأداء مصمم لتفكيك الشحوم والزيوت والملوثات الصناعية المعقدة من الآلات والمركبات وأرضيات المصانع.",
+prod_2_title: "منظف متعدد الأسطح",
+prod_2_desc: "منظفنا الرائد لجميع الأسطح الصلبة. تركيبة مركزة تزيل الأوساخ بفعالية دون ترك رواسب، مناسبة للاستخدام التجاري وعمال النظافة.",
+prod_3_title: "مطهر طبي",
+prod_3_desc: "مطهر عالي الجودة مصمم للتعقيم الدقيق. يلبي معايير النقاء العالية للقضاء على مسببات الأمراض في البيئات الطبية والعيادات والمختبرات.",
+prod_request_info: "طلب مواصفات التركيبة",
         card_title_clean: "كيميائية",
         card_desc_clean: "پاککەرەوەی پیشەسازی بەهێز و چارەسەری پاککردنەوەی پرۆفیشناڵ بۆ هەموو کەرتەکان.",
         nav_home: "الرئيسية",
@@ -56,6 +76,16 @@ const translations = {
         send_btn: "إرسال الرسالة"
     },
     ku: {
+        chem_page_tag: "داڕشتنا پرۆفیشناڵ",
+chem_page_title: "چارەسەریێن کیمیاوی",
+chem_page_subtitle: "ل دهۆکێ هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازی، بازرگانی و نیشتەجێبوونێدا.",
+prod_1_title: "چەوریبەرێ بهێز",
+prod_1_desc: "حەلالکەرەکێ پرۆفیشناڵ بۆ ژناڤبرنا چەوری و رۆن و پیسیێن پیشەسازی لسەر ئامێر و ترۆمبێل و عەردێ کارگەهان.",
+prod_2_title: "پاقژکەرێ گشتی",
+prod_2_desc: "بەرهەمێ مە یێ سەرەکی بۆ هەمی جورێن عەرد و ڕوویان. فۆرمولەکا خەست کە پیسیێ ب ساناهی لادەت بەێ لێهێلانا شوینەواران.",
+prod_3_title: "دژەپەیداکەرێ پزیشکی",
+prod_3_desc: "پاقژکەر و دژەپەیداکەرێ تایبەت بۆ نەخۆشخانە و تاقیگەهان. گونجایە بۆ ستەرلیزەکرنا ژینگەهێن پزیشکی لدیڤ پیڤەرێن بلند.",
+prod_request_info: "داواکرنا زانیاریێن فۆرمولەی",
         card_title_clean: "کیمیایی",
         card_desc_clean: "منظفات صناعية عالية الأداء وحلول تنظيف احترافية لجميع القطاعات.",
         nav_home: "سەرەکی",
