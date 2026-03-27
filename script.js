@@ -5,7 +5,7 @@
  */
 
 // --- 0. API CONFIGURATION ---
-const API_ENDPOINT = "https://peda-backend-ppi.onrender.com/api/contact";
+const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 
 // --- 1. TRANSLATION DICTIONARY ---
 const translations = {
