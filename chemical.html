@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peda Company | Alif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-up': 'fadeUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        /* Base styles for the "fade-up" effect to start invisible */
+        .product-card-anim { opacity: 0; }
+        
+        /* Delays for each product to fade in one-by-one */
+        .prod-1 { animation-delay: 0.1s; }
+        .prod-2 { animation-delay: 0.2s; }
+        .prod-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans">
+
+    <main class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+        <div class="mb-20 text-center animate-fade-up">
+            <span class="text-blue-600 font-semibold text-sm uppercase tracking-widest" data-key="chem_page_tag">Professional Formulation</span>
+            <h1 class="text-5xl md:text-6xl font-black mt-3 mb-6 tracking-tight" data-key="chem_page_title">Chemical Solutions</h1>
+            <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed max-w-2xl mx-auto" data-key="chem_page_subtitle">Engineered in Duhok for exceptional purity and performance across industrial, commercial, and residential sectors.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+            <div class="product-card-anim animate-fade-up prod-1 bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border dark:border-slate-800 overflow-hidden hover:-translate-y-3 hover:shadow-blue-500/10 transition-all duration-500 group">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Industrial Chemicals">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/70 dark:bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border dark:border-white/10">
+                        <h3 class="text-2xl font-bold tracking-tight text-blue-950 dark:text-white" data-key="prod_1_title">Heavy-Duty Degreaser</h3>
+                    </div>
+                </div>
+                <div class="p-8 pb-10">
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6" data-key="prod_1_desc">A high-performance solvent engineered to break down complex greases, oils, and industrial contaminants from machinery, automotive surfaces, and factory flooring.</p>
+                    <a href="contactus.html" class="inline-flex items-center gap-2.5 text-blue-600 font-bold group-hover:gap-3 transition-all" data-key="prod_request_info">
+                        Request Formulation Specs <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card-anim animate-fade-up prod-2 bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border dark:border-slate-800 overflow-hidden hover:-translate-y-3 hover:shadow-blue-500/10 transition-all duration-500 group">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Cleaning Products">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/70 dark:bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border dark:border-white/10">
+                        <h3 class="text-2xl font-bold tracking-tight text-blue-950 dark:text-white" data-key="prod_2_title">Multi-Surface Cleaner</h3>
+                    </div>
+                </div>
+                <div class="p-8 pb-10">
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6" data-key="prod_2_desc">Our flagship versatile detergent for all hard surfaces. Concentrated formula lifts grime effectively without residues, suitable for commercial maintenance and janitorial use.</p>
+                    <a href="contactus.html" class="inline-flex items-center gap-2.5 text-blue-600 font-bold group-hover:gap-3 transition-all" data-key="prod_request_info">
+                        Request Formulation Specs <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card-anim animate-fade-up prod-3 bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl border dark:border-slate-800 overflow-hidden hover:-translate-y-3 hover:shadow-blue-500/10 transition-all duration-500 group">
+                <div class="overflow-hidden h-64 relative">
+                    <img src="https://images.unsplash.com/photo-1620912189865-1e8a33da4c59?auto=format&fit=crop&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Chemical Research">
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/70 dark:bg-black/60 backdrop-blur-md px-6 py-4 rounded-2xl border dark:border-white/10">
+                        <h3 class="text-2xl font-bold tracking-tight text-blue-950 dark:text-white" data-key="prod_3_title">Medical Disinfectant</h3>
+                    </div>
+                </div>
+                <div class="p-8 pb-10">
+                    <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6" data-key="prod_3_desc) Hospital-grade disinfectant formulated for critical sterilization. Meets high purity standards for eliminate pathogens in medical environments, clinics, and laboratories.</p>
+                    <a href="contactus.html" class="inline-flex items-center gap-2.5 text-blue-600 font-bold group-hover:gap-3 transition-all" data-key="prod_request_info">
+                        Request Formulation Specs <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
