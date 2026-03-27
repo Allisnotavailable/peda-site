@@ -10,7 +10,7 @@ const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 // --- 1. TRANSLATION DICTIONARY ---
 const translations = {
     en: {
-        card_title_clean: "Peda Clean",
+        card_title_clean: "Chemical",
         card_desc_clean: "High-performance industrial detergents and professional cleaning solutions for all sectors.",
         nav_home: "Home",
         nav_services: "Services",
@@ -33,7 +33,7 @@ const translations = {
         send_btn: "Send Message"
     },
     ar: {
-        card_title_clean: "پێدا کلین",
+        card_title_clean: "كيميائية",
         card_desc_clean: "پاککەرەوەی پیشەسازی بەهێز و چارەسەری پاککردنەوەی پرۆفیشناڵ بۆ هەموو کەرتەکان.",
         nav_home: "الرئيسية",
         nav_services: "خدماتنا",
@@ -56,7 +56,7 @@ const translations = {
         send_btn: "إرسال الرسالة"
     },
     ku: {
-        card_title_clean: "بيدا كلين",
+        card_title_clean: "کیمیایی",
         card_desc_clean: "منظفات صناعية عالية الأداء وحلول تنظيف احترافية لجميع القطاعات.",
         nav_home: "سەرەکی",
         nav_services: "خزمەتگوزارییەکان",
