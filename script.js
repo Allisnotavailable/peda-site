@@ -1,8 +1,11 @@
 /**
  * Peda Company & Moreno Coffee 
  * Main JavaScript Controller
- * Features: Multi-language, Dark Mode, UI Animations, and Form Handling
+ * Backend: Render (Node/Express)
  */
+
+// --- 0. API CONFIGURATION ---
+const API_ENDPOINT = "https://peda-backend-ppi.onrender.com/api/contact";
 
 // --- 1. TRANSLATION DICTIONARY ---
 const translations = {
@@ -19,7 +22,6 @@ const translations = {
         card_desc_moreno: "Professional coffee equipment, premium beans, and maintenance for offices and events.",
         footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region.",
         footer_location: "Duhok Industrial City",
-        // Contact Form
         ph_name: "Full Name",
         ph_phone: "Phone Number",
         ph_msg: "Message",
@@ -41,7 +43,6 @@ const translations = {
         card_desc_moreno: "معدات قهوة احترافية، حبوب ممتازة، وصيانة للمكاتب والفعاليات.",
         footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان.",
         footer_location: "مدينة دهوك الصناعية",
-        // Contact Form
         ph_name: "الاسم الكامل",
         ph_phone: "رقم الهاتف",
         ph_msg: "الرسالة",
@@ -63,7 +64,6 @@ const translations = {
         card_desc_moreno: "ئامێری قاوەی پیشەگەرانە، دەنکە قاوەی نایاب، و چاککردنەوە بۆ ئۆفیس و بۆنەکان.",
         footer_about: "پابەندین بە پێشکەشکردنی چارەسەری پیشەسازی و خۆراک لە سەرانسەری هەرێمی کوردستان.",
         footer_location: "شاری پیشەسازی دهۆک",
-        // Contact Form
         ph_name: "ناوی تەواو",
         ph_phone: "ژمارەی مۆبایل",
         ph_msg: "نامە",
@@ -78,18 +78,13 @@ const translations = {
 function translatePage(lang) {
     localStorage.setItem('preferredLang', lang);
     document.documentElement.lang = lang;
-    
-    // Set text direction
     const isRTL = (lang === 'ar' || lang === 'ku');
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     
-    // Find all elements with a data-key and update them
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (translations[lang] && translations[lang][key]) {
             const translation = translations[lang][key];
-            
-            // Handle placeholders for input/textarea
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.placeholder = translation;
             } else {
@@ -98,59 +93,49 @@ function translatePage(lang) {
         }
     });
 
-    // Update Language Button Display
     const langDisplay = document.getElementById('current-lang');
     if (langDisplay) {
         const names = { en: 'English', ar: 'العربية', ku: 'Kurdî' };
         langDisplay.textContent = names[lang];
     }
 
-    // Close dropdown after selection
     const dropdown = document.getElementById('lang-dropdown');
     if (dropdown) dropdown.classList.add('hidden');
 }
 
 // --- 3. CORE UI FUNCTIONALITY ---
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Initialize Theme
+    // Theme Toggle Logic
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
-            const isDark = document.documentElement.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
         });
     }
 
-    // Language Dropdown Toggle
+    // Language Dropdown
     const langBtn = document.getElementById('lang-btn');
     const langDropdown = document.getElementById('lang-dropdown');
     if (langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        });
-        // Close if clicking outside
+        langBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); });
         document.addEventListener('click', () => langDropdown.classList.add('hidden'));
     }
 
-    // Mobile Navigation Menu Toggle
+    // Mobile Menu
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-        });
+        navToggle.addEventListener('click', () => navMenu.classList.toggle('hidden'));
     }
 
-    // Card Click Redirects (Home Page)
+    // Page Navigation (Home Cards)
     const pedaCard = document.getElementById('card-peda');
     const morenoCard = document.getElementById('card-moreno');
     if (pedaCard) pedaCard.onclick = () => window.location.href = 'peda.html';
     if (morenoCard) morenoCard.onclick = () => window.location.href = 'moreno.html';
 
-    // Back To Top Button visibility
+    // Back To Top Button
     const btt = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 400) {
@@ -163,12 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (btt) btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Load saved language or default to English
+    // Load Saved Preferences
     const savedLang = localStorage.getItem('preferredLang') || 'en';
     translatePage(savedLang);
 });
 
-// --- 4. SLIDER LOGIC (For Index Page) ---
+// --- 4. SLIDER LOGIC ---
 let currentSlide = 0;
 function moveSlide(direction) {
     const slider = document.getElementById('slider');
@@ -178,17 +163,16 @@ function moveSlide(direction) {
     slider.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-// Optional: Auto-slide every 6 seconds on the main page
-if (document.getElementById('slider')) {
-    setInterval(() => moveSlide(1), 6000);
-}
-
-// --- 5. CONTACT FORM HANDLER ---
+// --- 5. CONTACT FORM HANDLER (WITH BACKEND SYNC) ---
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
-    contactForm.onsubmit = (e) => {
+    contactForm.onsubmit = async (e) => {
         e.preventDefault();
         
+        const submitBtn = document.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        
+        // Collect Data
         const formData = {
             name: document.getElementById('name').value,
             phone: "+964" + document.getElementById('phone').value,
@@ -196,10 +180,37 @@ if (contactForm) {
             message: document.getElementById('message').value
         };
 
-        console.log("Form Submitted Successfully:", formData);
-        
-        // Show success message (can be translated if needed)
-        alert("Success! We will contact you at " + formData.phone + " shortly.");
-        contactForm.reset();
+        // Loading State UI
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+
+        try {
+            const response = await fetch(API_ENDPOINT, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // Success!
+                alert("Thank you! Your message has been sent to Peda Factory.");
+                contactForm.reset();
+            } else {
+                // If the backend exists but returns an error (like 404 or 500)
+                const errorData = await response.json();
+                console.error("API Error:", errorData);
+                alert("Server error. Please try again later.");
+            }
+        } catch (error) {
+            // If the backend is down (Render spins down after inactivity)
+            console.error("Connection Failed:", error);
+            alert("Could not connect to the server. Please check your internet or try in 30 seconds.");
+        } finally {
+            // Restore Button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
     };
 }
