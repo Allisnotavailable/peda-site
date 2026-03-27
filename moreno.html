@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moreno Coffee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .reveal { opacity: 0; filter: blur(5px); transform: scale(0.95); transition: all 1s ease-in-out; }
+        .reveal.active { opacity: 1; filter: blur(0); transform: scale(1); }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 font-sans">
+
+    <nav class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2 text-red-600 hover:text-red-400 transition-all font-bold">
+            <i class="fas fa-arrow-left"></i> HOME
+        </a>
+        <img src="morenologo.JPG" alt="Moreno Logo" class="h-10 object-contain brightness-200">
+        <div class="w-10"></div>
+    </nav>
+
+    <section class="relative h-[450px] overflow-hidden bg-black">
+        <div id="slider" class="flex h-full transition-transform duration-1000 ease-in-out">
+            <div class="min-w-full h-full relative">
+                <img src="moreno1.JPG" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <h1 class="text-6xl font-black italic tracking-tighter text-red-600"></h1>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="moreno2.JPG" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <h1 class="text-6xl font-black italic tracking-tighter text-red-600"></h1>
+                </div>
+            </div>
+        </div>
+        <button onclick="moveSlide(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 text-white text-3xl opacity-50 hover:opacity-100 transition-opacity"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="moveSlide(1)" class="absolute right-6 top-1/2 -translate-y-1/2 text-white text-3xl opacity-50 hover:opacity-100 transition-opacity"><i class="fas fa-chevron-right"></i></button>
+    </section>
+
+    <main class="max-w-6xl mx-auto py-24 px-6">
+        <div class="space-y-32">
+            
+            <div class="reveal flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-[40px] border border-zinc-800">
+                    <img src="moreno3.JPG" class="w-full h-[400px] object-cover">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <span class="text-red-600 font-black tracking-widest uppercase text-sm">FRESH</span>
+                    <h2 class="text-5xl font-black mt-2 mb-6">150 Espresso Pods</h2>
+                    <p class="text-zinc-400 text-lg leading-relaxed">Experience the peak of flavor with our freshly roasted, small-batch espresso pods. Nitrogen-flushed immediately after grinding to seal in rich aromas, these pods guarantee a vibrant, café-quality crema in every cup. Crafted from sustainably sourced Arabica beans and packaged in eco-friendly, fully recyclable aluminum capsules, they deliver unmatched freshness that lasts until the moment you brew.</p>
+                </div>
+            </div>
+
+            <div class="reveal flex flex-col md:flex-row-reverse items-center gap-16" style="transition-delay: 200ms;">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-[40px] border border-zinc-800">
+                    <img src="moreno2.JPG" class="w-full h-[400px] object-cover">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <span class="text-red-600 font-black tracking-widest uppercase text-sm">BREAKFAST</span>
+                    <h2 class="text-5xl font-black mt-2 mb-6">Fresh Croissants</h2>
+                    <p class="text-zinc-400 text-lg leading-relaxed">A fresh, buttery croissant breakfast is the epitome of a luxurious yet simple morning, offering a sensory experience that combines a golden, crisp exterior with a soft, airy, and flaky interior. It is a versatile choice that can be enjoyed in various ways, from a classic, simple pairing with coffee to a hearty, gourmet breakfast sandwich.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        let slidePos = 0;
+        function moveSlide(dir) {
+            const slider = document.getElementById('slider');
+            const total = slider.children.length;
+            slidePos = (slidePos + dir + total) % total;
+            slider.style.transform = `translateX(-${slidePos * 100}%)`;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

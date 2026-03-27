@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peda Food | Pasta Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-green-100 px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-2 text-green-700 hover:text-green-500 transition-all font-bold">
+            <i class="fas fa-chevron-left"></i> BACK
+        </a>
+        <img src="pedalogo.JPG" alt="Peda Logo" class="h-10 object-contain">
+        <div class="w-10"></div> </nav>
+
+    <section class="relative h-[400px] overflow-hidden bg-green-900">
+        <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
+            <div class="min-w-full h-full relative">
+                <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=1200" class="w-full h-full object-cover opacity-60" alt="Wheat field">
+                <div class="absolute inset-0 flex items-center justify-center text-center">
+                    <h1 class="text-white text-5xl font-black uppercase tracking-tighter">Premium Grains</h1>
+                </div>
+            </div>
+            <div class="min-w-full h-full relative">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=1200" class="w-full h-full object-cover opacity-60" alt="Pasta production">
+                <div class="absolute inset-0 flex items-center justify-center text-center">
+                    <h1 class="text-white text-5xl font-black uppercase tracking-tighter">Factory Direct</h1>
+                </div>
+            </div>
+        </div>
+        <button onclick="moveSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 p-3 rounded-full text-white hover:bg-green-600 transition-all"><i class="fas fa-arrow-left"></i></button>
+        <button onclick="moveSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 p-3 rounded-full text-white hover:bg-green-600 transition-all"><i class="fas fa-arrow-right"></i></button>
+    </section>
+
+    <main class="max-w-6xl mx-auto py-20 px-6">
+        <h2 class="text-3xl font-black mb-12 text-green-800 reveal">Available for Bulk Purchase</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <div class="reveal group">
+                <div class="overflow-hidden rounded-3xl mb-6 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1590130541703-997f80456108?auto=format&fit=crop&w=800" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <h3 class="text-2xl font-bold text-slate-800">Hard Durum Wheat</h3>
+                <p class="text-slate-500 mt-2">Locally sourced from Duhok plains. High protein content for industrial milling.</p>
+                <div class="mt-4 flex gap-4 text-green-600 font-bold"><span class="bg-green-100 px-3 py-1 rounded-lg">25KG</span> <span class="bg-green-100 px-3 py-1 rounded-lg">50KG</span></div>
+            </div>
+
+            <div class="reveal group" style="transition-delay: 200ms;">
+                <div class="overflow-hidden rounded-3xl mb-6 shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1612966809572-775211a28763?auto=format&fit=crop&w=800" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <h3 class="text-2xl font-bold text-slate-800">Peda Pasta Line</h3>
+                <p class="text-slate-500 mt-2">Penne, Macaroni, and Fusilli. Made with Italian machinery for perfect texture.</p>
+                <div class="mt-4 flex gap-4 text-green-600 font-bold"><span class="bg-green-100 px-3 py-1 rounded-lg">Bulk Boxes</span></div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        let slidePos = 0;
+        function moveSlide(dir) {
+            const slider = document.getElementById('slider');
+            const total = slider.children.length;
+            slidePos = (slidePos + dir + total) % total;
+            slider.style.transform = `translateX(-${slidePos * 100}%)`;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
