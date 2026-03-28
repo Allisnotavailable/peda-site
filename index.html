@@ -55,12 +55,16 @@
 
     <section class="relative h-[500px] overflow-hidden bg-slate-200 dark:bg-slate-950">
         <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
-            <div class="min-w-full h-full relative flex-shrink-0">
-                <img src="logo.JPG" class="w-full h-full object-cover opacity-80" alt="Factory">
-                <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                    <h2 class="text-white text-4xl md:text-6xl font-black text-center drop-shadow-2xl px-4" data-key="hero_1"></h2>
-                </div>
-            </div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifslider.JPG" class="w-full h-full object-cover" alt="Slider 1"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover" alt="Slider 2"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover" alt="Slider 3"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover" alt="Slider 4"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover" alt="Slider 5"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="spaghetti.JPG" class="w-full h-full object-cover" alt="Slider 6"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno2.JPG" class="w-full h-full object-cover" alt="Slider 7"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="vermicelli.JPG" class="w-full h-full object-cover" alt="Slider 8"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno3.JPG" class="w-full h-full object-cover" alt="Slider 9"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="tea.JPG" class="w-full h-full object-cover" alt="Slider 10"></div>
         </div>
         <button onclick="moveSlide(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-left"></i></button>
         <button onclick="moveSlide(1)" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-right"></i></button>
@@ -90,24 +94,22 @@
                 </div>
             </div>
 
-<div id="card-clean" 
-     onclick="window.location.href='chemical.html'" 
-     class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border dark:border-slate-700 overflow-hidden hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-    
-    <div class="overflow-hidden h-56">
-        <img src="aliflogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Chemical Products">
-    </div>
-
-    <div class="p-8">
-        <div class="flex justify-between items-center mb-3">
-            <h3 class="text-2xl font-bold" data-key="card_title_clean">Alif</h3>
-            <i class="fas fa-arrow-right text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-        </div>
-        <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_clean">
-            High-performance industrial detergents and professional cleaning solutions for all sectors.
-        </p>
-    </div>
-</div>
+            <div id="card-clean" 
+                 onclick="window.location.href='chemical.html'" 
+                 class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border dark:border-slate-700 overflow-hidden hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
+                <div class="overflow-hidden h-56">
+                    <img src="aliflogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Chemical Products">
+                </div>
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-2xl font-bold" data-key="card_title_clean">Alif</h3>
+                        <i class="fas fa-arrow-right text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_clean">
+                        High-performance industrial detergents and professional cleaning solutions for all sectors.
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -125,12 +127,12 @@
             </div>
             <div>
                 <h4 class="font-bold text-lg mb-6">Info</h4>
-        <div class="flex flex-col md:flex-row gap-2 md:gap-6">
-            <span><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
-            <a href="info.html">Click for more Info.</a>
+                <div class="flex flex-col gap-3">
+                    <span class="text-slate-500 dark:text-slate-400"><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
+                    <a href="info.html" class="text-blue-600 hover:underline">Click for more Info.</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </div> </footer>
 
     <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 hover:bg-blue-700 flex items-center justify-center z-[200]">
         <i class="fas fa-arrow-up"></i>
