@@ -196,7 +196,17 @@ function updateMap(locationKey) {
     iframe.style.opacity = '0';
     setTimeout(() => {
         iframe.src = mapLocations[locationKey].url;
-        if (label) label.innerText = `Current: ${mapLocations[locationKey].label}`;
+        if (label) {
+            // Updated Label with an "Open in App" link
+            label.innerHTML = `
+                <div class="flex items-center gap-4">
+                    <span>Current: ${mapLocations[locationKey].label}</span>
+                    <a href="${mapLocations[locationKey].url}" target="_blank" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-[10px] hover:bg-blue-700 transition-colors">
+                        GET DIRECTIONS <i class="fas fa-external-link-alt ml-1"></i>
+                    </a>
+                </div>
+            `;
+        }
         iframe.style.opacity = '1';
     }, 300);
 }
