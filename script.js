@@ -1,7 +1,7 @@
 /**
  * Peda Group & Alif Chemicals - Main JavaScript Controller
  * Includes: Multi-language Engine, Theme Switcher, Interactive Maps, and API Integration
- * Last Updated: 2026-03-28
+ * Backend: Render (Node/Express)
  */
 
 // --- 0. CONFIGURATION ---
@@ -11,12 +11,11 @@ const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 const translations = {
     en: {
         // Navigation & Global
-        nav_info: "Info",
         nav_home: "Home",
         nav_services: "Our Brands",
         nav_contact: "Contact Us",
-        nav_info: "Locations",
-        section_title: "Industrial Excellence",
+        nav_info: "Info",
+        section_title: "Home",
         footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region.",
         footer_location: "Duhok Industrial City",
         
@@ -58,12 +57,11 @@ const translations = {
     },
     ar: {
         // Navigation & Global
-        nav_info: "معلومات",
         nav_home: "الرئيسية",
         nav_services: "علاماتنا التجارية",
         nav_contact: "اتصل بنا",
-        nav_info: "مواقعنا",
-        section_title: "التميز الصناعي",
+        nav_info: "معلومات",
+        section_title: "الرئيسية",
         footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان.",
         footer_location: "مدينة دهوك الصناعية",
 
@@ -100,12 +98,11 @@ const translations = {
     },
     ku: {
         // Navigation & Global
-        nav_info: "پێزانین",
         nav_home: "سەرەکی",
         nav_services: "براندەکانی مە",
         nav_contact: "پەیوەندی",
-        nav_info: "جهێن مە",
-        section_title: "ناوازەیی پیشەسازی",
+        nav_info: "پێزانین",
+        section_title: "سەرەکی",
         footer_about: "پابەندین ب پێشکێشکرنا چارەسەریێن پیشەسازی و خۆراک ل سەرانسەری هەرێما کوردستانێ.",
         footer_location: "شاری پیشەسازی دهۆک",
 
@@ -174,15 +171,15 @@ function translatePage(lang) {
 // --- 3. INTERACTIVE MAP LOGIC ---
 const mapLocations = {
     'duhok_factory': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.8!2d43.0!3d36.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ4JzAwLjAiTiA0M8KwMDAnMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102434.34110375997!2d42.915238258384214!3d36.86438883597402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40089456259021e1%3A0xf639a037b385966c!2sDuhok%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632000000!5m2!1sen!2sus",
         label: "Peda Food: Duhok HQ"
     },
     'zakho_moreno': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.8!2d42.7!3d37.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDA2JzAwLjAiTiA0MsKwNDInMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51152.48208470535!2d42.65682977519532!3d37.13904571000787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40090623d8385759%3A0x6334659b921f0084!2sZakho%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632100000!5m2!1sen!2sus",
         label: "Moreno Coffee: Zakho Hub"
     },
     'erbil_alif': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3225.8!2d44.0!3d36.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDEyJzAwLjAiTiA0NMKwMDAnMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103130.40356515828!2d43.93110257007505!3d36.19535031644781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x400722fe13443461%3A0x3e01d633918399e3!2sErbil%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632200000!5m2!1sen!2sus",
         label: "Alif Chemical: Erbil Branch"
     }
 };
