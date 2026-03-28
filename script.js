@@ -53,7 +53,10 @@ const translations = {
         contact_subject: "Select Subject",
         opt_question: "General Question",
         opt_delivery: "Delivery Inquiry",
-        send_btn: "Send Message"
+        send_btn: "Send Message",
+        card_title_dogtas: "Doğtaş Duhok",
+    card_desc_dogtas: "Discover sleek, modern Turkish furniture. Now open in Batel.",
+footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region."
     },
     ar: {
         // Navigation & Global
@@ -94,7 +97,10 @@ const translations = {
         ph_phone: "رقم الهاتف",
         ph_msg: "رسالتك",
         contact_subject: "اختر الموضوع",
-        send_btn: "إرسال الرسالة"
+        send_btn: "إرسال الرسالة",
+        card_title_dogtas: "دوغتاش دهوك",
+card_desc_dogtas: "اكتشف الأثاث التركي العصري والأنيق. مفتوح الآن في باتيل.",
+footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان."
     },
     ku: {
         // Navigation & Global
@@ -135,7 +141,10 @@ const translations = {
         ph_phone: "ژمارەی مۆبایل",
         ph_msg: "ناما تە",
         contact_subject: "بابەت هەڵبژێرە",
-        send_btn: "نامە بنێرە"
+        send_btn: "نامە بنێرە",
+        card_title_dogtas: "دۆغتاش دهۆک",
+card_desc_dogtas: "کەلوپەلێن تورکی یێن مۆدێرن ببینە. نوکە ل باتێلێ ڤەکرییە.",
+footer_about: "پاپەندین ب پێشکێشکرنا چارەسەریێن پیشەسازی و خارنێ ل سەرتاسەری هەرێما کوردستانێ."
     }
 };
 
