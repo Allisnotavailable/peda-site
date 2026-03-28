@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doğtaş | Duhok | Peda Group</title>
+    <title>Doğtaş | Duhok Luxury</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
@@ -12,127 +12,134 @@
             theme: {
                 extend: {
                     colors: {
-                        'premium-blue': '#001B3D',
-                        'premium-gold': '#D4AF37',
-                        // Luxurious Dogtas Colors
-                        'dogtas-dark': '#1e1e1a', 
-                        'dogtas-cream': '#fdfbf6' 
+                        'dogtas-gold': '#C5A059',
+                        'dogtas-dark': '#0a0a0a',
+                        'dogtas-gray': '#1a1a1a'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Base Animation Definitions */
-        @keyframes float { 
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(10px, -20px) rotate(5deg); }
-        }
-        @keyframes drift {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-10px, 20px) rotate(-5deg); }
-        }
-        /* Special Reflection Shimmer */
-        @keyframes shimmer {
-            0% { transform: translateX(-150%) skewX(-20deg); opacity: 0; }
-            50% { opacity: 0.2; }
-            100% { transform: translateX(150%) skewX(-20deg); opacity: 0; }
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap');
         
-        .animated-shape { animation: float 15s ease-in-out infinite; }
-        .animated-shape-slow { animation: drift 25s ease-in-out infinite; }
-        .animated-shape-fast { animation: float 10s ease-in-out infinite; }
-        
-        /* Shimmer Reflection for the logo */
-        .reflection-layer::after {
-            content: '';
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
+
+        /* Smooth floating animation for the geometric shapes */
+        @keyframes orbit {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 50px) rotate(5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* The "Reflective" Shimmer effect on the text */
+        .shimmer-text {
+            background: linear-gradient(90deg, #333, #fff, #333);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .shape {
             position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to right, 
-                transparent, 
-                rgba(255, 255, 255, 0.4) 30%, 
-                rgba(255, 255, 255, 0.8) 50%, 
-                rgba(255, 255, 255, 0.4) 70%, 
-                transparent
-            );
-            animation: shimmer 5s ease-in-out infinite;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: orbit 20s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="bg-dogtas-dark text-dogtas-cream transition-colors duration-300 font-sans min-h-screen relative overflow-x-hidden">
+<body class="text-white overflow-x-hidden">
 
-    <header class="bg-dogtas-dark/70 backdrop-blur-md sticky top-0 z-50 py-4 px-8 flex justify-between items-center border-b border-white/5">
-        <a href="index.html" class="flex items-center gap-2">
-            <span class="font-bold tracking-tighter text-xl uppercase text-white">Doğtaş</span>
-            <span class="font-bold tracking-tighter text-xl uppercase text-slate-500">Peda</span>
-        </a>
-        <nav class="flex gap-6 items-center">
-            <a href="index.html" class="hover:text-premium-gold transition-colors font-medium">Home</a>
-            <button id="theme-toggle" class="text-premium-gold"><i class="fas fa-adjust text-lg"></i></button>
-        </nav>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-6 py-16 relative z-10">
+    <div class="fixed inset-0 pointer-events-none">
+        <div class="shape w-[500px] h-[500px] bg-dogtas-gold/10 -top-20 -left-20"></div>
+        <div class="shape w-[400px] h-[400px] bg-blue-900/10 bottom-0 right-0" style="animation-delay: -5s;"></div>
         
-        <div class="text-center mb-16 relative">
-            <div class="relative inline-block px-10 py-5 rounded-2xl bg-white reflection-layer overflow-hidden shadow-2xl">
-                <h1 class="text-7xl font-black text-dogtas-dark tracking-tighter uppercase mb-2">Doğtaş</h1>
-                <p class="text-sm font-bold text-premium-gold/70 tracking-widest uppercase">SLEEK & MODERN TURKISH FURNITURE</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div onclick="openProductPopup('sofa_lounge')" class="group cursor-pointer p-8 rounded-4xl bg-white dark:bg-dogtas-cream text-dogtas-dark shadow-xl hover:-translate-y-2 transition-all duration-300 border-2 border-transparent hover:border-premium-gold">
-                <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mb-6 transition-all group-hover:scale-110 group-hover:rotate-6">
-                    <i class="fas fa-couch text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-2" data-key="dogtas_sofa_title">The Lounge Sofa</h3>
-                <p class="text-sm text-slate-500 leading-relaxed mb-4" data-key="dogtas_sofa_desc">Elegant curves meet modern functionality. Perfect for contemporary Duhok homes.</p>
-                <div class="text-xs font-bold text-premium-gold uppercase tracking-widest">View Details <i class="fas fa-chevron-right ml-1"></i></div>
-            </div>
-
-            <div onclick="openProductPopup('bed_haven')" class="group cursor-pointer p-8 rounded-4xl bg-white dark:bg-dogtas-cream text-dogtas-dark shadow-xl hover:-translate-y-2 transition-all duration-300 border-2 border-transparent hover:border-premium-gold">
-                <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mb-6 transition-all group-hover:scale-110 group-hover:rotate-6">
-                    <i class="fas fa-bed text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black mb-2" data-key="dogtas_bed_title">Haven Master Bed</h3>
-                <p class="text-sm text-slate-500 leading-relaxed mb-4" data-key="dogtas_bed_desc">Minimalist design with built-in ergonomic support. Experience restful Turkish sleep.</p>
-                <div class="text-xs font-bold text-premium-gold uppercase tracking-widest">View Details <i class="fas fa-chevron-right ml-1"></i></div>
-            </div>
-            
-        </div>
-    </main>
-
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-10">
-        <div class="absolute -top-10 -left-10 w-96 h-96 rounded-full bg-slate-600/30 blur-[100px] animated-shape"></div>
-        <div class="absolute top-1/2 -right-20 w-80 h-80 rounded-full bg-white/10 blur-[80px] animated-shape-slow"></div>
-        <div class="absolute -bottom-1/4 left-1/3 w-64 h-64 rounded-full bg-premium-gold/10 blur-[90px] animated-shape-fast"></div>
-        
-        <div class="absolute top-1/4 left-1/4 w-0.5 h-full bg-white/10 animated-shape-slow rotate-45 transform-origin-top"></div>
-        <div class="absolute top-1/2 left-3/4 w-0.5 h-full bg-white/10 animated-shape rotate-12 transform-origin-top"></div>
+        <div class="absolute top-0 left-[10%] w-[1px] h-full bg-white/5"></div>
+        <div class="absolute top-0 left-[30%] w-[1px] h-full bg-white/5"></div>
+        <div class="absolute top-0 left-[70%] w-[1px] h-full bg-white/5"></div>
     </div>
 
-    <script>
-        // 1. Language Dictionary (Page Specific)
-        const translations = {
-            en: {
-                // ... same global navigation keys from your script.js ...
-                dogtas_title: "Doğtaş | Duhok",
-                card_title_dogtas: "Doğtaş Duhok",
-                card_desc_dogtas: "Discover sleek, modern Turkish furniture. Now open in batel.",
-                dogtas_sofa_title: "The Lounge Sofa",
-                dogtas_sofa_desc: "Elegant curves meet modern functionality.",
-                dogtas_bed_title: "Haven Master Bed",
-                dogtas_bed_desc: "Minimalist design with ergonomic support.",
-                ph_call_now: "Call for Pricing",
-                ph_insta: "Follow @dogtas.duhok"
-            },
-            // Add Ar & Ku here as needed
-        };
+    <nav class="fixed top-0 w-full z-50 px-10 py-8 flex justify-between items-center bg-gradient-to-b from-black to-transparent">
+        <a href="index.html" class="group flex items-center gap-4">
+            <div class="w-10 h-10 border border-dogtas-gold flex items-center justify-center group-hover:bg-dogtas-gold transition-all">
+                <i class="fas fa-chevron-left text-xs group-hover:text-black"></i>
+            </div>
+            <span class="tracking-[0.5em] text-xs font-light uppercase">Back to Peda</span>
+        </a>
+        <div class="text-xl font-black tracking-tighter shimmer-text">DOĞTAŞ</div>
+    </nav>
 
-        // ... Translation Engine (same function from script.js) ...
-    </script>
+    <section class="relative min-h-screen flex flex-col justify-center px-10 md:px-24">
+        <div class="max-w-4xl z-10">
+            <h1 class="text-7xl md:text-9xl font-black leading-none mb-6 tracking-tighter">
+                SLEEK.<br>MODERN.<br><span class="text-dogtas-gold">TURKISH.</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl max-w-xl font-light leading-relaxed mb-10">
+                The pinnacle of Turkish furniture design has arrived in Duhok. Elevate your living space with minimalist aesthetics and unmatched comfort.
+            </p>
+            <div class="flex gap-6">
+                <a href="#explore" class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-dogtas-gold transition-colors">Explore Collection</a>
+                <a href="#contact" class="px-8 py-4 border border-white/20 font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-colors">Visit Showroom</a>
+            </div>
+        </div>
+
+        <div class="absolute right-24 top-1/2 -translate-y-1/2 hidden lg:block w-96">
+            <div class="glass-panel p-10 rounded-full w-96 h-96 flex flex-col items-center justify-center text-center animate-bounce" style="animation-duration: 10s;">
+                 <div class="text-dogtas-gold text-5xl mb-4"><i class="fas fa-couch"></i></div>
+                 <div class="text-xs tracking-[0.3em] font-bold uppercase">Now Open</div>
+                 <div class="text-2xl font-light">Batel Street, Duhok</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="explore" class="py-32 px-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            
+            <div class="group relative overflow-hidden">
+                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" alt="Furniture">
+                    <div class="absolute bottom-10 left-10 z-20">
+                        <h3 class="text-3xl font-black italic">Living Concept</h3>
+                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Lounge Series 2026</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden md:mt-24">
+                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1505691722718-468447d286fd?auto=format&fit=crop&q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" alt="Bedroom">
+                    <div class="absolute bottom-10 left-10 z-20">
+                        <h3 class="text-3xl font-black italic">Master Suite</h3>
+                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="py-20 px-10 border-t border-white/5 text-center">
+        <div class="text-6xl font-black mb-10 shimmer-text">DOĞTAŞ</div>
+        <div class="flex flex-col md:flex-row justify-center gap-10 text-slate-500 tracking-widest text-xs font-bold uppercase">
+            <span><i class="fas fa-map-marker-alt text-dogtas-gold mr-2"></i> Duhok, Zakho Way</span>
+            <span><i class="fas fa-phone text-dogtas-gold mr-2"></i> +964 750 000 0000</span>
+            <span><i class="fab fa-instagram text-dogtas-gold mr-2"></i> @dogtas.duhok</span>
+        </div>
+    </footer>
+
 </body>
 </html>
