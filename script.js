@@ -169,23 +169,51 @@ function translatePage(lang) {
 }
 
 // --- 3. INTERACTIVE MAP LOGIC ---
+// --- 3. INTERACTIVE MAP LOGIC (FIXED EMBED URLS) ---
 const mapLocations = {
     'duhok_factory': {
-        url: "https://maps.google.com/?cid=2418440652183739736&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ",
-        label: "Peda Food: Duhok"
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.75!2d42.92!3d36.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008ec0643470329%3A0x249006173e465769!2sPeda%20Food!5e0!3m2!1sen!2siq!4v1711630000000",
+        label: "Peda Food: Duhok HQ"
     },
     'duhok_moreno': {
-        url: "https://maps.google.com/?cid=2521414930927965392&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ",
-        label: "Moreno Coffee: Duhok (Malta St)"
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.85!2d42.96!3d36.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008ecc0072d03a9%3A0x449006f56bc6ade1!2sMoreno%20Duhok!5e0!3m2!1sen!2siq!4v1711630000000",
+        label: "Moreno Coffee: Duhok (Malta)"
     },
     'erbil_moreno': {
-        url: "https://www.google.com/maps/contrib/108328678395005710457/reviews",
-        label: "Moreno Coffee: Erbil (Naznaz)"
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.5!2d44.01!3d36.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40072382c3c27d91%3A0x22fd79854953d4d0!2sMoreno%20Caffe!5e0!3m2!1sen!2siq!4v1711630000000",
+        label: "Moreno Caffe: Erbil (Naznaz)"
+    },
+    'zakho_moreno': {
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3202.5!2d42.68!3d37.14!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008931c1ca4d3a5%3A0xba00787d8919cc99!2sZakho!5e0!3m2!1sen!2siq!4v1711630000000",
+        label: "Moreno Hub: Zakho"
     },
     'erbil_alif': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102607.411!2d42.915034!3d36.879010!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008902888924b2d%3A0x6a0c0e7041753896!2sDuhok!5e0!3m2!1sen!2siq!4v17000000000000",
-        label: "Alif Chemical: Duhok"
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3225.0!2d44.00!3d36.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAlif%20Chemical!5e0!3m2!1sen!2siq!4v1711630000000",
+        label: "Alif Chemical: Erbil Branch"
     }
+};
+
+function updateMap(locationKey) {
+    const iframe = document.getElementById('google-map-iframe');
+    const label = document.getElementById('location-label');
+    if (!iframe) return;
+
+    const currentLang = localStorage.getItem('preferredLang') || 'en';
+    const btnText = translations[currentLang].btn_directions || "Directions";
+
+    iframe.style.opacity = '0';
+    setTimeout(() => {
+        iframe.src = mapLocations[locationKey].url;
+        label.innerHTML = `
+            <div class="flex items-center gap-4">
+                <span>${mapLocations[locationKey].label}</span>
+                <a href="${mapLocations[locationKey].url.replace('/embed', '')}" target="_blank" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-[10px] hover:bg-blue-700 transition-colors uppercase font-bold">
+                    ${btnText} <i class="fas fa-external-link-alt ml-1"></i>
+                </a>
+            </div>
+        `;
+        iframe.style.opacity = '1';
+    }, 300);
 };
 
 function updateMap(locationKey) {
