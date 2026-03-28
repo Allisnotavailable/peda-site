@@ -11,6 +11,7 @@ const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 const translations = {
     en: {
         // Navigation & Global
+        nav_info: "Info",
         nav_home: "Home",
         nav_services: "Our Brands",
         nav_contact: "Contact Us",
@@ -57,6 +58,7 @@ const translations = {
     },
     ar: {
         // Navigation & Global
+        nav_info: "معلومات",
         nav_home: "الرئيسية",
         nav_services: "علاماتنا التجارية",
         nav_contact: "اتصل بنا",
@@ -98,6 +100,7 @@ const translations = {
     },
     ku: {
         // Navigation & Global
+        nav_info: "پێزانین",
         nav_home: "سەرەکی",
         nav_services: "براندەکانی مە",
         nav_contact: "پەیوەندی",
