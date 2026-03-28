@@ -168,29 +168,79 @@ function translatePage(lang) {
     if (dropdown) dropdown.classList.add('hidden');
 }
 
-// --- 3. INTERACTIVE MAP LOGIC ---
-// --- 3. INTERACTIVE MAP LOGIC (FIXED EMBED URLS) ---
-const mapLocations = {
+// --- 3. LOCATION DATA & MODAL LOGIC ---
+const locationData = {
     'duhok_factory': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.75!2d42.92!3d36.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008ec0643470329%3A0x249006173e465769!2sPeda%20Food!5e0!3m2!1sen!2siq!4v1711630000000",
-        label: "Peda Food: Duhok HQ"
+        title: "Peda Food Factory",
+        desc: "Our primary industrial processing unit for grains and food packaging in the Duhok Industrial Zone.",
+        maps: "https://www.google.com/maps/contrib/100082280556290457690/reviews",
+        tiktok: "https://www.tiktok.com/@pedagroup",
+        insta: "https://www.instagram.com/pedagroup",
+        color: "blue"
     },
     'duhok_moreno': {
-        url: "https://maps.app.goo.gl/djMoewL8P43XBDGt6",
-        label: "Moreno Coffee: Duhok (Malta)"
+        title: "Moreno Coffee - Duhok",
+        desc: "Premium coffee, fresh bakery, and a relaxed atmosphere. Located on Malta Street.",
+        maps: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103138.38466186414!2d43.92138139599544!3d36.18911578330089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x400722fe13443461%3A0x3e01d633a109407!2sErbil!5e0!3m2!1sen!2siq!4v17000000000005",
+        tiktok: "https://www.tiktok.com/@morenocoffee",
+        insta: "https://www.instagram.com/moreno.duhok",
+        color: "amber"
     },
     'erbil_moreno': {
-        url: "https://maps.app.goo.gl/Z31EEMqBVbx2UHSL9",
-        label: "Moreno Caffe: Erbil (Naznaz)"
-    },
-    'zakho_moreno': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3202.5!2d42.68!3d37.14!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008931c1ca4d3a5%3A0xba00787d8919cc99!2sZakho!5e0!3m2!1sen!2siq!4v1711630000000",
-        label: "Moreno Hub: Zakho"
+        title: "Moreno Caffe - Erbil",
+        desc: "Our flagship Erbil location in Naznaz. International cuisine and specialty coffee until 2:00 AM.",
+        maps: "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT205WU5qRnNjVmRMVG5oeGEzQmxSSE42V0Y4d05GRRAB!2m1!1s0x40072380c3c27e91:0x22fddd854953d4d0",
+        tiktok: "https://www.tiktok.com/@morenoerbil",
+        insta: "https://www.instagram.com/moreno.erbil",
+        color: "amber"
     },
     'erbil_alif': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3225.0!2d44.00!3d36.19!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sAlif%20Chemical!5e0!3m2!1sen!2siq!4v1711630000000",
-        label: "Alif Chemical: Erbil Branch"
+        title: "Alif Chemical Solutions",
+        desc: "Specialized industrial detergent and chemical formulation center serving the Erbil district.",
+        maps: "https://www.google.com/maps/contrib/100082266622551552104/reviews",
+        tiktok: "#",
+        insta: "https://www.instagram.com/alif.chemicals",
+        color: "slate"
     }
+};
+
+function openLocationPopup(key) {
+    const data = locationData[key];
+    if (!data) return;
+
+    // Get translations for buttons
+    const lang = localStorage.getItem('preferredLang') || 'en';
+    const btnMaps = translations[lang].btn_directions || "Open Maps";
+
+    // Inject data into Modal
+    document.getElementById('modal-title').innerText = data.title;
+    document.getElementById('modal-desc').innerText = data.desc;
+    document.getElementById('modal-maps-link').href = data.maps;
+    document.getElementById('modal-tiktok').href = data.tiktok;
+    document.getElementById('modal-insta').href = data.insta;
+    
+    // Change Button Color based on brand
+    const mainBtn = document.getElementById('modal-maps-link');
+    mainBtn.className = `w-full py-4 rounded-2xl font-bold text-center transition-all flex items-center justify-center gap-2 ${
+        data.color === 'amber' ? 'bg-amber-700 hover:bg-amber-800 text-white' : 
+        data.color === 'blue' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 
+        'bg-slate-800 hover:bg-slate-900 text-white'
+    }`;
+
+    // Show Modal
+    const modal = document.getElementById('location-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.querySelector('.modal-content').classList.remove('scale-95');
+    }, 10);
+}
+
+function closePopup() {
+    const modal = document.getElementById('location-modal');
+    modal.classList.add('opacity-0');
+    modal.querySelector('.modal-content').classList.add('scale-95');
+    setTimeout(() => modal.classList.add('hidden'), 300);
 };
 
 function updateMap(locationKey) {
