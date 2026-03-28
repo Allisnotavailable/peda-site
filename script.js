@@ -241,53 +241,8 @@ function closePopup() {
     modal.classList.add('opacity-0');
     modal.querySelector('.modal-content').classList.add('scale-95');
     setTimeout(() => modal.classList.add('hidden'), 300);
-};
-
-function updateMap(locationKey) {
-    const iframe = document.getElementById('google-map-iframe');
-    const label = document.getElementById('location-label');
-    if (!iframe) return;
-
-    const currentLang = localStorage.getItem('preferredLang') || 'en';
-    const btnText = translations[currentLang].btn_directions || "Directions";
-
-    iframe.style.opacity = '0';
-    setTimeout(() => {
-        iframe.src = mapLocations[locationKey].url;
-        label.innerHTML = `
-            <div class="flex items-center gap-4">
-                <span>${mapLocations[locationKey].label}</span>
-                <a href="${mapLocations[locationKey].url.replace('/embed', '')}" target="_blank" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-[10px] hover:bg-blue-700 transition-colors uppercase font-bold">
-                    ${btnText} <i class="fas fa-external-link-alt ml-1"></i>
-                </a>
-            </div>
-        `;
-        iframe.style.opacity = '1';
-    }, 300);
-};
-
-function updateMap(locationKey) {
-    const iframe = document.getElementById('google-map-iframe');
-    const label = document.getElementById('location-label');
-    if (!iframe) return;
-
-    iframe.style.opacity = '0';
-    setTimeout(() => {
-        iframe.src = mapLocations[locationKey].url;
-        if (label) {
-            // Updated Label with an "Open in App" link
-            label.innerHTML = `
-                <div class="flex items-center gap-4">
-                    <span>Current: ${mapLocations[locationKey].label}</span>
-                    <a href="${mapLocations[locationKey].url}" target="_blank" class="bg-blue-600 text-white px-3 py-1 rounded-lg text-[10px] hover:bg-blue-700 transition-colors">
-                        GET DIRECTIONS <i class="fas fa-external-link-alt ml-1"></i>
-                    </a>
-                </div>
-            `;
-        }
-        iframe.style.opacity = '1';
-    }, 300);
 }
+
 
 // --- 4. CORE UI & THEME INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -335,6 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     translatePage(savedLang);
     if (savedTheme === 'dark') document.documentElement.classList.add('dark');
+    
+    // Back to top button logic
+    const backToTopBtn = document.getElementById('backToTop');
+    if(backToTopBtn){
+        backToTopBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    }
 });
 
 // --- 5. CONTACT FORM HANDLER ---
@@ -387,6 +350,17 @@ window.addEventListener('scroll', () => {
             nav.classList.remove('shadow-xl');
         }
     }
+    
+    const backToTopBtn = document.getElementById('backToTop');
+    if(backToTopBtn){
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+            backToTopBtn.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            backToTopBtn.classList.add('opacity-0', 'translate-y-10');
+            backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+        }
+    }
 });
 
 // --- 7. HERO SLIDER LOGIC ---
@@ -410,11 +384,10 @@ function moveSlide(direction) {
     slider.style.transform = `translateX(${moveAmount}%)`;
 }
 
-// Auto-play the slider every 5 seconds
+// Auto-play the slider every 2 seconds (as you had set it)
 setInterval(() => {
     const slider = document.getElementById('slider');
     if (slider) {
         moveSlide(1);
     }
 }, 2000);
-
