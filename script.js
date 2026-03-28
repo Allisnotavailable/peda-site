@@ -388,3 +388,33 @@ window.addEventListener('scroll', () => {
         }
     }
 });
+
+// --- 7. HERO SLIDER LOGIC ---
+let currentSlide = 0;
+
+function moveSlide(direction) {
+    const slider = document.getElementById('slider');
+    if (!slider) return; // Prevents errors on pages without a slider
+    
+    const slides = slider.children;
+    const totalSlides = slides.length;
+    
+    // Calculate the new slide index (loops back to start/end)
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    
+    // Move the slider track
+    // If the page is in RTL (Arabic/Kurdish), we move positive, otherwise negative
+    const isRTL = document.documentElement.dir === 'rtl';
+    const moveAmount = isRTL ? (currentSlide * 100) : -(currentSlide * 100);
+    
+    slider.style.transform = `translateX(${moveAmount}%)`;
+}
+
+// Auto-play the slider every 5 seconds
+setInterval(() => {
+    const slider = document.getElementById('slider');
+    if (slider) {
+        moveSlide(1);
+    }
+}, 2000);
+
