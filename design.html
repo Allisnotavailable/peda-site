@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawar Baroj | Brand Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-gold': '#C5A059',
+                        'brand-dark': '#0A0A0A'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .brand-shadow { box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] text-brand-dark font-sans selection:bg-brand-gold selection:text-white">
+
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-8 py-4 flex justify-between items-center">
+        <span class="font-black text-xl uppercase tracking-tighter">Pawar <span class="text-brand-gold">Baroj</span></span>
+        <a href="index.html" class="text-xs font-bold uppercase tracking-widest hover:text-brand-gold transition-colors">Back to Peda Group</a>
+    </nav>
+
+    <header class="pt-40 pb-20 px-8 text-center max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-none uppercase">Crafting <span class="italic font-serif text-brand-gold">Visual</span> Identities.</h1>
+        <p class="text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
+            Multidisciplinary designer based in Duhok, specializing in minimalist branding, high-end logos, and industrial aesthetic design.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-8 pb-32">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <div class="reveal group">
+                <div class="overflow-hidden rounded-3xl bg-white brand-shadow aspect-[4/5] flex items-center justify-center p-12 mb-6">
+                    <img src="logo.JPG" class="w-48 h-auto group-hover:scale-110 transition-transform duration-700 drop-shadow-2xl" alt="Peda Badge">
+                </div>
+                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-brand-gold mb-2">Identity Design</h3>
+                <h2 class="text-2xl font-bold mb-4">Peda Group Gold Badge</h2>
+                <p class="text-slate-500 text-sm">A custom-crafted emblem designed from scratch in Canva, featuring premium reflections and industrial weight.</p>
+            </div>
+
+            <div class="reveal group" style="transition-delay: 200ms;">
+                <div class="overflow-hidden rounded-3xl bg-brand-dark brand-shadow aspect-[4/5] flex items-center justify-center p-12 mb-6">
+                    <img src="aliflogo.JPG" class="w-48 h-auto group-hover:scale-110 transition-transform duration-700 opacity-90" alt="Alif Branding">
+                </div>
+                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-brand-gold mb-2">Industrial UI</h3>
+                <h2 class="text-2xl font-bold mb-4">Alif Chemical Solutions</h2>
+                <p class="text-slate-500 text-sm">Visual direction for industrial detergent lines, focusing on scientific purity and professional blue tones.</p>
+            </div>
+
+            <div class="reveal group">
+                <div class="overflow-hidden rounded-3xl bg-[#1e1e1a] brand-shadow aspect-[4/5] flex items-center justify-center p-12 mb-6">
+                    <img src="dogtaslogo.JPG" class="w-full h-auto group-hover:scale-105 transition-transform duration-700" alt="Dogtas">
+                </div>
+                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-brand-gold mb-2">Retail Aesthetic</h3>
+                <h2 class="text-2xl font-bold mb-4">Doğtaş Furniture Duhok</h2>
+                <p class="text-slate-500 text-sm">Color palette curation and luxury asset management for the Batel-based Turkish furniture flagship.</p>
+            </div>
+
+            <div class="reveal group" style="transition-delay: 200ms;">
+                <div class="overflow-hidden rounded-3xl bg-[#EADBC8] brand-shadow aspect-[4/5] flex items-center justify-center p-12 mb-6">
+                    <img src="morenocardlogo.JPG" class="w-48 h-auto group-hover:scale-110 transition-transform duration-700" alt="Moreno">
+                </div>
+                <h3 class="text-xs font-black uppercase tracking-[0.3em] text-brand-gold mb-2">Hospitality Branding</h3>
+                <h2 class="text-2xl font-bold mb-4">Moreno Coffee Service</h2>
+                <p class="text-slate-500 text-sm">Visual identity for professional workspace coffee solutions, emphasizing warmth and morning energy.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="bg-white py-32 px-8 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-black mb-8 uppercase tracking-tighter">Let's work together.</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 text-sm font-bold uppercase tracking-widest">
+                <a href="mailto:pawar.baroj@example.com" class="hover:text-brand-gold transition-colors underline decoration-brand-gold underline-offset-8">Email Pawar</a>
+                <span class="hidden md:block text-slate-200">|</span>
+                <a href="tel:009647510990010" class="hover:text-brand-gold transition-colors underline decoration-brand-gold underline-offset-8">Call for Design</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple Scroll Reveal Effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
