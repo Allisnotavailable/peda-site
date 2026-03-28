@@ -1,111 +1,140 @@
 /**
- * Peda Company & Moreno Coffee 
- * Main JavaScript Controller
- * Backend: Render (Node/Express)
+ * Peda Group & Alif Chemicals - Main JavaScript Controller
+ * Includes: Multi-language Engine, Theme Switcher, Interactive Maps, and API Integration
+ * Last Updated: 2026-03-28
  */
 
-// --- 0. API CONFIGURATION ---
+// --- 0. CONFIGURATION ---
 const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 
-// --- 1. TRANSLATION DICTIONARY ---
+// --- 1. THE COMPLETE TRANSLATION DICTIONARY ---
 const translations = {
     en: {
-        chem_page_tag: "Professional Formulation",
-        chem_page_title: "Chemical Solutions",
-        chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial, commercial, and residential sectors.",
-        prod_1_title: "Heavy-Duty Degreaser",
-        prod_1_desc: "A high-performance solvent engineered to break down complex greases, oils, and industrial contaminants from machinery, automotive surfaces, and factory flooring.",
-        prod_2_title: "Multi-Surface Cleaner",
-        prod_2_desc: "Our flagship versatile detergent for all hard surfaces. Concentrated formula lifts grime effectively without residues, suitable for commercial maintenance and janitorial use.",
-        prod_3_title: "Medical Disinfectant",
-        prod_3_desc: "Hospital-grade disinfectant formulated for critical sterilization. Meets high purity standards for eliminate pathogens in medical environments, clinics, and laboratories.",
-        prod_request_info: "Request Formulation Specs",
-        card_title_clean: "Chemical",
-        card_desc_clean: "High-performance industrial detergents and professional cleaning solutions for all sectors.",
+        // Navigation & Global
         nav_home: "Home",
         nav_services: "Our Brands",
         nav_contact: "Contact Us",
-        hero_1: "Quality Production",
-        hero_2: "Industrial Excellence",
-        section_title: "Home",
+        nav_info: "Locations",
+        section_title: "Industrial Excellence",
+        footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region.",
+        footer_location: "Duhok Industrial City",
+        
+        // Index Page Cards
         card_title_peda: "Peda Food Factory",
         card_desc_peda: "We provide the highest quality local grain processing and food packaging.",
         card_title_moreno: "Coffee Service",
-        card_desc_moreno: "Professional coffee equipment, premium beans, and maintenance for offices and events.",
-        footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region.",
-        footer_location: "Duhok Industrial City",
+        card_desc_moreno: "Professional coffee equipment, premium beans, and maintenance for offices.",
+        card_title_clean: "Chemical Solutions",
+        card_desc_clean: "High-performance industrial detergents and professional cleaning solutions.",
+
+        // Chemical Page (Alif)
+        chem_page_tag: "Professional Formulation",
+        chem_page_title: "Chemical Solutions",
+        chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial sectors.",
+        prod_1_title: "Heavy-Duty Degreaser",
+        prod_1_desc: "A high-performance solvent engineered to break down complex greases and industrial contaminants.",
+        prod_2_title: "Multi-Surface Cleaner",
+        prod_2_desc: "Our flagship versatile detergent. Concentrated formula lifts grime effectively without residues.",
+        prod_3_title: "Medical Disinfectant",
+        prod_3_desc: "Hospital-grade disinfectant formulated for critical sterilization in medical environments.",
+        prod_request_info: "Request Formulation Specs",
+
+        // Info & Maps Page
+        info_title: "Find Us",
+        info_subtitle: "Our headquarters and distribution centers are located in the heart of Duhok.",
+        map_current: "Current Location",
+        delivery_title: "Delivery Zones",
+        delivery_desc: "Full coverage across Duhok, Zakho, and Erbil. Weekly trips to Sulaymaniyah.",
+
+        // Contact Form
         ph_name: "Full Name",
         ph_phone: "Phone Number",
-        ph_msg: "Message",
+        ph_msg: "Your Message",
         contact_subject: "Select Subject",
         opt_question: "General Question",
         opt_delivery: "Delivery Inquiry",
         send_btn: "Send Message"
     },
     ar: {
-chem_page_tag: "تركيبات احترافية",
-chem_page_title: "الحلول الكيميائية",
-chem_page_subtitle: "تم تصميمها في كوردستان لضمان نقاء وأداء استثنائيين في القطاعات الصناعية والتجارية والسكنية.",
-prod_1_title: "مزيل الشحوم القوي",
-prod_1_desc: "مذيب عالي الأداء مصمم لتفكيك الشحوم والزيوت والملوثات الصناعية المعقدة من الآلات والمركبات وأرضيات المصانع.",
-prod_2_title: "منظف متعدد الأسطح",
-prod_2_desc: "منظفنا الرائد لجميع الأسطح الصلبة. تركيبة مركزة تزيل الأوساخ بفعالية دون ترك رواسب، مناسبة للاستخدام التجاري وعمال النظافة.",
-prod_3_title: "مطهر طبي",
-prod_3_desc: "مطهر عالي الجودة مصمم للتعقيم الدقيق. يلبي معايير النقاء العالية للقضاء على مسببات الأمراض في البيئات الطبية والعيادات والمختبرات.",
-prod_request_info: "طلب مواصفات التركيبة",
-        card_title_clean: "كيميائية",
-        card_desc_clean: "پاککەرەوەی پیشەسازی بەهێز و چارەسەری پاککردنەوەی پرۆفیشناڵ بۆ هەموو کەرتەکان.",
+        // Navigation & Global
         nav_home: "الرئيسية",
-        nav_services: "خدماتنا",
+        nav_services: "علاماتنا التجارية",
         nav_contact: "اتصل بنا",
-        hero_1: "إنتاج عالي الجودة",
-        hero_2: "التميز الصناعي",
-        section_title: "علاماتنا التجارية",
+        nav_info: "مواقعنا",
+        section_title: "التميز الصناعي",
+        footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان.",
+        footer_location: "مدينة دهوك الصناعية",
+
+        // Index Page Cards
         card_title_peda: "بيدا للمواد الغذائية",
         card_desc_peda: "نحن نقدم أعلى جودة في معالجة الحبوب المحلية وتغليف المواد الغذائية.",
         card_title_moreno: "خدمة القهوة",
         card_desc_moreno: "معدات قهوة احترافية، حبوب ممتازة، وصيانة للمكاتب والفعاليات.",
-        footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان.",
-        footer_location: "مدينة دهوك الصناعية",
+        card_title_clean: "الحلول الكيميائية",
+        card_desc_clean: "منظفات صناعية عالية الأداء وحلول تنظيف احترافية لجميع القطاعات.",
+
+        // Chemical Page (Alif)
+        chem_page_tag: "تركيبات احترافية",
+        chem_page_title: "الحلول الكيميائية",
+        chem_page_subtitle: "تم تصميمها في كوردستان لضمان نقاء وأداء استثنائيين في القطاعات الصناعية.",
+        prod_1_title: "مزيل الشحوم القوي",
+        prod_1_desc: "مذيب عالي الأداء مصمم لتفكيك الشحوم والزيوت والملوثات الصناعية المعقدة.",
+        prod_2_title: "منظف متعدد الأسطح",
+        prod_2_desc: "منظفنا الرائد لجميع الأسطح الصلبة. تركيبة مركزة تزيل الأوساخ بفعالية.",
+        prod_3_title: "مطهر طبي",
+        prod_3_desc: "مطهر عالي الجودة مصمم للتعقيم الدقيق في البيئات الطبية والعيادات.",
+        prod_request_info: "طلب مواصفات التركيبة",
+
+        // Info & Maps Page
+        info_title: "جدنا هنا",
+        info_subtitle: "يقع مقرنا الرئيسي ومراكز التوزيع في قلب مدينة دهوك.",
+
+        // Contact Form
         ph_name: "الاسم الكامل",
         ph_phone: "رقم الهاتف",
-        ph_msg: "الرسالة",
+        ph_msg: "رسالتك",
         contact_subject: "اختر الموضوع",
-        opt_question: "سؤال عام",
-        opt_delivery: "استفسار عن التوصيل",
         send_btn: "إرسال الرسالة"
     },
     ku: {
-        chem_page_tag: "داڕشتنا پرۆفیشناڵ",
-chem_page_title: "چارەسەریێن کیمیاوی",
-chem_page_subtitle: "ل کوردستان هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازی، بازرگانی و نیشتەجێبوونێدا.",
-prod_1_title: "چەوریبەرێ بهێز",
-prod_1_desc: "حەلالکەرەکێ پرۆفیشناڵ بۆ ژناڤبرنا چەوری و رۆن و پیسیێن پیشەسازی لسەر ئامێر و ترۆمبێل و عەردێ کارگەهان.",
-prod_2_title: "پاقژکەرێ گشتی",
-prod_2_desc: "بەرهەمێ مە یێ سەرەکی بۆ هەمی جورێن عەرد و ڕوویان. فۆرمولەکا خەست کە پیسیێ ب ساناهی لادەت بەێ لێهێلانا شوینەواران.",
-prod_3_title: "دژەپەیداکەرێ پزیشکی",
-prod_3_desc: "پاقژکەر و دژەپەیداکەرێ تایبەت بۆ نەخۆشخانە و تاقیگەهان. گونجایە بۆ ستەرلیزەکرنا ژینگەهێن پزیشکی لدیڤ پیڤەرێن بلند.",
-prod_request_info: "داواکرنا زانیاریێن فۆرمولەی",
-        card_title_clean: "کیمیایی",
-        card_desc_clean: "منظفات صناعية عالية الأداء وحلول تنظيف احترافية لجميع القطاعات.",
+        // Navigation & Global
         nav_home: "سەرەکی",
-        nav_services: "خزمەتگوزارییەکان",
+        nav_services: "براندەکانی مە",
         nav_contact: "پەیوەندی",
-        hero_1: "بەرهەمهێنانی کوالێتی",
-        hero_2: "ناوازەیی پیشەسازی",
-        section_title: "براندەکانی ئێمە",
+        nav_info: "جهێن مە",
+        section_title: "ناوازەیی پیشەسازی",
+        footer_about: "پابەندین ب پێشکێشکرنا چارەسەریێن پیشەسازی و خۆراک ل سەرانسەری هەرێما کوردستانێ.",
+        footer_location: "شاری پیشەسازی دهۆک",
+
+        // Index Page Cards
         card_title_peda: "پێدا فود",
         card_desc_peda: "ئێمە بەرزترین کوالێتی چارەسەرکردنی دانەوێڵەی ناوخۆیی و بەستەکردنی خۆراک دابین دەکەین.",
         card_title_moreno: "خزمەتگوزاری قاوە",
-        card_desc_moreno: "ئامێری قاوەی پیشەگەرانە، دەنکە قاوەی نایاب، و چاککردنەوە بۆ ئۆفیس و بۆنەکان.",
-        footer_about: "پابەندین بە پێشکەشکردنی چارەسەری پیشەسازی و خۆراک لە سەرانسەری هەرێمی کوردستان.",
-        footer_location: "شاری پیشەسازی دهۆک",
+        card_desc_moreno: "ئامێری قاوەی پیشەگەرانە، دەنکە قاوەی نایاب، و چاککردنەوە بۆ ئۆفیسان.",
+        card_title_clean: "چارەسەریێن کیمیاوی",
+        card_desc_clean: "پاقژکەرێن پیشەسازی یێن ب هێز و چارەسەریێن پاقژکرنێ یێن پرۆفیشناڵ.",
+
+        // Chemical Page (Alif)
+        chem_page_tag: "داڕشتنا پرۆفیشناڵ",
+        chem_page_title: "چارەسەریێن کیمیاوی",
+        chem_page_subtitle: "ل کوردستان هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازیدا.",
+        prod_1_title: "چەوریبەرێ بهێز",
+        prod_1_desc: "حەلالکەرەکێ پرۆفیشناڵ بۆ ژناڤبرنا چەوری و رۆن و پیسیێن پیشەسازی لسەر ئامێران.",
+        prod_2_title: "پاقژکەرێ گشتی",
+        prod_2_desc: "بەرهەمێ مە یێ سەرەکی بۆ هەمی جورێن ڕوویان. فۆرمولەکا خەست کە پیسیێ ب ساناهی لادەت.",
+        prod_3_title: "دژەپەیداکەرێ پزیشکی",
+        prod_3_desc: "پاقژکەر و دژەپەیداکەرێ تایبەت بۆ نەخۆشخانە و تاقیگەهان لدیڤ پیڤەرێن بلند.",
+        prod_request_info: "داواکرنا زانیاریێن فۆرمولەی",
+
+        // Info & Maps Page
+        info_title: "مە ببینە",
+        info_subtitle: "بارەگایێ مە یێ سەرەکی و سەنتەرێن بەلاڤکرنێ ل دلێ دهۆکێ نە.",
+
+        // Contact Form
         ph_name: "ناوی تەواو",
         ph_phone: "ژمارەی مۆبایل",
-        ph_msg: "نامە",
+        ph_msg: "ناما تە",
         contact_subject: "بابەت هەڵبژێرە",
-        opt_question: "پرسیاری گشتی",
-        opt_delivery: "پرسیاری گەیاندن",
         send_btn: "نامە بنێرە"
     }
 };
@@ -139,76 +168,91 @@ function translatePage(lang) {
     if (dropdown) dropdown.classList.add('hidden');
 }
 
-// --- 3. CORE UI FUNCTIONALITY ---
+// --- 3. INTERACTIVE MAP LOGIC ---
+const mapLocations = {
+    'duhok_factory': {
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.8!2d43.0!3d36.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDQ4JzAwLjAiTiA0M8KwMDAnMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        label: "Peda Food: Duhok HQ"
+    },
+    'zakho_moreno': {
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3205.8!2d42.7!3d37.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDA2JzAwLjAiTiA0MsKwNDInMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        label: "Moreno Coffee: Zakho Hub"
+    },
+    'erbil_alif': {
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3225.8!2d44.0!3d36.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDEyJzAwLjAiTiA0NMKwMDAnMDAuMCJF!5e0!3m2!1sen!2siq!4v1710000000000!5m2!1sen!2siq",
+        label: "Alif Chemical: Erbil Branch"
+    }
+};
+
+function updateMap(locationKey) {
+    const iframe = document.getElementById('google-map-iframe');
+    const label = document.getElementById('location-label');
+    if (!iframe) return;
+
+    iframe.style.opacity = '0';
+    setTimeout(() => {
+        iframe.src = mapLocations[locationKey].url;
+        if (label) label.innerText = `Current: ${mapLocations[locationKey].label}`;
+        iframe.style.opacity = '1';
+    }, 300);
+}
+
+// --- 4. CORE UI & THEME INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic
+    // 4a. Universal Theme Toggle
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) {
         themeBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
 
-    // Language Dropdown
+    // 4b. Language Dropdown Logic
     const langBtn = document.getElementById('lang-btn');
     const langDropdown = document.getElementById('lang-dropdown');
     if (langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('hidden'); });
+        langBtn.addEventListener('click', (e) => { 
+            e.stopPropagation(); 
+            langDropdown.classList.toggle('hidden'); 
+        });
         document.addEventListener('click', () => langDropdown.classList.add('hidden'));
     }
 
-    // Mobile Menu
+    // 4c. Mobile Navigation Toggle
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', () => navMenu.classList.toggle('hidden'));
     }
 
-    // Page Navigation (Home Cards)
-    const pedaCard = document.getElementById('card-peda');
-    const morenoCard = document.getElementById('card-moreno');
-    if (pedaCard) pedaCard.onclick = () => window.location.href = 'peda.html';
-    if (morenoCard) morenoCard.onclick = () => window.location.href = 'moreno.html';
-
-    // Back To Top Button
-    const btt = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            btt.style.opacity = '1';
-            btt.style.transform = 'translateY(0)';
-        } else {
-            btt.style.opacity = '0';
-            btt.style.transform = 'translateY(40px)';
-        }
+    // 4d. Manual Page Redirects (For Cards)
+    const cardSelectors = {
+        'card-peda': 'peda.html',
+        'card-moreno': 'moreno.html',
+        'card-clean': 'chemical.html'
+    };
+    Object.entries(cardSelectors).forEach(([id, url]) => {
+        const el = document.getElementById(id);
+        if (el) el.onclick = () => window.location.href = url;
     });
-    if (btt) btt.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Load Saved Preferences
+    // 4e. Load Saved Preferences
     const savedLang = localStorage.getItem('preferredLang') || 'en';
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
     translatePage(savedLang);
+    if (savedTheme === 'dark') document.documentElement.classList.add('dark');
 });
 
-// --- 4. SLIDER LOGIC ---
-let currentSlide = 0;
-function moveSlide(direction) {
-    const slider = document.getElementById('slider');
-    if (!slider) return;
-    const slides = slider.children.length;
-    currentSlide = (currentSlide + direction + slides) % slides;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
-
-// --- 5. CONTACT FORM HANDLER (WITH BACKEND SYNC) ---
+// --- 5. CONTACT FORM HANDLER ---
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.onsubmit = async (e) => {
         e.preventDefault();
-        
-        const submitBtn = document.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        
-        // Collect Data
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+
         const formData = {
             name: document.getElementById('name').value,
             phone: "+964" + document.getElementById('phone').value,
@@ -216,37 +260,39 @@ if (contactForm) {
             message: document.getElementById('message').value
         };
 
-        // Loading State UI
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+        submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Sending...';
 
         try {
             const response = await fetch(API_ENDPOINT, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             if (response.ok) {
-                // Success!
-                alert("Thank you! Your message has been sent to Peda Factory.");
+                alert("Success! Your message has been sent to the factory.");
                 contactForm.reset();
             } else {
-                // If the backend exists but returns an error (like 404 or 500)
-                const errorData = await response.json();
-                console.error("API Error:", errorData);
-                alert("Server error. Please try again later.");
+                throw new Error("Server Error");
             }
-        } catch (error) {
-            // If the backend is down (Render spins down after inactivity)
-            console.error("Connection Failed:", error);
-            alert("Could not connect to the server. Please check your internet or try in 30 seconds.");
+        } catch (err) {
+            alert("Error: Could not connect. Please try again in a few seconds.");
         } finally {
-            // Restore Button
             submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
+            submitBtn.innerHTML = originalText;
         }
     };
 }
+
+// --- 6. SCROLL EFFECTS ---
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (nav) {
+        if (window.scrollY > 50) {
+            nav.classList.add('shadow-xl', 'bg-white/95', 'dark:bg-slate-900/95');
+        } else {
+            nav.classList.remove('shadow-xl');
+        }
+    }
+});
