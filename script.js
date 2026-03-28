@@ -24,12 +24,12 @@ const translations = {
         card_desc_peda: "We provide the highest quality local grain processing and food packaging.",
         card_title_moreno: "Coffee Service",
         card_desc_moreno: "Professional coffee equipment, premium beans, and maintenance for offices.",
-        card_title_clean: "Chemical Solutions",
+        card_title_clean: "Alif Chemical",
         card_desc_clean: "High-performance industrial detergents and professional cleaning solutions.",
 
         // Chemical Page (Alif)
         chem_page_tag: "Professional Formulation",
-        chem_page_title: "Alif Chemical",
+        chem_page_title: "Chemical Solutions",
         chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial sectors.",
         prod_1_title: "Heavy-Duty Degreaser",
         prod_1_desc: "A high-performance solvent engineered to break down complex greases and industrial contaminants.",
