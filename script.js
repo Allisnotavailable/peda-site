@@ -176,11 +176,11 @@ const mapLocations = {
         label: "Peda Food: Duhok HQ"
     },
     'duhok_moreno': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3211.85!2d42.96!3d36.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008ecc0072d03a9%3A0x449006f56bc6ade1!2sMoreno%20Duhok!5e0!3m2!1sen!2siq!4v1711630000000",
+        url: "djMoewL8P43XBDGt6",
         label: "Moreno Coffee: Duhok (Malta)"
     },
     'erbil_moreno': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.5!2d44.01!3d36.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40072382c3c27d91%3A0x22fd79854953d4d0!2sMoreno%20Caffe!5e0!3m2!1sen!2siq!4v1711630000000",
+        url: "Z31EEMqBVbx2UHSL9",
         label: "Moreno Caffe: Erbil (Naznaz)"
     },
     'zakho_moreno': {
