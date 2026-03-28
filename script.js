@@ -27,7 +27,7 @@ const translations = {
         nav_contact: "Contact Us",
         hero_1: "Quality Production",
         hero_2: "Industrial Excellence",
-        section_title: "Our Brands",
+        section_title: "Brands",
         card_title_peda: "Peda Food Factory",
         card_desc_peda: "We provide the highest quality local grain processing and food packaging.",
         card_title_moreno: "Coffee Service",
