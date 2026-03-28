@@ -29,7 +29,7 @@ const translations = {
 
         // Chemical Page (Alif)
         chem_page_tag: "Professional Formulation",
-        chem_page_title: "Chemical Solutions",
+        chem_page_title: "Alif Chemical",
         chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial sectors.",
         prod_1_title: "Heavy-Duty Degreaser",
         prod_1_desc: "A high-performance solvent engineered to break down complex greases and industrial contaminants.",
