@@ -171,16 +171,20 @@ function translatePage(lang) {
 // --- 3. INTERACTIVE MAP LOGIC ---
 const mapLocations = {
     'duhok_factory': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102434.34110375997!2d42.915238258384214!3d36.86438883597402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40089456259021e1%3A0xf639a037b385966c!2sDuhok%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632000000!5m2!1sen!2sus",
-        label: "Peda Food: Duhok HQ"
+        url: "https://maps.google.com/?cid=2418440652183739736&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ",
+        label: "Peda Food: Duhok"
     },
-    'zakho_moreno': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51152.48208470535!2d42.65682977519532!3d37.13904571000787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40090623d8385759%3A0x6334659b921f0084!2sZakho%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632100000!5m2!1sen!2sus",
-        label: "Moreno Coffee: Zakho Hub"
+    'duhok_moreno': {
+        url: "https://maps.google.com/?cid=2521414930927965392&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ",
+        label: "Moreno Coffee: Duhok (Malta St)"
+    },
+    'erbil_moreno': {
+        url: "https://www.google.com/maps/contrib/108328678395005710457/reviews",
+        label: "Moreno Coffee: Erbil (Naznaz)"
     },
     'erbil_alif': {
-        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d103130.40356515828!2d43.93110257007505!3d36.19535031644781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x400722fe13443461%3A0x3e01d633918399e3!2sErbil%2C%20Iraq!5e0!3m2!1sen!2sus!4v1711632200000!5m2!1sen!2sus",
-        label: "Alif Chemical: Erbil Branch"
+        url: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102607.411!2d42.915034!3d36.879010!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4008902888924b2d%3A0x6a0c0e7041753896!2sDuhok!5e0!3m2!1sen!2siq!4v17000000000000",
+        label: "Alif Chemical: Duhok"
     }
 };
 
