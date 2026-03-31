@@ -15,45 +15,38 @@
         }
     </script>
     <style>
-        /* Hamburger to X Animation */
+        /* Hamburger Animation */
         .nav-icon { width: 24px; height: 18px; position: relative; cursor: pointer; display: inline-block; }
         .nav-icon span { background-color: currentColor; position: absolute; border-radius: 2px; transition: .3s ease-in-out; height: 3px; width: 100%; left: 0; }
         .nav-icon span:nth-child(1) { top: 0; }
         .nav-icon span:nth-child(2) { top: 8px; }
         .nav-icon span:nth-child(3) { top: 16px; }
-        
         .nav-icon.open span:nth-child(1) { top: 8px; transform: rotate(135deg); }
         .nav-icon.open span:nth-child(2) { opacity: 0; left: -60px; }
         .nav-icon.open span:nth-child(3) { top: 8px; transform: rotate(-135deg); }
 
-        #nav-menu { transition: all 0.3s ease-in-out; transform-origin: top right; }
-        .hidden { display: none; }
+        /* Full Width Dropdown Animation */
+        #nav-menu {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #nav-menu.active {
+            max-height: 500px;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans overflow-x-hidden">
 
     <header class="bg-slate-50 dark:bg-slate-800 py-3 px-6 flex justify-between items-center border-b dark:border-slate-700">
-        <div class="relative">
-            <button id="lang-menu-btn" class="flex items-center gap-2 bg-white dark:bg-slate-700 border dark:border-slate-600 px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all text-[10px] font-black uppercase tracking-widest">
-                <i class="fas fa-globe text-blue-600"></i>
-                <span id="current-lang">Language</span>
-                <i class="fas fa-chevron-down opacity-50"></i>
-            </button>
-
-            <div id="lang-dropdown" class="hidden absolute left-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700 z-[150] p-2 space-y-1">
-                <button onclick="translatePage('en')" class="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-blue-50 dark:bg-slate-700/50 hover:bg-blue-600 hover:text-white transition-all group">
-                    <span class="font-bold text-xs">English</span>
-                    <span class="text-[9px] opacity-50">EN</span>
-                </button>
-                <button onclick="translatePage('ar')" class="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700/30 hover:bg-blue-600 hover:text-white transition-all group">
-                    <span class="font-bold text-xs">العربية</span>
-                    <span class="text-[9px] opacity-50">AR</span>
-                </button>
-                <button onclick="translatePage('ku')" class="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700/30 hover:bg-blue-600 hover:text-white transition-all group">
-                    <span class="font-bold text-xs">Kurdî</span>
-                    <span class="text-[9px] opacity-50">KU</span>
-                </button>
-            </div>
+        <div class="flex items-center bg-slate-200 dark:bg-slate-700 rounded-full p-1 shadow-inner">
+            <button onclick="translatePage('en')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">EN</button>
+            <div class="w-[1px] h-3 bg-slate-400 mx-1"></div>
+            <button onclick="translatePage('ar')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">AR</button>
+            <div class="w-[1px] h-3 bg-slate-400 mx-1"></div>
+            <button onclick="translatePage('ku')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">KU</button>
         </div>
         
         <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-yellow-400 shadow-sm transition-transform active:scale-90">
@@ -61,23 +54,25 @@
         </button>
     </header>
 
-    <nav class="sticky top-0 z-[100] bg-white/90 dark:bg-slate-900/95 backdrop-blur-md px-6 py-4 flex justify-between items-center shadow-sm border-b dark:border-slate-800">
-        <a href="index.html">
-            <img src="logo.JPG" onerror="this.src='https://placehold.co/200x60/2563eb/ffffff?text=PEDA'" alt="Logo" class="h-10 w-auto object-contain">
-        </a>
+    <nav class="sticky top-0 z-[100] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b dark:border-slate-800">
+        <div class="px-6 py-4 flex justify-between items-center">
+            <a href="index.html">
+                <img src="logo.JPG" onerror="this.src='https://placehold.co/200x60/2563eb/ffffff?text=PEDA'" alt="Logo" class="h-10 w-auto object-contain">
+            </a>
 
-        <div class="relative">
             <button id="nav-toggle" class="p-2 focus:outline-none text-slate-800 dark:text-white">
                 <div class="nav-icon" id="hamburger-icon">
                     <span></span><span></span><span></span>
                 </div>
             </button>
+        </div>
 
-            <div id="nav-menu" class="hidden absolute right-0 mt-4 w-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700 overflow-hidden ring-1 ring-black/5">
-                <a href="index.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-bold border-b dark:border-slate-700" data-key="nav_home">Home</a>
-                <a href="services.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-medium border-b dark:border-slate-700" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-medium border-b dark:border-slate-700" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-medium" data-key="nav_contact">Contact Us</a>
+        <div id="nav-menu" class="bg-white dark:bg-slate-800 border-t dark:border-slate-700 w-full">
+            <div class="flex flex-col">
+                <a href="index.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_home">Home</a>
+                <a href="services.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_services">Our Brands</a>
+                <a href="info.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_info">Info</a>
+                <a href="contactus.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_contact">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -114,7 +109,7 @@
                 <div class="overflow-hidden h-56"><img src="morenocardlogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
                 <div class="p-8">
                     <h3 class="text-2xl font-bold mb-3" data-key="card_title_moreno">Coffee Service</h3>
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_moreno">Professional coffee equipment, premium beans, and maintenance for offices.</p>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_moreno">Professional coffee equipment, premium beans, and maintenance.</p>
                 </div>
             </div>
 
@@ -122,7 +117,7 @@
                 <div class="overflow-hidden h-56"><img src="aliflogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
                 <div class="p-8">
                     <h3 class="text-2xl font-bold mb-3" data-key="card_title_clean">Alif Chemical</h3>
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_clean">High-performance industrial detergents and professional cleaning solutions.</p>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_clean">High-performance industrial detergents and cleaning solutions.</p>
                 </div>
             </div>
 
@@ -152,7 +147,7 @@
         </div> 
     </footer>
 
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 hover:bg-blue-700 flex items-center justify-center z-[200]">
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 flex items-center justify-center z-[200]">
         <i class="fas fa-arrow-up"></i>
     </button>
 
