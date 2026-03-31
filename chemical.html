@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alif | Chemical & Plastics</title>
+    <title>Alif | Chemical & Plastics | Pro Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
@@ -26,10 +26,18 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* Gray Placeholder Gradient for Plastics */
+        .plastic-placeholder {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            transition: all 1s;
+        }
+        
+        .group:hover .plastic-placeholder {
+            background: linear-gradient(135deg, #001B3D, #0a1f3c);
+        }
         .group:hover .placeholder-icon {
-            transform: scale(1.1) rotate(-5deg);
             color: #D4AF37;
-            opacity: 1;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -43,16 +51,11 @@
                 <span class="text-[10px] text-slate-400 uppercase tracking-widest font-sans">Kurdistan Division</span>
             </div>
         </a>
-
         <div class="flex items-center gap-4 md:gap-6">
             <a href="index.html" class="text-xs font-bold uppercase tracking-widest border border-premium-gold/50 text-premium-blue dark:text-white px-5 py-2.5 rounded-full hover:bg-premium-gold hover:text-premium-blue transition-all font-sans">
                 <i class="fas fa-home mr-2"></i> Home
             </a>
-
-            <a href="#plastics" class="hidden sm:block text-xs font-bold uppercase tracking-widest bg-premium-gold text-premium-blue px-6 py-3 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all font-sans">
-                View Plastics
-            </a>
-
+            <a href="#plastics" class="hidden sm:block text-xs font-bold uppercase tracking-widest bg-premium-gold text-premium-blue px-6 py-3 rounded-full hover:shadow-lg hover:-translate-y-0.5 transition-all font-sans">View Plastics</a>
             <button id="theme-toggle" class="text-premium-gold hover:rotate-12 transition-transform">
                 <i class="fas fa-adjust text-lg"></i>
             </button>
@@ -64,78 +67,65 @@
         <section class="mb-32">
             <div class="mb-16 text-center">
                 <h2 class="text-4xl md:text-6xl font-light italic mb-4">Chemical Solutions</h2>
-                <div class="w-20 h-px bg-premium-gold mx-auto"></div>
+                <div class="w-20 h-px bg-premium-gold mx-auto mb-6"></div>
+                <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">Kurdistan's premier high-performance chemical formulations and sterilization agents.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-100 dark:bg-slate-900">
+                    <div class="relative overflow-hidden rounded-sm aspect-[4/5] shadow-xl bg-slate-200">
                         <img src="alifb1.JPG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Chemical">
                         <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/90 via-transparent opacity-80"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
+                        <div class="absolute bottom-6 left-6 right-6">
                             <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Industrial Formulation</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">Heavy-Duty Degreaser</h3>
+                            <h3 class="text-2xl font-light text-white tracking-wide">Industrial Degreaser</h3>
                         </div>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-100 dark:bg-slate-900">
+                    <div class="relative overflow-hidden rounded-sm aspect-[4/5] shadow-xl bg-slate-200">
                         <img src="alifb1.JPG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Chemical">
                         <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/90 via-transparent opacity-80"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
+                        <div class="absolute bottom-6 left-6 right-6">
                             <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Versatile Cleaning</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">Multi-Surface Cleaner</h3>
+                            <h3 class="text-2xl font-light text-white tracking-wide">Multi-Surface Cleaner</h3>
                         </div>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-100 dark:bg-slate-900">
+                    <div class="relative overflow-hidden rounded-sm aspect-[4/5] shadow-xl bg-slate-200">
                         <img src="alifb1.JPG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Chemical">
                         <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/90 via-transparent opacity-80"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
+                        <div class="absolute bottom-6 left-6 right-6">
                             <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Sterilization Agent</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">Medical Disinfectant</h3>
+                            <h3 class="text-2xl font-light text-white tracking-wide">Medical Disinfectant</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="plastics" class="pb-32">
+        <section id="plastics" class="pb-20">
             <div class="mb-16 text-center">
                 <h2 class="text-4xl md:text-6xl font-light italic mb-4">Industrial Plastics</h2>
-                <div class="w-20 h-px bg-premium-gold mx-auto"></div>
+                <div class="w-20 h-px bg-premium-gold mx-auto mb-6"></div>
+                <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">Durable, high-density polyethylene containers designed for safe chemical distribution.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
                 <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-50 dark:bg-[#001229] border border-premium-gold/10 flex items-center justify-center">
-                        <i class="fas fa-flask-vial text-7xl text-premium-gold/20 placeholder-icon transition-all duration-700"></i>
-                        <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/95 via-transparent opacity-90"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Container Series</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">HDPE Jerry Cans</h3>
-                        </div>
+                    <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                        <i class="fas fa-flask text-8xl text-premium-blue/20 placeholder-icon transition-all duration-700"></i>
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/80 via-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-1000"></div>
                     </div>
                 </div>
+
                 <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-50 dark:bg-[#001229] border border-premium-gold/10 flex items-center justify-center">
-                        <i class="fas fa-boxes-packing text-7xl text-premium-gold/20 placeholder-icon transition-all duration-700"></i>
-                        <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/95 via-transparent opacity-90"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Custom Molding</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">Precision Packaging</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] shadow-2xl bg-slate-50 dark:bg-[#001229] border border-premium-gold/10 flex items-center justify-center">
-                        <i class="fas fa-industry text-7xl text-premium-gold/20 placeholder-icon transition-all duration-700"></i>
-                        <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/95 via-transparent opacity-90"></div>
-                        <div class="absolute bottom-8 left-8 right-8">
-                            <span class="text-premium-gold text-xs font-sans tracking-[0.2em] uppercase mb-2 block">Bespoke Solutions</span>
-                            <h3 class="text-2xl text-white font-light leading-tight">Industrial Supply</h3>
-                        </div>
+                    <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                        <i class="fas fa-boxes-stacked text-8xl text-premium-blue/20 placeholder-icon transition-all duration-700"></i>
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/80 via-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-1000"></div>
                     </div>
                 </div>
             </div>
@@ -143,8 +133,8 @@
     </main>
 
     <footer class="bg-white dark:bg-[#000d1d] py-16 px-6 border-t border-premium-gold/20 text-center">
-        <p class="text-xs uppercase tracking-[0.5em] gold-text mb-4">Alif Group | Peda Food Industries | Duhok</p>
-        <p class="text-slate-500 font-sans font-light text-[9px] uppercase tracking-[0.2em]">&copy; 2026 Chemical & Plastic Division.</p>
+        <p class="text-xs uppercase tracking-[0.4em] gold-text mb-4">Alif Group | Duhok</p>
+        <p class="text-slate-400 font-sans font-light text-[10px] uppercase tracking-widest">&copy; 2026 Alif Chemical & Plastics. All Rights Reserved.</p>
     </footer>
 
     <script>
