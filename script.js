@@ -1,6 +1,7 @@
 /**
  * Peda Group & Alif Chemicals - Full JavaScript Controller
- * Includes: Multi-language Engine, Theme Switcher, Location Modals, and API Integration
+ * Includes: Multi-language Engine, Theme Switcher, Interactive Maps, and API Integration
+ * Backend: Render (Node/Express)
  */
 
 // --- 0. CONFIGURATION ---
@@ -9,6 +10,7 @@ const API_ENDPOINT = "https://peda-backend-ppi0.onrender.com/api/contact";
 // --- 1. THE COMPLETE TRANSLATION DICTIONARY ---
 const translations = {
     en: {
+        // Navigation & Global
         nav_home: "Home",
         nav_services: "Our Brands",
         nav_contact: "Contact Us",
@@ -16,12 +18,18 @@ const translations = {
         section_title: "Home",
         footer_about: "Committed to delivering industrial and food solutions across the Kurdistan region.",
         footer_location: "Duhok Industrial City",
+        
+        // Index Page Cards
         card_title_peda: "Peda Food Factory",
         card_desc_peda: "We provide the highest quality local grain processing and food packaging.",
         card_title_moreno: "Coffee Service",
         card_desc_moreno: "Professional coffee equipment, premium beans, and maintenance for offices.",
         card_title_clean: "Alif Chemical",
         card_desc_clean: "High-performance industrial detergents and professional cleaning solutions.",
+        card_title_dogtas: "Doğtaş Duhok",
+        card_desc_dogtas: "Discover sleek, modern Turkish furniture. Now open in Duhok.",
+
+        // Chemical Page (Alif)
         chem_page_tag: "Professional Formulation",
         chem_page_title: "Chemical Solutions",
         chem_page_subtitle: "Engineered in Kurdistan for exceptional purity and performance across industrial sectors.",
@@ -32,23 +40,26 @@ const translations = {
         prod_3_title: "Medical Disinfectant",
         prod_3_desc: "Hospital-grade disinfectant formulated for critical sterilization in medical environments.",
         prod_request_info: "Request Formulation Specs",
+
+        // Info & Maps Page
         info_title: "Find Us",
         info_subtitle: "Our headquarters and distribution centers are located in the heart of Duhok.",
         map_current: "Current Location",
         delivery_title: "Delivery Zones",
         delivery_desc: "Full coverage across Duhok, Zakho, and Erbil. Weekly trips to Sulaymaniyah.",
+        btn_directions: "Open Maps",
+
+        // Contact Form
         ph_name: "Full Name",
         ph_phone: "Phone Number",
         ph_msg: "Your Message",
         contact_subject: "Select Subject",
         opt_question: "General Question",
         opt_delivery: "Delivery Inquiry",
-        send_btn: "Send Message",
-        card_title_dogtas: "Doğtaş Duhok",
-        card_desc_dogtas: "Discover sleek, modern Turkish furniture. Now open in Duhok.",
-        btn_directions: "Open Maps"
+        send_btn: "Send Message"
     },
     ar: {
+        // Navigation & Global
         nav_home: "الرئيسية",
         nav_services: "علاماتنا التجارية",
         nav_contact: "اتصل بنا",
@@ -56,12 +67,18 @@ const translations = {
         section_title: "الرئيسية",
         footer_about: "ملتزمون بتقديم الحلول الصناعية والغذائية في جميع أنحاء إقليم كوردستان.",
         footer_location: "مدينة دهوك الصناعية",
+
+        // Index Page Cards
         card_title_peda: "بيدا للمواد الغذائية",
         card_desc_peda: "نحن نقدم أعلى جودة في معالجة الحبوب المحلية وتغليف المواد الغذائية.",
         card_title_moreno: "خدمة القهوة",
         card_desc_moreno: "معدات قهوة احترافية، حبوب ممتازة، وصيانة للمكاتب والفعاليات.",
         card_title_clean: "الحلول الكيميائية",
         card_desc_clean: "منظفات صناعية عالية الأداء وحلول تنظيف احترافية لجميع القطاعات.",
+        card_title_dogtas: "دوغتاش دهوك",
+        card_desc_dogtas: "اكتشف الأثاث التركي العصري والأنيق. مفتوح الآن في دوهوك.",
+
+        // Chemical Page (Alif)
         chem_page_tag: "تركيبات احترافية",
         chem_page_title: "الحلول الكيميائية",
         chem_page_subtitle: "تم تصميمها في كوردستان لضمان نقاء وأداء استثنائيين في القطاعات الصناعية.",
@@ -72,18 +89,21 @@ const translations = {
         prod_3_title: "مطهر طبي",
         prod_3_desc: "مطهر عالي الجودة مصمم للتعقيم الدقيق في البيئات الطبية والعيادات.",
         prod_request_info: "طلب مواصفات التركيبة",
+
+        // Info & Maps Page
         info_title: "جدنا هنا",
         info_subtitle: "يقع مقرنا الرئيسي ومراكز التوزيع في قلب مدينة دهوك.",
+        btn_directions: "خرائط جوجل",
+
+        // Contact Form
         ph_name: "الاسم الكامل",
         ph_phone: "رقم الهاتف",
         ph_msg: "رسالتك",
         contact_subject: "اختر الموضوع",
-        send_btn: "إرسال الرسالة",
-        card_title_dogtas: "دوغتاش دهوك",
-        card_desc_dogtas: "اكتشف الأثاث التركي العصري والأنيق. مفتوح الآن في دوهوك.",
-        btn_directions: "خرائط جوجل"
+        send_btn: "إرسال الرسالة"
     },
     ku: {
+        // Navigation & Global
         nav_home: "سەرەکی",
         nav_services: "براندەکانی مە",
         nav_contact: "پەیوەندی",
@@ -91,12 +111,18 @@ const translations = {
         section_title: "سەرەکی",
         footer_about: "پابەندین ب پێشکێشکرنا چارەسەریێن پیشەسازی و خۆراک ل سەرانسەری هەرێما کوردستانێ.",
         footer_location: "شاری پیشەسازی دهۆک",
+
+        // Index Page Cards
         card_title_peda: "پێدا فود",
         card_desc_peda: "ئێمە بەرزترین کوالێتی چارەسەرکردنی دانەوێڵەی ناوخۆیی و بەستەکردنی خۆراک دابین دەکەین.",
         card_title_moreno: "خزمەتگوزاری قاوە",
         card_desc_moreno: "ئامێری قاوەی پیشەگەرانە، دەنکە قاوەی نایاب، و چاککردنەوە بۆ ئۆفیسان.",
         card_title_clean: "چارەسەریێن کیمیاوی",
         card_desc_clean: "پاقژکەرێن پیشەسازی یێن ب هێز و چارەسەریێن پاقژکرنێ یێن پرۆفیشناڵ.",
+        card_title_dogtas: "دۆغتاش دهۆک",
+        card_desc_dogtas: "کەلوپەلێن تورکی یێن مۆدێرن ببینە. نوکه ل دوهوكى ڤەکرییە.",
+
+        // Chemical Page (Alif)
         chem_page_tag: "داڕشتنا پرۆفیشناڵ",
         chem_page_title: "چارەسەریێن کیمیاوی",
         chem_page_subtitle: "ل کوردستان هاتییە ئەندازیارکرن بۆ پاقژی و ئەنجامێن نایاب د کەرتێن پیشەسازیدا.",
@@ -107,16 +133,18 @@ const translations = {
         prod_3_title: "دژەپەیداکەرێ پزیشکی",
         prod_3_desc: "پاقژکەر و دژەپەیداکەرێ تایبەت بۆ نەخۆشخانە و تاقیگەهان لدیڤ پیڤەرێن بلند.",
         prod_request_info: "داواکرنا زانیاریێن فۆرمولەی",
+
+        // Info & Maps Page
         info_title: "مە ببینە",
         info_subtitle: "بارەگایێ مە یێ سەرەکی و سەنتەرێن بەلاڤکرنێ ل دلێ دهۆکێ نە.",
+        btn_directions: "نەخشە",
+
+        // Contact Form
         ph_name: "ناوی تەواو",
         ph_phone: "ژمارەی مۆبایل",
         ph_msg: "ناما تە",
         contact_subject: "بابەت هەڵبژێرە",
-        send_btn: "نامە بنێرە",
-        card_title_dogtas: "دۆغتاش دهۆک",
-        card_desc_dogtas: "کەلوپەلێن تورکی یێن مۆدێرن ببینە. نوکه ل دوهوكى ڤەکرییە.",
-        btn_directions: "نەخشە"
+        send_btn: "نامە بنێرە"
     }
 };
 
@@ -144,10 +172,6 @@ function translatePage(lang) {
         const names = { en: 'English', ar: 'العربية', ku: 'Kurdî' };
         langDisplay.textContent = names[lang];
     }
-
-    // New logic: hide language dropdown after picking
-    const dropdown = document.getElementById('lang-dropdown');
-    if (dropdown) dropdown.classList.add('hidden');
 }
 
 // --- 3. LOCATION DATA & MODAL LOGIC ---
@@ -155,7 +179,7 @@ const locationData = {
     'duhok_factory': {
         title: "Peda Food Factory",
         desc: "Our primary industrial processing unit for grains and food packaging in the Duhok Industrial Zone.",
-        maps: "https://maps.google.com/?q=Duhok+Industrial+Zone",
+        maps: "https://maps.app.goo.gl/YourLink1",
         tiktok: "https://www.tiktok.com/@pedagroup",
         insta: "https://www.instagram.com/pedagroup",
         color: "blue"
@@ -163,7 +187,7 @@ const locationData = {
     'duhok_moreno': {
         title: "Moreno Coffee - Duhok",
         desc: "Premium coffee, fresh bakery, and a relaxed atmosphere. Located on Malta Street.",
-        maps: "https://maps.google.com/?q=Moreno+Coffee+Duhok",
+        maps: "https://maps.app.goo.gl/YourLink2",
         tiktok: "https://www.tiktok.com/@morenocoffee",
         insta: "https://www.instagram.com/moreno.duhok",
         color: "amber"
@@ -171,7 +195,7 @@ const locationData = {
     'erbil_moreno': {
         title: "Moreno Caffe - Erbil",
         desc: "Our flagship Erbil location in Naznaz. International cuisine and specialty coffee until 2:00 AM.",
-        maps: "https://maps.google.com/?q=Moreno+Caffe+Erbil",
+        maps: "https://maps.app.goo.gl/YourLink3",
         tiktok: "https://www.tiktok.com/@morenoerbil",
         insta: "https://www.instagram.com/moreno.erbil",
         color: "amber"
@@ -179,7 +203,7 @@ const locationData = {
     'erbil_alif': {
         title: "Alif Chemical Solutions",
         desc: "Specialized industrial detergent and chemical formulation center serving the Erbil district.",
-        maps: "https://maps.google.com/?q=Alif+Chemical+Erbil",
+        maps: "https://maps.app.goo.gl/YourLink4",
         tiktok: "#",
         insta: "https://www.instagram.com/alif.chemicals",
         color: "slate"
@@ -237,17 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4b. NEW Language Dropdown Logic (for the buttons you asked for)
-    const langBtn = document.getElementById('lang-menu-btn');
-    const langDropdown = document.getElementById('lang-dropdown');
-    if (langBtn && langDropdown) {
-        langBtn.addEventListener('click', (e) => { 
-            e.stopPropagation(); 
-            langDropdown.classList.toggle('hidden'); 
-        });
-    }
-
-    // 4c. Hamburger Dropdown & Icon Animation
+    // 4b. Mobile Navigation (Full-Width Dropdown)
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navIcon = document.getElementById('hamburger-icon');
@@ -255,21 +269,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            navMenu.classList.toggle('hidden');
+            navMenu.classList.toggle('active');
             if(navIcon) navIcon.classList.toggle('open');
+        });
+
+        // Close menu if clicking a link inside it
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if(navIcon) navIcon.classList.remove('open');
+            });
         });
     }
 
-    // 4d. Close dropdowns on outside click
-    document.addEventListener('click', () => {
-        if(langDropdown) langDropdown.classList.add('hidden');
-        if(navMenu) {
-            navMenu.classList.add('hidden');
+    // 4c. Close everything on outside click
+    document.addEventListener('click', (e) => {
+        if(navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
             if(navIcon) navIcon.classList.remove('open');
         }
     });
 
-    // 4e. Manual Page Redirects
+    // 4d. Manual Page Redirects for Cards
     const cardSelectors = {
         'card-peda': 'peda.html',
         'card-moreno': 'moreno.html',
@@ -281,13 +302,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.onclick = () => window.location.href = url;
     });
 
-    // 4f. Load Saved Preferences
+    // 4e. Initial Load Preferences
     const savedLang = localStorage.getItem('preferredLang') || 'en';
     const savedTheme = localStorage.getItem('theme') || 'light';
     translatePage(savedLang);
     if (savedTheme === 'dark') document.documentElement.classList.add('dark');
     
-    // Back to top
+    // Back to top button
     const backToTopBtn = document.getElementById('backToTop');
     if(backToTopBtn){
         backToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -334,7 +355,7 @@ if (contactForm) {
     };
 }
 
-// --- 6. SCROLL & SLIDER ---
+// --- 6. SCROLL EFFECTS & HERO SLIDER ---
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
     if (nav) {
@@ -364,6 +385,7 @@ function moveSlide(direction) {
     slider.style.transform = `translateX(${moveAmount}%)`;
 }
 
+// Slider Auto-play
 setInterval(() => {
     if (document.getElementById('slider')) moveSlide(1);
-}, 2500);
+}, 3000);
