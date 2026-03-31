@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Peda Group | Home</title>
+    <title>Peda Group | Industrial & Food Solutions</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -204,7 +204,7 @@
         </div>
     </div>
 
-    <section class="relative h-[400px] md:h-[550px] lg:h-[700px] overflow-hidden bg-brand-dark group cursor-grab active:cursor-grabbing" id="slider-container">
+    <section class="relative h-[400px] md:h-[550px] lg:h-[700px] overflow-hidden bg-brand-dark group cursor-grab active:cursor-grabbing" id="slider-container" style="touch-action: pan-y;">
         
         <div id="slider" class="flex h-full w-full transition-transform duration-1000 cubic-bezier(0.64, 0.04, 0.35, 1) will-change-transform">
             <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
@@ -390,9 +390,12 @@
                             <i class="fas fa-map-marker-alt mt-1 text-blue-600"></i>
                             <span>Duhok Industrial City,<br>Kurdistan Region, Iraq</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-phone-alt text-blue-600"></i>
-                            <span>+964 (0) 750 XXX XXXX</span>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-phone-alt mt-1 text-blue-600"></i>
+                            <div class="flex flex-col gap-1">
+                                <span>+964 (0) 750 XXX XXXX</span>
+                                <span>+964 (0) 750 YYY YYYY</span>
+                            </div>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="fas fa-envelope text-blue-600"></i>
@@ -404,20 +407,20 @@
                 <div class="lg:col-span-3 bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
                     <h4 class="font-black text-[11px] uppercase tracking-[0.2em] mb-6 text-slate-900 dark:text-white">Digital Team</h4>
                     <div class="space-y-5">
-                        <div class="group flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 text-xs font-black">SB</div>
+                        <a href="/dev" class="group flex items-center gap-4 hover-target cursor-pointer block">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 text-xs font-black transition-transform group-hover:scale-110">SB</div>
                             <div>
                                 <p class="text-[10px] font-black uppercase text-blue-600 tracking-widest">Developer / Engineering</p>
                                 <p class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-blue-600 transition-colors">Sarwar Baroj</p>
                             </div>
-                        </div>
-                        <div class="group flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-amber-500 text-xs font-black">PB</div>
+                        </a>
+                        <a href="/designer" class="group flex items-center gap-4 hover-target cursor-pointer block">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-amber-500 text-xs font-black transition-transform group-hover:scale-110">PB</div>
                             <div>
                                 <p class="text-[10px] font-black uppercase text-amber-500 tracking-widest">UI/UX Designer</p>
                                 <p class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-amber-500 transition-colors">Pawar Baroj</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
