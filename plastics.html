@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alif | Industrial Plastics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'premium-blue': '#001B3D',
+                        'premium-gold': '#D4AF37',
+                        'gold-light': '#F3E5AB'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gold-text {
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .plastic-placeholder {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            transition: all 0.8s ease;
+        }
+        .dark .plastic-placeholder {
+            background: linear-gradient(135deg, #001229, #001B3D);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .group:hover .plastic-placeholder {
+            background: linear-gradient(135deg, #001B3D, #0a1f3c);
+            border-color: #D4AF37;
+        }
+        .group:hover .placeholder-icon {
+            color: #D4AF37;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-[#fdfdfd] text-premium-blue dark:bg-premium-blue dark:text-slate-100 font-serif transition-colors duration-500">
+
+    <nav class="sticky top-0 z-50 bg-white/95 dark:bg-premium-blue/95 backdrop-blur-xl px-8 py-5 flex justify-between items-center border-b border-premium-gold/30">
+        <a href="index.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
+            <img src="aliflogo.JPG" onerror="this.src='https://placehold.co/200x60/001B3D/D4AF37?text=ALIF'" alt="Alif Logo" class="h-14 w-auto object-contain">
+            <div class="hidden md:block border-l border-premium-gold/30 pl-4">
+                <span class="font-light tracking-[0.3em] text-sm uppercase gold-text block">Alif</span>
+                <span class="text-[10px] text-slate-400 uppercase tracking-widest font-sans">Plastics Division</span>
+            </div>
+        </a>
+        <div class="flex items-center gap-4">
+            <a href="index.html" class="text-xs font-bold uppercase tracking-widest border border-premium-gold/50 text-premium-blue dark:text-white px-5 py-2.5 rounded-full hover:bg-premium-gold hover:text-premium-blue transition-all font-sans">
+                <i class="fas fa-home mr-2"></i> Home
+            </a>
+            <button id="theme-toggle" class="text-premium-gold hover:rotate-12 transition-transform">
+                <i class="fas fa-adjust text-lg"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <header class="mb-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-light italic mb-4">Industrial Plastics</h1>
+            <div class="w-20 h-px bg-premium-gold mx-auto mb-6"></div>
+            <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">Durable, high-density polyethylene containers engineered for chemical and industrial distribution.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                    <i class="fas fa-flask text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                    <i class="fas fa-boxes-stacked text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                </div>
+            </div>
+            
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                    <i class="fas fa-vial-circle-check text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
+                    <i class="fas fa-truck-ramp-box text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white dark:bg-[#000d1d] py-12 px-6 border-t border-premium-gold/20 text-center">
+        <p class="text-xs uppercase tracking-[0.4em] gold-text mb-4">Peda Group | Duhok</p>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('theme-toggle');
+        btn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
