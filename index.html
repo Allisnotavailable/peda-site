@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peda Company | Home</title>
+    <title>Peda Group | Innovation in Kurdistan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
-        tailwind.config = { darkMode: 'class' }
+        tailwind.config = { 
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { blue: '#2563eb', gold: '#f59e0b', dark: '#0f172a' }
+                    }
+                }
+            }
+        }
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
@@ -25,127 +34,159 @@
         .nav-icon.open span:nth-child(2) { opacity: 0; left: -60px; }
         .nav-icon.open span:nth-child(3) { top: 8px; transform: rotate(-135deg); }
 
-        /* Full Width Dropdown Animation */
-        #nav-menu {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        #nav-menu.active {
-            max-height: 500px;
-            opacity: 1;
-        }
+        #nav-menu { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; overflow: hidden; }
+        #nav-menu.active { max-height: 600px; opacity: 1; }
+
+        /* Smooth reveal for cards */
+        .bento-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .bento-card:hover { transform: translateY(-8px) scale(1.01); shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
     </style>
 </head>
-<body class="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 font-sans overflow-x-hidden">
+<body class="bg-slate-50 text-slate-900 dark:bg-brand-dark dark:text-slate-100 transition-colors duration-500 font-sans">
 
-    <header class="bg-slate-50 dark:bg-slate-800 py-3 px-6 flex justify-between items-center border-b dark:border-slate-700">
-        <div class="flex items-center bg-slate-200 dark:bg-slate-700 rounded-full p-1 shadow-inner">
-            <button onclick="translatePage('en')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">EN</button>
-            <div class="w-[1px] h-3 bg-slate-400 mx-1"></div>
-            <button onclick="translatePage('ar')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">AR</button>
-            <div class="w-[1px] h-3 bg-slate-400 mx-1"></div>
-            <button onclick="translatePage('ku')" class="px-4 py-1.5 text-[10px] font-black uppercase rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">KU</button>
+    <header class="bg-white/50 dark:bg-slate-800/50 backdrop-blur-md py-2 px-6 flex justify-between items-center border-b dark:border-slate-700/50 sticky top-0 z-[110]">
+        <div class="flex items-center gap-1 bg-slate-200/50 dark:bg-slate-700/50 rounded-full p-1 border dark:border-slate-600">
+            <button onclick="translatePage('en')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">EN</button>
+            <button onclick="translatePage('ar')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">AR</button>
+            <button onclick="translatePage('ku')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">KU</button>
         </div>
         
-        <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-yellow-400 shadow-sm transition-transform active:scale-90">
-            <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
+        <button id="theme-toggle" class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm border dark:border-slate-600 transition-transform active:scale-90">
+            <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block text-yellow-400"></i>
         </button>
     </header>
 
-    <nav class="sticky top-0 z-[100] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b dark:border-slate-800">
+    <nav class="sticky top-[53px] z-[100] bg-white/80 dark:bg-brand-dark/80 backdrop-blur-xl border-b dark:border-slate-800/50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html">
-                <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" alt="Logo" class="h-10 lg:h-20 w-auto object-contain">
+            <a href="index.html" class="group">
+                <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" 
+                     alt="Logo" class="h-10 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105">
             </a>
 
-            <div class="hidden lg:flex items-center gap-8">
-                <a href="index.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_home">Home</a>
-                <a href="services.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg" data-key="nav_contact">Contact Us</a>
+            <div class="hidden lg:flex items-center gap-2 bg-slate-100 dark:bg-slate-800/50 p-1.5 rounded-full border dark:border-slate-700/50">
+                <a href="index.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest bg-blue-600 text-white shadow-md shadow-blue-500/20" data-key="nav_home">Home</a>
+                <a href="services.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_services">Our Brands</a>
+                <a href="info.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_info">Info</a>
+                <a href="contactus.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_contact">Contact</a>
             </div>
 
-            <button id="nav-toggle" class="lg:hidden p-2 focus:outline-none text-slate-800 dark:text-white">
-                <div class="nav-icon" id="hamburger-icon">
-                    <span></span><span></span><span></span>
-                </div>
+            <button id="nav-toggle" class="lg:hidden p-2 focus:outline-none">
+                <div class="nav-icon" id="hamburger-icon"><span></span><span></span><span></span></div>
             </button>
         </div>
 
-        <div id="nav-menu" class="lg:hidden bg-white dark:bg-slate-800 border-t dark:border-slate-700 w-full">
-            <div class="flex flex-col">
-                <a href="index.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_home">Home</a>
-                <a href="services.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_contact">Contact Us</a>
+        <div id="nav-menu" class="lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800">
+            <div class="flex flex-col p-4 gap-2">
+                <a href="index.html" class="p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-bold" data-key="nav_home">Home</a>
+                <a href="services.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_services">Our Brands</a>
+                <a href="info.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_info">Info</a>
+                <a href="contactus.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_contact">Contact Us</a>
             </div>
         </div>
     </nav>
 
-    <section class="relative h-[500px] lg:h-[600px] overflow-hidden bg-slate-200 dark:bg-slate-950">
-        <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
-            <div class="min-w-full h-full flex-shrink-0"><img src="alifslider.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="spaghetti.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="moreno2.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="vermicelli.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="moreno3.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full flex-shrink-0"><img src="tea.JPG" class="w-full h-full object-cover"></div>
+    <section class="relative h-[450px] lg:h-[650px] overflow-hidden">
+        <div id="slider" class="flex h-full transition-transform duration-1000 cubic-bezier(0.4, 0, 0.2, 1)">
+            <div class="min-w-full h-full relative flex-shrink-0">
+                <img src="alifslider.JPG" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
+            </div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover"></div>
         </div>
-        <button onclick="moveSlide(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-left"></i></button>
-        <button onclick="moveSlide(1)" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-right"></i></button>
+        
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 lg:px-10 pointer-events-none">
+            <button onclick="moveSlide(-1)" class="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/30 transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="moveSlide(1)" class="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/30 transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="absolute bottom-12 left-12 right-12 max-w-7xl mx-auto">
+            <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[40px] inline-block shadow-2xl">
+                <h1 class="text-4xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none" data-key="section_title">Leading The Way</h1>
+            </div>
+        </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
-        <h2 class="text-4xl font-black mb-12 border-l-8 border-blue-600 pl-6 uppercase tracking-tight" data-key="section_title">Home</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div id="card-peda" class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg border dark:border-slate-700 overflow-hidden hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
-                <div class="overflow-hidden h-56"><img src="pedacardlogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"></div>
-                <div class="p-8">
-                    <h3 class="text-2xl font-bold mb-3" data-key="card_title_peda">Peda Food Factory</h3>
-                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed" data-key="card_desc_peda">We provide the highest quality local grain processing and food packaging.</p>
+    <main class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+            
+            <div id="card-peda" class="md:col-span-4 bento-card bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border dark:border-slate-700 overflow-hidden cursor-pointer group">
+                <div class="h-80 overflow-hidden relative">
+                    <img src="pedacardlogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-6 left-6 bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-full uppercase">Food Sector</div>
+                </div>
+                <div class="p-10">
+                    <h3 class="text-3xl font-black mb-4" data-key="card_title_peda">Peda Food Factory</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed" data-key="card_desc_peda">Revolutionizing local grain processing and automated food packaging across Kurdistan.</p>
                 </div>
             </div>
+
+            <div id="card-moreno" class="md:col-span-2 bento-card bg-amber-50 dark:bg-amber-900/10 rounded-[40px] shadow-xl border border-amber-200 dark:border-amber-800/30 overflow-hidden cursor-pointer group">
+                <div class="p-8 h-full flex flex-col justify-between">
+                    <div>
+                        <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-amber-500/30">
+                            <i class="fas fa-coffee text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4" data-key="card_title_moreno">Moreno Coffee</h3>
+                        <p class="text-amber-900/60 dark:text-amber-200/60 font-medium" data-key="card_desc_moreno">Premium beans and office maintenance.</p>
+                    </div>
+                    <img src="morenocardlogo.JPG" class="rounded-3xl mt-6 group-hover:rotate-3 transition-transform">
+                </div>
             </div>
+
+            <div id="card-clean" class="md:col-span-3 bento-card bg-slate-900 rounded-[40px] shadow-xl overflow-hidden cursor-pointer group relative">
+                <img src="aliflogo.JPG" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700">
+                <div class="relative p-10 h-80 flex flex-col justify-end">
+                    <h3 class="text-3xl font-black text-white mb-2" data-key="card_title_clean">Alif Chemical</h3>
+                    <p class="text-slate-300" data-key="card_desc_clean">Industrial cleaning and professional detergents.</p>
+                </div>
+            </div>
+
+            <div id="card-dogtas" class="md:col-span-3 bento-card bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border dark:border-slate-700 overflow-hidden cursor-pointer group">
+                <div class="p-10 flex flex-col md:flex-row gap-8 items-center">
+                    <img src="dogtaslogo.JPG" class="w-32 h-32 rounded-3xl object-cover shadow-lg">
+                    <div>
+                        <h3 class="text-2xl font-black mb-2" data-key="card_title_dogtas">Doğtaş Duhok</h3>
+                        <p class="text-slate-500 dark:text-slate-400" data-key="card_desc_dogtas">Luxury Turkish furniture and home design solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <footer class="bg-slate-50 dark:bg-slate-950 py-20 px-6 border-t dark:border-slate-800">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <footer class="bg-white dark:bg-slate-900 py-24 px-6 border-t dark:border-slate-800">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
             <div class="md:col-span-2">
-                <img src="logo.JPG" class="h-10 mb-6 object-contain">
-                <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-md" data-key="footer_about">Committed to delivering industrial and food solutions across the Kurdistan region.</p>
+                <img src="logo.JPG" class="h-12 mb-8">
+                <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed max-w-md" data-key="footer_about">Setting new standards for industrial quality in the Kurdistan region through local expertise.</p>
             </div>
             <div>
-                <h4 class="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-slate-400" data-key="nav_info">Info</h4>
-                <ul class="space-y-4 font-medium">
-                    <li><a href="index.html" class="hover:text-blue-600 transition-all">Home</a></li>
-                    <li><a href="services.html" class="hover:text-blue-600 transition-all">Our Brands</a></li>
-                    <li><a href="info.html" class="hover:text-blue-600 transition-all">Locations</a></li>
-                    <li><a href="contactus.html" class="hover:text-blue-600 transition-all">Contact</a></li>
+                <h4 class="font-black text-xs uppercase tracking-widest mb-8 text-blue-600">Info</h4>
+                <ul class="space-y-4 text-lg font-bold">
+                    <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
+                    <li><a href="services.html" class="hover:text-blue-600">Our Brands</a></li>
+                    <li><a href="info.html" class="hover:text-blue-600">Locations</a></li>
+                    <li><a href="contactus.html" class="hover:text-blue-600">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-slate-400">The Team</h4>
-                <div class="space-y-6">
-                    <div class="group">
-                        <p class="text-[10px] font-black uppercase text-blue-600 mb-1 tracking-widest">Developer</p>
-                        <p class="text-slate-900 dark:text-white font-bold group-hover:text-blue-600 transition-colors">Sarwar Baroj</p>
-                    </div>
-                    <div class="group">
-                        <p class="text-[10px] font-black uppercase text-amber-500 mb-1 tracking-widest">Designer</p>
-                        <p class="text-slate-900 dark:text-white font-bold group-hover:text-amber-500 transition-colors">Pawar Baroj</p>
-                    </div>
+                <h4 class="font-black text-xs uppercase tracking-widest mb-8 text-amber-500">The Team</h4>
+                <div class="space-y-4">
+                    <p class="font-bold">Sarwar Baroj <span class="block text-[10px] text-slate-400 uppercase">Developer</span></p>
+                    <p class="font-bold">Pawar Baroj <span class="block text-[10px] text-slate-400 uppercase">Designer</span></p>
                 </div>
             </div>
         </div>
     </footer>
 
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 flex items-center justify-center z-[200]">
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all hover:scale-110 flex items-center justify-center z-[200]">
         <i class="fas fa-arrow-up"></i>
     </button>
 
