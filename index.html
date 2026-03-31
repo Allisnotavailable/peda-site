@@ -2,31 +2,100 @@
 <html lang="en" dir="ltr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peda Group | Innovation in Kurdistan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Peda Group | Home</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = { 
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        brand: { blue: '#2563eb', gold: '#f59e0b', dark: '#0f172a' }
+                        brand: { blue: '#2563eb', dark: '#0b1120', darker: '#040814', accent: '#3b82f6' }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'kenburns': 'kenburns 10s ease-out forwards'
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        kenburns: {
+                            '0%': { transform: 'scale(1)' },
+                            '100%': { transform: 'scale(1.15)' },
+                        }
                     }
                 }
             }
         }
+        
+        // Anti-FOUC (Flash of Unstyled Content) for Dark Mode
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
     </script>
+    
     <style>
-        /* Hamburger Animation */
+        /* Base Resets & Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        .dark ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+        body { overflow-x: hidden; cursor: none; /* Hide default cursor for custom one */ }
+        
+        /* Custom Cursor */
+        #custom-cursor {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            border: 2px solid #2563eb; border-radius: 50%; pointer-events: none;
+            transform: translate(-50%, -50%); z-index: 9999;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            mix-blend-mode: difference;
+        }
+        #custom-cursor.hovering {
+            width: 50px; height: 50px; background-color: rgba(37, 99, 235, 0.2); border-color: transparent; backdrop-filter: blur(2px);
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed; inset: 0; background: #ffffff; z-index: 10000;
+            display: flex; justify-content: center; items-center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
+        .dark #preloader { background: #040814; }
+        .loader-ring {
+            width: 60px; height: 60px; border: 4px solid #e2e8f0;
+            border-top-color: #2563eb; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Navigation Animations */
+        #nav-header { transition: padding 0.4s ease, background-color 0.4s ease; }
+        #nav-header.scrolled { padding-top: 0.5rem; padding-bottom: 0.5rem; background: rgba(255,255,255,0.95); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+        .dark #nav-header.scrolled { background: rgba(11, 17, 32, 0.95); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+
         .nav-icon { width: 24px; height: 18px; position: relative; cursor: pointer; display: inline-block; }
-        .nav-icon span { background-color: currentColor; position: absolute; border-radius: 2px; transition: .3s ease-in-out; height: 3px; width: 100%; left: 0; }
+        .nav-icon span { background-color: currentColor; position: absolute; border-radius: 2px; transition: .4s cubic-bezier(0.68, -0.55, 0.265, 1.55); height: 2px; width: 100%; left: 0; }
         .nav-icon span:nth-child(1) { top: 0; }
         .nav-icon span:nth-child(2) { top: 8px; }
         .nav-icon span:nth-child(3) { top: 16px; }
@@ -34,162 +103,633 @@
         .nav-icon.open span:nth-child(2) { opacity: 0; left: -60px; }
         .nav-icon.open span:nth-child(3) { top: 8px; transform: rotate(-135deg); }
 
-        #nav-menu { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; overflow: hidden; }
-        #nav-menu.active { max-height: 600px; opacity: 1; }
+        #nav-menu { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; opacity: 0; overflow: hidden; }
+        #nav-menu.active { max-height: 500px; opacity: 1; }
 
-        /* Smooth reveal for cards */
-        .bento-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .bento-card:hover { transform: translateY(-8px) scale(1.01); shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); }
+        /* Scroll Reveal Utility Classes (Intersection Observer) */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+        .reveal-delay-3 { transition-delay: 300ms; }
+
+        /* Bento Grid Hover Physics */
+        .bento-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); will-change: transform; }
+        .bento-card:hover { transform: translateY(-10px) scale(1.02); z-index: 10; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3); }
+        
+        /* Particle Canvas Background */
+        #particle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; pointer-events: none; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-brand-dark dark:text-slate-100 transition-colors duration-500 font-sans">
+<body class="bg-slate-50 text-slate-900 dark:bg-brand-dark dark:text-slate-100 transition-colors duration-500 relative">
 
-    <header class="bg-white/50 dark:bg-slate-800/50 backdrop-blur-md py-2 px-6 flex justify-between items-center border-b dark:border-slate-700/50 sticky top-0 z-[110]">
-        <div class="flex items-center gap-1 bg-slate-200/50 dark:bg-slate-700/50 rounded-full p-1 border dark:border-slate-600">
-            <button onclick="translatePage('en')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">EN</button>
-            <button onclick="translatePage('ar')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">AR</button>
-            <button onclick="translatePage('ku')" class="px-3 py-1 text-[10px] font-black rounded-full hover:bg-white dark:hover:bg-slate-600 transition-all">KU</button>
+    <div id="custom-cursor" class="hidden lg:block"></div>
+
+    <div id="preloader" class="flex flex-col items-center justify-center space-y-4">
+        <div class="loader-ring"></div>
+        <div class="text-sm font-black uppercase tracking-widest text-blue-600 animate-pulse">Loading Peda Group</div>
+    </div>
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-[-2]">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob dark:mix-blend-screen dark:bg-blue-600/10"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-amber-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000 dark:mix-blend-screen dark:bg-amber-600/10"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000 dark:mix-blend-screen dark:bg-purple-600/10"></div>
+    </div>
+
+    <div class="bg-white/40 dark:bg-slate-900/40 backdrop-blur-md border-b dark:border-slate-800/50 py-1.5 px-6 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest z-[110] relative">
+        <div class="flex items-center gap-4 text-slate-500">
+            <span class="hidden md:inline flex items-center gap-2"><i class="fas fa-map-marker-alt text-blue-600"></i> Duhok Industrial City</span>
+            <span class="hidden md:inline flex items-center gap-2"><i class="fas fa-clock text-amber-500"></i> Sun-Thu 8AM-5PM</span>
         </div>
-        
-        <button id="theme-toggle" class="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-sm border dark:border-slate-600 transition-transform active:scale-90">
-            <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block text-yellow-400"></i>
-        </button>
-    </header>
+        <div class="flex items-center gap-2 ml-auto">
+            <div class="flex bg-slate-200/50 dark:bg-slate-800/80 rounded-full p-0.5 border dark:border-slate-700/50">
+                <button onclick="changeLang('en')" class="hover-target px-3 py-1 rounded-full hover:bg-white dark:hover:bg-slate-700 transition-all focus:bg-white dark:focus:bg-slate-700">EN</button>
+                <button onclick="changeLang('ar')" class="hover-target px-3 py-1 rounded-full hover:bg-white dark:hover:bg-slate-700 transition-all focus:bg-white dark:focus:bg-slate-700">AR</button>
+                <button onclick="changeLang('ku')" class="hover-target px-3 py-1 rounded-full hover:bg-white dark:hover:bg-slate-700 transition-all focus:bg-white dark:focus:bg-slate-700">KU</button>
+            </div>
+            <button id="theme-toggle" class="hover-target w-8 h-8 rounded-full bg-slate-200/50 dark:bg-slate-800/80 flex items-center justify-center transition-transform hover:scale-110 border dark:border-slate-700/50">
+                <i class="fas fa-moon dark:hidden text-slate-700"></i>
+                <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+            </button>
+        </div>
+    </div>
 
-    <nav class="sticky top-[53px] z-[100] bg-white/80 dark:bg-brand-dark/80 backdrop-blur-xl border-b dark:border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="group">
-                <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" 
-                     alt="Logo" class="h-10 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105">
+    <nav id="nav-header" class="sticky top-0 z-[100] w-full border-b dark:border-slate-800/50 backdrop-blur-2xl transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            
+            <a href="index.html" class="hover-target group relative z-20">
+                <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" alt="Peda Logo" class="h-10 lg:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
             </a>
 
-            <div class="hidden lg:flex items-center gap-2 bg-slate-100 dark:bg-slate-800/50 p-1.5 rounded-full border dark:border-slate-700/50">
-                <a href="index.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest bg-blue-600 text-white shadow-md shadow-blue-500/20" data-key="nav_home">Home</a>
-                <a href="services.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-slate-200 dark:hover:bg-slate-700 transition-all" data-key="nav_contact">Contact</a>
+            <div class="hidden lg:flex items-center gap-1 bg-slate-100/50 dark:bg-slate-800/30 p-1.5 rounded-full border border-slate-200 dark:border-slate-700/50 backdrop-blur-md">
+                <a href="index.html" class="hover-target px-6 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] bg-blue-600 text-white shadow-lg shadow-blue-600/20" data-translate="nav_home">Home</a>
+                <a href="services.html" class="hover-target px-6 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-blue-600 transition-all" data-translate="nav_services">Our Brands</a>
+                <a href="info.html" class="hover-target px-6 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-blue-600 transition-all" data-translate="nav_info">Info</a>
+                <a href="contactus.html" class="hover-target px-6 py-2.5 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-blue-600 transition-all" data-translate="nav_contact">Contact</a>
             </div>
 
-            <button id="nav-toggle" class="lg:hidden p-2 focus:outline-none">
+            <button id="nav-toggle" class="hover-target lg:hidden p-2 relative z-20 focus:outline-none text-slate-900 dark:text-white">
                 <div class="nav-icon" id="hamburger-icon"><span></span><span></span><span></span></div>
             </button>
         </div>
 
-        <div id="nav-menu" class="lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800">
-            <div class="flex flex-col p-4 gap-2">
-                <a href="index.html" class="p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-bold" data-key="nav_home">Home</a>
-                <a href="services.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="p-4 rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium" data-key="nav_contact">Contact Us</a>
+        <div id="nav-menu" class="absolute top-full left-0 w-full bg-white/95 dark:bg-brand-dark/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-2xl lg:hidden">
+            <div class="flex flex-col p-6 gap-3">
+                <a href="index.html" class="flex items-center justify-between p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 font-bold group" data-translate="nav_home">
+                    <span>Home</span> <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity translate-x-[-10px] group-hover:translate-x-0"></i>
+                </a>
+                <a href="services.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 font-bold text-slate-700 dark:text-slate-200 transition-colors group" data-translate="nav_services">
+                    <span>Our Brands</span> <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </a>
+                <a href="info.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 font-bold text-slate-700 dark:text-slate-200 transition-colors group" data-translate="nav_info">
+                    <span>Info</span> <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </a>
+                <a href="contactus.html" class="flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 font-bold text-slate-700 dark:text-slate-200 transition-colors group" data-translate="nav_contact">
+                    <span>Contact Us</span> <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                </a>
             </div>
         </div>
     </nav>
 
-    <section class="relative h-[450px] lg:h-[650px] overflow-hidden">
-        <div id="slider" class="flex h-full transition-transform duration-1000 cubic-bezier(0.4, 0, 0.2, 1)">
-            <div class="min-w-full h-full relative flex-shrink-0">
-                <img src="alifslider.JPG" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60"></div>
+    <div class="bg-blue-600 text-white overflow-hidden py-3 border-y border-blue-700 relative z-10">
+        <div class="whitespace-nowrap animate-marquee flex gap-10 items-center text-xs font-black uppercase tracking-[0.3em] opacity-90">
+            <span>Peda Food Factory</span><i class="fas fa-star text-[8px]"></i>
+            <span>Moreno Coffee Service</span><i class="fas fa-star text-[8px]"></i>
+            <span>Alif Chemical Industry</span><i class="fas fa-star text-[8px]"></i>
+            <span>Doğtaş Furniture</span><i class="fas fa-star text-[8px]"></i>
+            <span>Peda Food Factory</span><i class="fas fa-star text-[8px]"></i>
+            <span>Moreno Coffee Service</span><i class="fas fa-star text-[8px]"></i>
+            <span>Alif Chemical Industry</span><i class="fas fa-star text-[8px]"></i>
+            <span>Doğtaş Furniture</span>
+        </div>
+    </div>
+
+    <section class="relative h-[400px] md:h-[550px] lg:h-[700px] overflow-hidden bg-brand-dark group cursor-grab active:cursor-grabbing" id="slider-container">
+        
+        <div id="slider" class="flex h-full w-full transition-transform duration-1000 cubic-bezier(0.64, 0.04, 0.35, 1) will-change-transform">
+            <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
+                <img src="alifslider.JPG" class="w-full h-full object-cover scale-100 transition-transform duration-[10000ms] ease-out slide-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-black/20"></div>
             </div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
+                <img src="pastabowl.JPG" class="w-full h-full object-cover scale-100 transition-transform duration-[10000ms] ease-out slide-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-black/20"></div>
+            </div>
+            <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
+                <img src="moreno1.JPG" class="w-full h-full object-cover scale-100 transition-transform duration-[10000ms] ease-out slide-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-black/20"></div>
+            </div>
+            <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
+                <img src="pennerigatte.JPG" class="w-full h-full object-cover scale-100 transition-transform duration-[10000ms] ease-out slide-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-black/20"></div>
+            </div>
+            <div class="min-w-full h-full relative overflow-hidden flex-shrink-0">
+                <img src="alifb1.JPG" class="w-full h-full object-cover scale-100 transition-transform duration-[10000ms] ease-out slide-img">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-black/20"></div>
+            </div>
         </div>
         
-        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-4 lg:px-10 pointer-events-none">
-            <button onclick="moveSlide(-1)" class="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/30 transition-all">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button onclick="moveSlide(1)" class="pointer-events-auto w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/30 transition-all">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
+        <div class="absolute inset-0 pointer-events-none flex flex-col justify-end pb-12 px-6 lg:px-16 max-w-7xl mx-auto">
+            
+            <div class="w-full max-w-md mb-8 flex gap-2">
+                <div class="h-1 flex-1 bg-white/20 rounded-full overflow-hidden relative">
+                    <div id="progress-bar" class="h-full bg-blue-500 w-0 transition-all duration-300"></div>
+                </div>
+            </div>
 
-        <div class="absolute bottom-12 left-12 right-12 max-w-7xl mx-auto">
-            <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[40px] inline-block shadow-2xl">
-                <h1 class="text-4xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none" data-key="section_title">Leading The Way</h1>
+            <div class="flex items-center gap-4 pointer-events-auto">
+                <button onclick="moveSlide(-1)" class="hover-target w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-xl">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="moveSlide(1)" class="hover-target w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 hover:scale-110 transition-all shadow-xl">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="ml-4 text-white font-mono text-sm tracking-widest opacity-70">
+                    <span id="slide-current">01</span> / <span id="slide-total">05</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-6 py-24">
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-6">
+    <main class="relative z-10 pb-32">
+        <canvas id="particle-canvas"></canvas>
+
+        <div class="max-w-7xl mx-auto px-6 pt-20 lg:pt-32">
             
-            <div id="card-peda" class="md:col-span-4 bento-card bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border dark:border-slate-700 overflow-hidden cursor-pointer group">
-                <div class="h-80 overflow-hidden relative">
-                    <img src="pedacardlogo.JPG" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute top-6 left-6 bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-full uppercase">Food Sector</div>
+            <div class="mb-16 lg:mb-24 reveal">
+                <div class="flex items-center gap-4 mb-4">
+                    <span class="h-[2px] w-16 bg-blue-600"></span>
+                    <span class="text-blue-600 font-black uppercase tracking-[0.4em] text-xs" data-translate="nav_home">Corporate Overview</span>
                 </div>
-                <div class="p-10">
-                    <h3 class="text-3xl font-black mb-4" data-key="card_title_peda">Peda Food Factory</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed" data-key="card_desc_peda">Revolutionizing local grain processing and automated food packaging across Kurdistan.</p>
+                <h1 class="text-5xl lg:text-8xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-[0.9]" data-translate="section_title">
+                    Building <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500">The Future</span>
+                </h1>
+                <p class="mt-8 text-lg lg:text-xl text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
+                    Delivering unparalleled quality in food production, chemical engineering, and commercial infrastructure across Kurdistan.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24 py-12 border-y border-slate-200 dark:border-slate-800 reveal reveal-delay-1">
+                <div class="text-center">
+                    <h4 class="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white mb-2 counter" data-target="4">0</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Core Brands</p>
+                </div>
+                <div class="text-center border-l border-slate-200 dark:border-slate-800">
+                    <h4 class="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white mb-2 counter" data-target="50">0</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Products</p>
+                </div>
+                <div class="text-center border-l border-slate-200 dark:border-slate-800">
+                    <h4 class="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white mb-2 counter" data-target="100">0</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Employees</p>
+                </div>
+                <div class="text-center border-l border-slate-200 dark:border-slate-800">
+                    <h4 class="text-4xl lg:text-6xl font-black text-slate-900 dark:text-white mb-2"><span class="counter" data-target="10">0</span>+</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-slate-500">Years Exp</p>
                 </div>
             </div>
 
-            <div id="card-moreno" class="md:col-span-2 bento-card bg-amber-50 dark:bg-amber-900/10 rounded-[40px] shadow-xl border border-amber-200 dark:border-amber-800/30 overflow-hidden cursor-pointer group">
-                <div class="p-8 h-full flex flex-col justify-between">
-                    <div>
-                        <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg shadow-amber-500/30">
-                            <i class="fas fa-coffee text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 lg:gap-8">
+                
+                <a href="services.html" class="hover-target md:col-span-6 lg:col-span-8 bento-card relative bg-white dark:bg-slate-800 rounded-[40px] shadow-2xl border border-slate-100 dark:border-slate-700 overflow-hidden group reveal reveal-delay-1">
+                    <div class="h-72 lg:h-[450px] overflow-hidden relative">
+                        <img src="pedacardlogo.JPG" onerror="this.src='https://placehold.co/800x600/2563eb/ffffff?text=Peda'" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        <div class="absolute top-6 left-6 lg:top-8 lg:left-8 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white">Active Sector</span>
                         </div>
-                        <h3 class="text-2xl font-black mb-4" data-key="card_title_moreno">Moreno Coffee</h3>
-                        <p class="text-amber-900/60 dark:text-amber-200/60 font-medium" data-key="card_desc_moreno">Premium beans and office maintenance.</p>
                     </div>
-                    <img src="morenocardlogo.JPG" class="rounded-3xl mt-6 group-hover:rotate-3 transition-transform">
-                </div>
-            </div>
-
-            <div id="card-clean" class="md:col-span-3 bento-card bg-slate-900 rounded-[40px] shadow-xl overflow-hidden cursor-pointer group relative">
-                <img src="aliflogo.JPG" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700">
-                <div class="relative p-10 h-80 flex flex-col justify-end">
-                    <h3 class="text-3xl font-black text-white mb-2" data-key="card_title_clean">Alif Chemical</h3>
-                    <p class="text-slate-300" data-key="card_desc_clean">Industrial cleaning and professional detergents.</p>
-                </div>
-            </div>
-
-            <div id="card-dogtas" class="md:col-span-3 bento-card bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border dark:border-slate-700 overflow-hidden cursor-pointer group">
-                <div class="p-10 flex flex-col md:flex-row gap-8 items-center">
-                    <img src="dogtaslogo.JPG" class="w-32 h-32 rounded-3xl object-cover shadow-lg">
-                    <div>
-                        <h3 class="text-2xl font-black mb-2" data-key="card_title_dogtas">Doğtaş Duhok</h3>
-                        <p class="text-slate-500 dark:text-slate-400" data-key="card_desc_dogtas">Luxury Turkish furniture and home design solutions.</p>
+                    <div class="p-8 lg:p-12 relative bg-white dark:bg-slate-800 z-10 transform -translate-y-4 rounded-t-[40px]">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-3xl lg:text-5xl font-black text-slate-900 dark:text-white" data-translate="card_title_peda">Peda Food Factory</h3>
+                            <div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                                <i class="fas fa-arrow-right transform -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed max-w-2xl" data-translate="card_desc_peda">Leading the region in high-quality grain processing, automated food distribution, and sustainable packaging solutions.</p>
                     </div>
-                </div>
-            </div>
+                </a>
 
+                <a href="services.html" class="hover-target md:col-span-6 lg:col-span-4 bento-card flex flex-col bg-amber-50 dark:bg-amber-900/10 rounded-[40px] shadow-xl border border-amber-200 dark:border-amber-800/30 overflow-hidden group reveal reveal-delay-2">
+                    <div class="p-8 lg:p-10 flex-1 flex flex-col justify-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white mb-8 shadow-lg shadow-amber-500/30 transform group-hover:rotate-12 transition-transform">
+                            <i class="fas fa-mug-hot text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-slate-900 dark:text-white mb-3" data-translate="card_title_moreno">Moreno Coffee</h3>
+                        <p class="text-amber-900/70 dark:text-amber-200/70 font-medium text-base leading-relaxed" data-translate="card_desc_moreno">Specialty roasting and professional equipment service for enterprise hubs.</p>
+                    </div>
+                    <div class="h-48 lg:h-64 relative overflow-hidden m-4 mt-0 rounded-3xl">
+                        <img src="morenocardlogo.JPG" onerror="this.src='https://placehold.co/400x400/f59e0b/ffffff?text=Moreno'" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </a>
+
+                <a href="services.html" class="hover-target md:col-span-6 lg:col-span-5 bento-card relative bg-slate-900 rounded-[40px] shadow-2xl overflow-hidden group min-h-[350px] lg:min-h-[400px] reveal reveal-delay-1">
+                    <img src="aliflogo.JPG" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=Alif'" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700 mix-blend-overlay filter grayscale group-hover:grayscale-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 p-8 lg:p-10 flex flex-col justify-end text-white">
+                        <div class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
+                            <i class="fas fa-flask text-blue-400"></i>
+                        </div>
+                        <h3 class="text-3xl lg:text-4xl font-black mb-3" data-translate="card_title_clean">Alif Chemical</h3>
+                        <p class="text-slate-300 font-medium text-lg" data-translate="card_desc_clean">Advanced industrial formulation and cleaning solutions.</p>
+                    </div>
+                </a>
+
+                <a href="services.html" class="hover-target md:col-span-6 lg:col-span-7 bento-card bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden group flex flex-col sm:flex-row reveal reveal-delay-2">
+                    <div class="sm:w-2/5 relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+                        <img src="dogtaslogo.JPG" onerror="this.src='https://placehold.co/400x600/64748b/ffffff?text=Dogtas'" class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-8 lg:p-12 sm:w-3/5 flex flex-col justify-center">
+                        <div class="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-widest w-max mb-6">Retail Partner</div>
+                        <h3 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-4" data-translate="card_title_dogtas">Doğtaş Duhok</h3>
+                        <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed mb-8" data-translate="card_desc_dogtas">Premium Turkish furniture collections designed for modern living spaces and executive offices.</p>
+                        
+                        <div class="flex items-center gap-4 text-sm font-bold text-blue-600 group-hover:translate-x-2 transition-transform">
+                            <span>Explore Showroom</span>
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
         </div>
     </main>
 
-    <footer class="bg-white dark:bg-slate-900 py-24 px-6 border-t dark:border-slate-800">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
-            <div class="md:col-span-2">
-                <img src="logo.JPG" class="h-12 mb-8">
-                <p class="text-slate-500 dark:text-slate-400 text-xl leading-relaxed max-w-md" data-key="footer_about">Setting new standards for industrial quality in the Kurdistan region through local expertise.</p>
+    <footer class="bg-white dark:bg-brand-darker pt-24 pb-12 px-6 border-t border-slate-200 dark:border-slate-800 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+                
+                <div class="lg:col-span-4 pr-0 lg:pr-12">
+                    <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" class="h-12 mb-8 filter dark:invert-0 grayscale transition-all hover:grayscale-0">
+                    <p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed mb-8">
+                        Setting new standards for industrial quality, food production, and retail excellence in the Kurdistan region through local expertise.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-blue-600 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-pink-600 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-blue-400 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <h4 class="font-black text-[11px] uppercase tracking-[0.2em] mb-6 text-slate-900 dark:text-white">Directory</h4>
+                    <ul class="space-y-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
+                        <li><a href="index.html" class="hover:text-blue-600 transition-colors">Home Page</a></li>
+                        <li><a href="services.html" class="hover:text-blue-600 transition-colors">Company Brands</a></li>
+                        <li><a href="info.html" class="hover:text-blue-600 transition-colors">About Us</a></li>
+                        <li><a href="contactus.html" class="hover:text-blue-600 transition-colors">Contact Form</a></li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h4 class="font-black text-[11px] uppercase tracking-[0.2em] mb-6 text-slate-900 dark:text-white">Headquarters</h4>
+                    <ul class="space-y-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-blue-600"></i>
+                            <span>Duhok Industrial City,<br>Kurdistan Region, Iraq</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-blue-600"></i>
+                            <span>+964 (0) 750 XXX XXXX</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-blue-600"></i>
+                            <span>info@pedagroup.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3 bg-slate-50 dark:bg-slate-800/50 p-8 rounded-3xl border border-slate-200 dark:border-slate-700">
+                    <h4 class="font-black text-[11px] uppercase tracking-[0.2em] mb-6 text-slate-900 dark:text-white">Digital Team</h4>
+                    <div class="space-y-5">
+                        <div class="group flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 text-xs font-black">SB</div>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-blue-600 tracking-widest">Developer / Engineering</p>
+                                <p class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-blue-600 transition-colors">Sarwar Baroj</p>
+                            </div>
+                        </div>
+                        <div class="group flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center text-amber-500 text-xs font-black">PB</div>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-amber-500 tracking-widest">UI/UX Designer</p>
+                                <p class="text-slate-900 dark:text-white font-bold text-sm group-hover:text-amber-500 transition-colors">Pawar Baroj</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h4 class="font-black text-xs uppercase tracking-widest mb-8 text-blue-600">Info</h4>
-                <ul class="space-y-4 text-lg font-bold">
-                    <li><a href="index.html" class="hover:text-blue-600">Home</a></li>
-                    <li><a href="services.html" class="hover:text-blue-600">Our Brands</a></li>
-                    <li><a href="info.html" class="hover:text-blue-600">Locations</a></li>
-                    <li><a href="contactus.html" class="hover:text-blue-600">Contact</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-black text-xs uppercase tracking-widest mb-8 text-amber-500">The Team</h4>
-                <div class="space-y-4">
-                    <p class="font-bold">Sarwar Baroj <span class="block text-[10px] text-slate-400 uppercase">Developer</span></p>
-                    <p class="font-bold">Pawar Baroj <span class="block text-[10px] text-slate-400 uppercase">Designer</span></p>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-slate-200 dark:border-slate-800">
+                <p class="text-slate-400 dark:text-slate-500 text-xs font-semibold">© 2026 Peda Group. All rights reserved.</p>
+                <div class="flex gap-6 text-xs font-bold text-slate-400 dark:text-slate-500">
+                    <a href="#" class="hover:text-blue-600">Privacy Policy</a>
+                    <a href="#" class="hover:text-blue-600">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all hover:scale-110 flex items-center justify-center z-[200]">
+    <button id="backToTop" class="hover-target fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl shadow-blue-600/30 opacity-0 translate-y-10 transition-all duration-500 flex items-center justify-center z-[200] hover:scale-110 active:scale-95">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // --- 1. Preloader Logic ---
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 800);
+            }, 1000); // Wait 1s for pro effect
+
+            // --- 2. Custom Cursor ---
+            const cursor = document.getElementById('custom-cursor');
+            const hoverTargets = document.querySelectorAll('.hover-target, a, button, .bento-card');
+            
+            if (window.matchMedia("(pointer: fine)").matches) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                });
+                hoverTargets.forEach(target => {
+                    target.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+                    target.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+                });
+            }
+
+            // --- 3. Scroll Header & Back to Top ---
+            const header = document.getElementById('nav-header');
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    backToTop.classList.remove('opacity-0', 'translate-y-10');
+                } else {
+                    header.classList.remove('scrolled');
+                    backToTop.classList.add('opacity-0', 'translate-y-10');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // --- 4. Mobile Menu Toggle ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navIcon = document.getElementById('hamburger-icon');
+
+            navToggle.onclick = () => {
+                navMenu.classList.toggle('active');
+                navIcon.classList.toggle('open');
+            };
+
+            // --- 5. Dark Mode Toggle ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // --- 6. Advanced Slider with Drag/Swipe & Ken Burns ---
+            const slider = document.getElementById('slider');
+            const slides = slider.children;
+            const totalSlides = slides.length;
+            const currentLabel = document.getElementById('slide-current');
+            const progressBar = document.getElementById('progress-bar');
+            let currentSlideIndex = 0;
+            let isDragging = false, startPos = 0, currentTranslate = 0, prevTranslate = 0, animationID;
+
+            // Trigger initial Ken Burns
+            slides[0].querySelector('img').classList.add('animate-kenburns');
+
+            window.moveSlide = function(direction) {
+                // Remove animation from old slide
+                slides[currentSlideIndex].querySelector('img').classList.remove('animate-kenburns');
+                
+                currentSlideIndex += direction;
+                if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+                if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+                
+                updateSliderPosition();
+            }
+
+            function updateSliderPosition() {
+                currentTranslate = currentSlideIndex * -100;
+                prevTranslate = currentTranslate;
+                slider.style.transform = `translateX(${currentTranslate}%)`;
+                
+                // Update UI
+                currentLabel.innerText = '0' + (currentSlideIndex + 1);
+                progressBar.style.width = ((currentSlideIndex + 1) / totalSlides) * 100 + '%';
+                
+                // Add Ken Burns to new slide
+                slides[currentSlideIndex].querySelector('img').classList.add('animate-kenburns');
+            }
+            updateSliderPosition(); // Init
+
+            // Touch/Drag Events for Slider
+            slider.addEventListener('mousedown', touchStart);
+            slider.addEventListener('touchstart', touchStart, {passive: true});
+            slider.addEventListener('mouseup', touchEnd);
+            slider.addEventListener('touchend', touchEnd);
+            slider.addEventListener('mousemove', touchMove);
+            slider.addEventListener('touchmove', touchMove, {passive: true});
+            slider.addEventListener('mouseleave', () => { if(isDragging) touchEnd() });
+
+            function touchStart(event) {
+                isDragging = true;
+                startPos = getPositionX(event);
+                animationID = requestAnimationFrame(animation);
+                slider.style.transition = 'none'; // remove snap for smooth drag
+            }
+            function touchMove(event) {
+                if (isDragging) {
+                    const currentPosition = getPositionX(event);
+                    const diff = currentPosition - startPos;
+                    // convert pixel diff to percentage relative to screen width
+                    const percentDiff = (diff / window.innerWidth) * 100; 
+                    currentTranslate = prevTranslate + percentDiff;
+                }
+            }
+            function touchEnd() {
+                isDragging = false;
+                cancelAnimationFrame(animationID);
+                const movedBy = currentTranslate - prevTranslate;
+                slider.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+                
+                // Threshold to snap
+                if (movedBy < -15 && currentSlideIndex < totalSlides - 1) currentSlideIndex += 1;
+                else if (movedBy > 15 && currentSlideIndex > 0) currentSlideIndex -= 1;
+                // If it loops
+                else if (movedBy < -15 && currentSlideIndex === totalSlides - 1) currentSlideIndex = 0;
+                else if (movedBy > 15 && currentSlideIndex === 0) currentSlideIndex = totalSlides - 1;
+
+                updateSliderPosition();
+            }
+            function getPositionX(event) {
+                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+            }
+            function animation() {
+                slider.style.transform = `translateX(${currentTranslate}%)`;
+                if (isDragging) requestAnimationFrame(animation);
+            }
+            
+            // Auto slide every 6 seconds
+            setInterval(() => { if(!isDragging) moveSlide(1); }, 6000);
+
+            // --- 7. Intersection Observer for Scroll Reveals ---
+            const reveals = document.querySelectorAll('.reveal');
+            const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    
+                    // If it's the stats counter area, trigger counters
+                    if(entry.target.querySelector('.counter')) {
+                        triggerCounters();
+                        observer.unobserve(entry.target); // Only count once
+                    }
+                });
+            }, revealOptions);
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
+
+            // --- 8. Animated Counters Logic ---
+            let countersTriggered = false;
+            function triggerCounters() {
+                if(countersTriggered) return;
+                countersTriggered = true;
+                const counters = document.querySelectorAll('.counter');
+                const speed = 200; // The lower the slower
+                
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 20);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+
+            // --- 9. Particle Canvas Engine (Lightweight) ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth; canvas.height = document.querySelector('main').offsetHeight;
+            
+            let particlesArray = [];
+            const numberOfParticles = 40; // Keeps it clean, not messy
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                }
+                update() {
+                    this.x += this.speedX; this.y += this.speedY;
+                    if (this.size > 0.2) this.size -= 0.005; // shrink slowly
+                    // Wrap around screen
+                    if(this.x > canvas.width) this.x = 0;
+                    if(this.x < 0) this.x = canvas.width;
+                    if(this.y > canvas.height) this.y = 0;
+                    if(this.y < 0) this.y = canvas.height;
+                }
+                draw() {
+                    ctx.fillStyle = document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(37, 99, 235, 0.1)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            function initCanvas() {
+                particlesArray = [];
+                for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
+            }
+            function animateCanvas() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animateCanvas);
+            }
+            initCanvas(); animateCanvas();
+            window.addEventListener('resize', () => { 
+                canvas.width = window.innerWidth; 
+                canvas.height = document.querySelector('main').offsetHeight;
+                initCanvas(); 
+            });
+
+            // --- 10. Robust Translation Dictionary ---
+            const dictionary = {
+                en: {
+                    nav_home: "Home", nav_services: "Our Brands", nav_info: "Info", nav_contact: "Contact",
+                    section_title: "Building <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500'>The Future</span>",
+                    card_title_peda: "Peda Food Factory", card_desc_peda: "Leading the region in high-quality grain processing, automated food distribution, and sustainable packaging solutions.",
+                    card_title_moreno: "Moreno Coffee", card_desc_moreno: "Specialty roasting and professional equipment service for enterprise hubs.",
+                    card_title_clean: "Alif Chemical", card_desc_clean: "Advanced industrial formulation and cleaning solutions.",
+                    card_title_dogtas: "Doğtaş Duhok", card_desc_dogtas: "Premium Turkish furniture collections designed for modern living spaces and executive offices."
+                },
+                ar: {
+                    nav_home: "الرئيسية", nav_services: "علاماتنا التجارية", nav_info: "معلومات", nav_contact: "اتصل بنا",
+                    section_title: "بناء <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500'>المستقبل</span>",
+                    card_title_peda: "مصنع بيدا للأغذية", card_desc_peda: "نقود المنطقة في معالجة الحبوب عالية الجودة وتوزيع الأغذية الآلي وحلول التعبئة المستدامة.",
+                    card_title_moreno: "قهوة مورينو", card_desc_moreno: "تحميص متخصص وخدمة معدات احترافية لمراكز الأعمال.",
+                    card_title_clean: "أليف للكيمياويات", card_desc_clean: "تركيبات صناعية متقدمة وحلول تنظيف.",
+                    card_title_dogtas: "دوغتاش دهوك", card_desc_dogtas: "مجموعات أثاث تركية فاخرة مصممة لمساحات المعيشة الحديثة والمكاتب التنفيذية."
+                },
+                ku: {
+                    nav_home: "سەرەکی", nav_services: "براندەکانمان", nav_info: "زانیاری", nav_contact: "پەیوەندی",
+                    section_title: "بنیاتنانی <br> <span class='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-amber-500'>داهاتوو</span>",
+                    card_title_peda: "کارگەی خۆراکی پێدا", card_desc_peda: "پێشەنگی ناوچەکە لە پرۆسەی دانەوێڵەی کوالێتی بەرز و دابەشکردنی خۆراکی ئۆتۆماتیکی.",
+                    card_title_moreno: "قاوەی مۆرینۆ", card_desc_moreno: "برژاندنی تایبەت و خزمەتگوزاری ئامێری پیشەیی بۆ سەنتەرەکانی کار.",
+                    card_title_clean: "ئەلیف کیمیاوی", card_desc_clean: "پێکهاتەی پیشەسازی پێشکەوتوو و چارەسەری پاککردنەوە.",
+                    card_title_dogtas: "دۆغتاش دهۆک", card_desc_dogtas: "کۆکراوەی مۆبیلیاتی تورکی نایاب کە بۆ شوێنی نیشتەجێبوونی مۆدێرن دیزاین کراوە."
+                }
+            };
+
+            window.changeLang = function(lang) {
+                // Change HTML dir for Arabic/Kurdish
+                if (lang === 'ar' || lang === 'ku') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                }
+                
+                // Animate text change
+                const elements = document.querySelectorAll('[data-translate]');
+                elements.forEach(el => {
+                    el.style.opacity = 0; // fade out
+                    setTimeout(() => {
+                        const key = el.getAttribute('data-translate');
+                        if (dictionary[lang][key]) {
+                            el.innerHTML = dictionary[lang][key]; // innerHTML allows spans (like in title)
+                        }
+                        el.style.opacity = 1; // fade in
+                    }, 300);
+                });
+            }
+
+        });
+    </script>
 </body>
 </html>
