@@ -85,21 +85,30 @@
     </div>
 </nav>
 
-    <section class="relative h-[500px] overflow-hidden bg-slate-200 dark:bg-slate-950">
-        <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifslider.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="spaghetti.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno2.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="vermicelli.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="moreno3.JPG" class="w-full h-full object-cover"></div>
-            <div class="min-w-full h-full relative flex-shrink-0"><img src="tea.JPG" class="w-full h-full object-cover"></div>
+<section class="relative w-full overflow-hidden bg-slate-200 dark:bg-slate-950 aspect-video lg:aspect-[21/9]">
+        <div id="slider" class="flex h-full w-full transition-transform duration-700 ease-in-out">
+            <div class="min-w-full h-full flex-shrink-0"><img src="alifslider.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="pastabowl.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="moreno1.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="pennerigatte.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="alifb1.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="spaghetti.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="moreno2.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="vermicelli.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="moreno3.JPG" class="w-full h-full object-cover"></div>
+            <div class="min-w-full h-full flex-shrink-0"><img src="tea.JPG" class="w-full h-full object-cover"></div>
         </div>
-        <button onclick="moveSlide(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-left"></i></button>
-        <button onclick="moveSlide(1)" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 p-4 rounded-full text-white backdrop-blur-md z-10"><i class="fas fa-chevron-right"></i></button>
+
+        <button onclick="moveSlide(-1)" class="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/30 p-3 lg:p-5 rounded-full text-white backdrop-blur-md z-10 transition-all">
+            <i class="fas fa-chevron-left text-sm lg:text-xl"></i>
+        </button>
+        <button onclick="moveSlide(1)" class="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/30 p-3 lg:p-5 rounded-full text-white backdrop-blur-md z-10 transition-all">
+            <i class="fas fa-chevron-right text-sm lg:text-xl"></i>
+        </button>
+
+        <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/60 to-transparent pointer-events-none">
+            <h1 class="text-white text-2xl lg:text-5xl font-black uppercase tracking-tighter" data-key="section_title">Home</h1>
+        </div>
     </section>
 
     <main class="max-w-7xl mx-auto px-6 py-20">
