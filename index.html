@@ -54,28 +54,36 @@
         </button>
     </header>
 
-    <nav class="sticky top-0 z-[100] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b dark:border-slate-800">
-        <div class="px-6 py-4 flex justify-between items-center">
-            <a href="index.html">
-                <img src="logo.JPG" onerror="this.src='https://placehold.co/200x60/2563eb/ffffff?text=PEDA'" alt="Logo" class="h-10 w-auto object-contain">
-            </a>
+   <nav class="sticky top-0 z-[100] bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="transition-all duration-300">
+            <img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/2563eb/ffffff?text=PEDA'" 
+                 alt="Logo" class="h-10 lg:h-16 w-auto object-contain">
+        </a>
 
-            <button id="nav-toggle" class="p-2 focus:outline-none text-slate-800 dark:text-white">
-                <div class="nav-icon" id="hamburger-icon">
-                    <span></span><span></span><span></span>
-                </div>
-            </button>
+        <div class="hidden lg:flex items-center gap-8">
+            <a href="index.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_home">Home</a>
+            <a href="services.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_services">Our Brands</a>
+            <a href="info.html" class="font-bold text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-key="nav_info">Info</a>
+            <a href="contactus.html" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20" data-key="nav_contact">Contact Us</a>
         </div>
 
-        <div id="nav-menu" class="bg-white dark:bg-slate-800 border-t dark:border-slate-700 w-full">
-            <div class="flex flex-col">
-                <a href="index.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_home">Home</a>
-                <a href="services.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_services">Our Brands</a>
-                <a href="info.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_info">Info</a>
-                <a href="contactus.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_contact">Contact Us</a>
+        <button id="nav-toggle" class="lg:hidden p-2 focus:outline-none text-slate-800 dark:text-white">
+            <div class="nav-icon" id="hamburger-icon">
+                <span></span><span></span><span></span>
             </div>
+        </button>
+    </div>
+
+    <div id="nav-menu" class="lg:hidden bg-white dark:bg-slate-800 border-t dark:border-slate-700 w-full">
+        <div class="flex flex-col">
+            <a href="index.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_home">Home</a>
+            <a href="services.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_services">Our Brands</a>
+            <a href="info.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 border-b dark:border-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_info">Info</a>
+            <a href="contactus.html" class="px-8 py-5 hover:bg-slate-50 dark:hover:bg-slate-700 font-bold text-lg uppercase tracking-wider" data-key="nav_contact">Contact Us</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <section class="relative h-[500px] overflow-hidden bg-slate-200 dark:bg-slate-950">
         <div id="slider" class="flex h-full transition-transform duration-700 ease-in-out">
