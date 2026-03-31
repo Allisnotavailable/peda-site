@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Info | Peda Group</title>
+    <title>Global Network | Peda Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
@@ -11,32 +11,14 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        'premium-blue': '#001B3D',
-                        'premium-gold': '#D4AF37',
-                        'moreno-brown': '#3d2b1f'
-                    },
-                    borderRadius: {
-                        '4xl': '2rem',
-                        '5xl': '3rem'
-                    }
+                    colors: { 'premium-blue': '#001B3D', 'premium-gold': '#D4AF37', 'moreno-brown': '#3d2b1f' },
+                    borderRadius: { '5xl': '3rem' }
                 }
             }
         }
     </script>
-    <style>
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .modal-content {
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans min-h-screen">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans">
 
     <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 py-4 px-8 flex justify-between items-center border-b dark:border-slate-800">
         <a href="index.html" class="flex items-center gap-2">
@@ -44,153 +26,78 @@
             <span class="font-bold tracking-tighter text-xl uppercase">Peda Group</span>
         </a>
         <nav class="flex gap-6 items-center">
-            <a href="index.html" class="hover:text-blue-600 font-medium transition-colors" data-key="nav_home">Home</a>
-            <a href="info.html" class="text-blue-600 font-bold border-b-2 border-blue-600" data-key="nav_info">Info</a>
+            <a href="index.html" class="hover:text-blue-600 font-medium transition-colors">Home</a>
+            <a href="services.html" class="hover:text-blue-600 font-medium transition-colors">Brands</a>
+            <a href="info.html" class="text-blue-600 font-bold border-b-2 border-blue-600">Info</a>
             <button id="theme-toggle" class="text-premium-gold hover:scale-110 transition-transform">
                 <i class="fas fa-adjust text-lg"></i>
             </button>
         </nav>
     </header>
 
-    <main class="max-w-5xl mx-auto px-6 py-16">
+    <main class="max-w-6xl mx-auto px-6 py-16">
         <div class="text-center mb-16">
-            <h1 class="text-5xl md:text-6xl font-black mb-4 uppercase tracking-tighter" data-key="info_title">Global Network</h1>
-            <p class="text-slate-500 max-w-xl mx-auto italic text-lg" data-key="info_subtitle">Our headquarters and flagship locations across the region.</p>
+            <h1 class="text-5xl md:text-6xl font-black mb-4 uppercase tracking-tighter">Global Network</h1>
+            <p class="text-slate-500 max-w-xl mx-auto italic text-lg">Our flagship locations and industrial hubs across the region.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div onclick="openLocationPopup('duhok_factory')" class="group cursor-pointer p-8 bg-white dark:bg-slate-900 rounded-5xl shadow-xl border-2 border-transparent hover:border-blue-600 transition-all duration-500 hover:-translate-y-2">
+            <div onclick="openLocationPopup('duhok_factory')" class="group cursor-pointer p-8 bg-white dark:bg-slate-900 rounded-5xl shadow-xl border-2 border-transparent hover:border-blue-600 transition-all duration-500">
                 <div class="flex items-center gap-5 mb-6">
                     <div class="w-16 h-16 rounded-3xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 group-hover:rotate-12 transition-transform">
                         <i class="fas fa-industry text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-black" data-key="card_title_peda">Peda Food Factory</h3>
-                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Industrial HQ</p>
+                        <h3 class="text-2xl font-black uppercase tracking-tight">Peda Food Factory</h3>
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Industrial HQ</p>
                     </div>
                 </div>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2">Main processing and logistics hub in the Duhok Industrial Zone.</p>
+                <p class="text-slate-500 dark:text-slate-400 mb-6">Main processing and logistics hub in the Duhok Industrial Zone.</p>
                 <div class="flex justify-between items-center text-xs font-black text-blue-600 uppercase tracking-widest">
                     <span>View Details</span>
                     <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                 </div>
             </div>
 
-            <div onclick="openLocationPopup('duhok_moreno')" class="group cursor-pointer p-8 bg-white dark:bg-slate-900 rounded-5xl shadow-xl border-2 border-transparent hover:border-amber-700 transition-all duration-500 hover:-translate-y-2">
+            <div onclick="openLocationPopup('duhok_moreno')" class="group cursor-pointer p-8 bg-white dark:bg-slate-900 rounded-5xl shadow-xl border-2 border-transparent hover:border-amber-700 transition-all duration-500">
                 <div class="flex items-center gap-5 mb-6">
                     <div class="w-16 h-16 rounded-3xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-800 group-hover:rotate-12 transition-transform">
                         <i class="fas fa-coffee text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-black" data-key="moreno_duhok_title">Moreno Coffee - Duhok</h3>
-                        <p class="text-[10px] font-bold text-amber-700 uppercase tracking-[0.2em]" data-key="btn_storefront">Storefront</p>
+                        <h3 class="text-2xl font-black uppercase tracking-tight">Moreno - Duhok</h3>
+                        <p class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">Storefront</p>
                     </div>
                 </div>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2" data-key="moreno_duhok_desc">Malta Street, Duhok. Experience our premium blends and bakery.</p>
+                <p class="text-slate-500 dark:text-slate-400 mb-6">Malta Street. Experience our premium blends and bakery in a modern setting.</p>
                 <div class="flex justify-between items-center text-xs font-black text-amber-700 uppercase tracking-widest">
                     <span>View Details</span>
                     <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                 </div>
             </div>
 
-            <div onclick="openLocationPopup('erbil_moreno')" class="group cursor-pointer p-8 bg-white dark:bg-slate-900 rounded-5xl shadow-xl border-2 border-transparent hover:border-amber-700 transition-all duration-500 hover:-translate-y-2">
+            <div onclick="openLocationPopup('erbil_alif')" class="group cursor-pointer p-8 bg-premium-blue text-white rounded-5xl shadow-xl border-2 border-transparent hover:border-premium-gold transition-all duration-500 md:col-span-2">
                 <div class="flex items-center gap-5 mb-6">
-                    <div class="w-16 h-16 rounded-3xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-800 group-hover:rotate-12 transition-transform">
-                        <i class="fas fa-mug-hot text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-black" data-key="moreno_erbil_title">Moreno Caffe - Erbil</h3>
-                        <p class="text-[10px] font-bold text-amber-700 uppercase tracking-[0.2em]" data-key="btn_flagship">Flagship Store</p>
-                    </div>
-                </div>
-                <p class="text-slate-500 dark:text-slate-400 mb-6 line-clamp-2" data-key="moreno_erbil_desc">Naznaz Area, Erbil. Specialty coffee and international dining.</p>
-                <div class="flex justify-between items-center text-xs font-black text-amber-700 uppercase tracking-widest">
-                    <span>View Details</span>
-                    <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
-                </div>
-            </div>
-
-            <div onclick="openLocationPopup('erbil_alif')" class="group cursor-pointer p-8 bg-premium-blue text-white rounded-5xl shadow-xl border-2 border-transparent hover:border-premium-gold transition-all duration-500 hover:-translate-y-2">
-                <div class="flex items-center gap-5 mb-6">
-                    <div class="w-16 h-16 rounded-3xl bg-premium-gold/20 flex items-center justify-center text-premium-gold group-hover:rotate-12 transition-transform">
+                    <div class="w-16 h-16 rounded-3xl bg-premium-gold/20 flex items-center justify-center text-premium-gold">
                         <i class="fas fa-flask text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-black" data-key="card_title_clean">Alif Chemicals</h3>
-                        <p class="text-[10px] font-bold text-premium-gold uppercase tracking-[0.2em]">Scientific Unit</p>
+                        <h3 class="text-2xl font-black uppercase tracking-tight">Alif Chemicals</h3>
+                        <p class="text-[10px] font-bold text-premium-gold uppercase tracking-widest">Scientific Unit</p>
                     </div>
                 </div>
-                <p class="text-slate-400 mb-6 line-clamp-2 uppercase text-[10px] tracking-widest font-bold">Industrial Formulation & Manufacturing</p>
+                <p class="text-slate-300 mb-6 max-w-2xl">Our Erbil-based facility dedicated to industrial formulations and manufacturing excellence.</p>
                 <div class="flex justify-between items-center text-xs font-black text-premium-gold uppercase tracking-widest">
-                    <span>View Details</span>
+                    <span>Explore Formulation Unit</span>
                     <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <div id="location-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
-        <div class="modal-content bg-white dark:bg-slate-900 w-full max-w-md rounded-[3rem] p-10 shadow-2xl transform scale-95 transition-transform duration-300 relative border border-white/10">
-            <button onclick="closePopup()" class="absolute top-8 right-8 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-
-            <div class="text-center">
-                <div id="modal-icon-container" class="w-20 h-20 mx-auto rounded-3xl mb-6 flex items-center justify-center text-3xl">
-                    <i id="modal-icon" class="fas fa-map-pin"></i>
-                </div>
-                
-                <h2 id="modal-title" class="text-3xl font-black mb-3 tracking-tighter uppercase">Location</h2>
-                <p id="modal-desc" class="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed font-medium px-4">Loading details...</p>
-                
-                <div class="flex justify-center gap-5 mb-10">
-                    <a id="modal-tiktok" href="#" target="_blank" class="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl hover:scale-110 transition-transform hover:bg-black hover:text-white">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a id="modal-insta" href="#" target="_blank" class="w-14 h-14 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl hover:scale-110 transition-transform hover:bg-gradient-to-tr hover:from-yellow-400 hover:to-purple-600 hover:text-white">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-
-                <a id="modal-maps-link" href="#" target="_blank" class="w-full py-5 rounded-2xl font-black text-center transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl active:scale-95 uppercase tracking-widest text-sm">
-                    <i class="fas fa-location-arrow"></i>
-                    <span data-key="btn_directions">Open Google Maps</span>
-                </a>
-            </div>
-        </div>
-    </div>
-<footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 py-16 mt-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-                
-                <div class="text-center md:text-left">
-                    <img src="logo.JPG" onerror="this.src='https://placehold.co/100x40/2563eb/ffffff?text=PEDA'" class="h-8 mb-4 hover:scale-105 transition-all duration-300 mx-auto md:mx-0">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-[0.3em]">Peda Group Duhok</p>
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-6 md:gap-10 font-black text-sm tracking-widest uppercase">
-                    <a href="tel:009647510990010" class="group flex items-center gap-3 hover:text-blue-600 transition-colors">
-                        <span class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        0751 099 0010
-                    </a>
-                    <a href="tel:009647763330010" class="group flex items-center gap-3 hover:text-blue-600 transition-colors">
-                        <span class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        0776 333 0010
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-16 pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                    &copy; 2026 Peda Group. All Rights Reserved.
-                </p>
-            </div>
+    <footer class="bg-white dark:bg-slate-900 border-t dark:border-slate-800 py-12 mt-20">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">&copy; 2026 Peda Group. All Rights Reserved.</p>
         </div>
     </footer>
 
