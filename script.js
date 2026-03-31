@@ -389,3 +389,10 @@ function moveSlide(direction) {
 setInterval(() => {
     if (document.getElementById('slider')) moveSlide(1);
 }, 3000);
+// Add this inside your moveSlide function or at the bottom of script.js
+window.addEventListener('resize', () => {
+    // Reset slider position on resize to prevent alignment bugs
+    const slider = document.getElementById('slider');
+    if(slider) slider.style.transform = `translateX(0px)`;
+    currentSlide = 0;
+});
