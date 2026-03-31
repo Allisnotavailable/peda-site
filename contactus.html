@@ -3,123 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Peda Company</title>
+    <title>Contact Us | Peda Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script>
         tailwind.config = { darkMode: 'class' }
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
         }
     </script>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300 font-sans">
 
-    <header class="bg-white dark:bg-slate-900 py-2 px-6 flex justify-between items-center text-sm border-b dark:border-slate-800">
-        <div class="flex flex-col md:flex-row gap-2 md:gap-6">
-            <span class="hidden lg:inline"><i class="fas fa-envelope text-blue-600 mr-1"></i> info@pedacompany.com</span>
-            <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
-                <a href="tel:009647510990010" class="hover:text-blue-600 transition-colors">
-                    <i class="fas fa-phone text-blue-600 mr-1"></i> 0751 099 0010
-                </a>
-                <a href="tel:009647763330010" class="hover:text-blue-600 transition-colors">
-                    <i class="fas fa-phone text-blue-600 mr-1"></i> 0776 333 0010
-                </a>
-            </div>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="relative">
-                <button id="lang-btn" class="flex items-center gap-2 font-semibold hover:text-blue-600 outline-none">
-                    <i class="fas fa-globe text-blue-500"></i><span id="current-lang">English</span>
-                </button>
-                <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-36 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border dark:border-slate-700 z-[100] overflow-hidden">
-                    <button onclick="translatePage('en')" class="w-full text-left px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700">English</button>
-                    <button onclick="translatePage('ar')" class="w-full text-right px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700 border-t dark:border-slate-700">العربية</button>
-                    <button onclick="translatePage('ku')" class="w-full text-right px-4 py-3 hover:bg-blue-50 dark:hover:bg-slate-700 border-t dark:border-slate-700">Kurdî</button>
-                </div>
-            </div>
-            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-yellow-400">
-                <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block"></i>
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 py-4 px-8 flex justify-between items-center border-b dark:border-slate-800">
+        <a href="index.html" class="flex items-center gap-2">
+            <img src="logo.JPG" onerror="this.src='https://placehold.co/100x40/2563eb/ffffff?text=PEDA'" class="h-10 rounded">
+            <span class="font-bold text-xl uppercase tracking-tighter">Peda Group</span>
+        </a>
+        <nav class="flex gap-6 items-center">
+            <a href="index.html" class="hover:text-blue-600 font-medium transition-colors">Home</a>
+            <a href="contactus.html" class="text-blue-600 font-bold border-b-2 border-blue-600">Contact</a>
+            <button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+                <i class="fas fa-moon dark:hidden"></i><i class="fas fa-sun hidden dark:block text-yellow-400"></i>
             </button>
-        </div>
+        </nav>
     </header>
 
-    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-6 py-3 flex justify-between items-center shadow-sm border-b dark:border-slate-800">
-        <a href="index.html">
-            <img src="logo.JPG" onerror="this.src='https://placehold.co/200x60/2563eb/ffffff?text=Peda+Food+Factory'" alt="Logo" class="h-12 w-auto object-contain rounded">
-        </a>
-        <div class="relative">
-            <button id="nav-toggle" class="p-2 focus:outline-none">
-                <div class="space-y-1.5">
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
-                    <span class="block w-6 h-0.5 bg-slate-800 dark:bg-white transition-all"></span>
-                </div>
-            </button>
-            <div id="nav-menu" class="hidden absolute right-0 mt-4 w-52 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border dark:border-slate-700 overflow-hidden ring-1 ring-black/5">
-                <a href="index.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-bold" data-key="nav_home">Home</a>
-                <a href="services.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-medium" data-key="nav_services">Our Brands</a>
-                <a href="contactus.html" class="block px-6 py-4 hover:bg-blue-50 dark:hover:bg-slate-700 font-medium" data-key="nav_contact">Contact Us</a>
-            </div>
-        </div>
-    </nav>
-
     <main class="max-w-4xl mx-auto px-6 py-16">
-        <div class="bg-white dark:bg-slate-900 shadow-2xl rounded-[2.5rem] p-8 md:p-12 border border-slate-100 dark:border-slate-800">
-            
-            <div class="mb-10 text-center md:text-left">
-                <h1 class="text-4xl font-black mb-2 text-slate-800 dark:text-white uppercase tracking-tight" data-key="nav_contact">Contact Us</h1>
-                <div class="h-1.5 w-20 bg-blue-600 rounded-full mx-auto md:mx-0"></div>
+        <div class="bg-white dark:bg-slate-900 shadow-2xl rounded-[3rem] p-10 md:p-16 border border-slate-100 dark:border-slate-800">
+            <div class="mb-12 text-center">
+                <h1 class="text-5xl font-black mb-3 uppercase tracking-tighter">Get In Touch</h1>
+                <p class="text-slate-400 font-medium">We respond to all inquiries within 24 business hours.</p>
             </div>
             
-            <form id="contact-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="md:col-span-2">
-                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_name">Full Name</label>
-                    <input type="text" id="name" required placeholder="Name"
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all">
-                </div>
-
-                <div class="md:col-span-1">
-                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_phone">Phone Number</label>
-                    <div class="relative flex items-center">
-                        <span class="absolute left-4 font-bold text-blue-600">+964</span>
-                        <input type="tel" id="phone" required placeholder="7XX XXX XXXX"
-                            class="w-full p-4 pl-16 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all">
+            <form id="contact-form" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block mb-2 font-bold text-[10px] uppercase tracking-[0.2em] text-slate-400">Full Name</label>
+                        <input type="text" required placeholder="John Doe"
+                            class="w-full p-5 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all">
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-bold text-[10px] uppercase tracking-[0.2em] text-slate-400">Phone Number</label>
+                        <input type="tel" required placeholder="+964 7XX XXX XXXX"
+                            class="w-full p-5 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all">
                     </div>
                 </div>
 
-                <div class="md:col-span-1">
-                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="contact_subject">Subject</label>
-                    <select id="subject" required 
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all cursor-pointer">
-                        <option value="" disabled selected data-key="contact_subject">Select Subject</option>
-                        <option value="question" data-key="opt_question">General Question</option>
-                        <option value="delivery" data-key="opt_delivery">Delivery Inquiry</option>
-                    </select>
+                <div>
+                    <label class="block mb-2 font-bold text-[10px] uppercase tracking-[0.2em] text-slate-400">Message</label>
+                    <textarea rows="5" required placeholder="How can our team help you?"
+                        class="w-full p-5 rounded-2xl bg-slate-50 dark:bg-slate-800 border-none outline-none focus:ring-2 focus:ring-blue-600 transition-all resize-none"></textarea>
                 </div>
 
-                <div class="md:col-span-2">
-                    <label class="block mb-2 font-bold text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500" data-key="ph_msg">Message</label>
-                    <textarea id="message" rows="5" required placeholder="How can we help?"
-                        class="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 outline-none focus:ring-2 focus:ring-blue-600 transition-all resize-none"></textarea>
-                </div>
-
-                <div class="md:col-span-2 pt-4">
-                    <button type="submit" id="submit-btn" class="w-full py-5 bg-blue-600 hover:bg-blue-700 text-white font-black text-xl rounded-2xl shadow-xl hover:shadow-blue-500/40 transition-all active:scale-95" data-key="send_btn">
-                        Send Message
-                    </button>
-                </div>
+                <button type="submit" class="w-full py-6 bg-blue-600 hover:bg-blue-700 text-white font-black text-lg rounded-2xl shadow-xl hover:shadow-blue-500/30 transition-all active:scale-[0.98] uppercase tracking-widest">
+                    Send Inquiry
+                </button>
             </form>
         </div>
     </main>
-
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white w-14 h-14 rounded-full shadow-2xl opacity-0 translate-y-10 transition-all duration-300 hover:bg-blue-700 flex items-center justify-center z-[200]">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 
     <script src="script.js"></script>
 </body>
