@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alif | Industrial Plastics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Tailwind & FontAwesome -->
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <!-- Theme Persistence Script -->
     <script>
-        tailwind.config = { 
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -20,6 +30,7 @@
             }
         }
     </script>
+
     <style>
         .gold-text {
             background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
@@ -44,11 +55,12 @@
         }
     </style>
 </head>
+
 <body class="bg-[#fdfdfd] text-premium-blue dark:bg-premium-blue dark:text-slate-100 font-serif transition-colors duration-500">
 
     <nav class="sticky top-0 z-50 bg-white/95 dark:bg-premium-blue/95 backdrop-blur-xl px-8 py-5 flex justify-between items-center border-b border-premium-gold/30">
         <a href="index.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-            <img src="aliflogo.JPG" onerror="this.src='https://placehold.co/200x60/001B3D/D4AF37?text=ALIF'" alt="Alif Logo" class="h-14 w-auto object-contain">
+            <img src="aliflogo.JPG" onerror="this.src='https://placehold.co'" alt="Alif Logo" class="h-14 w-auto object-contain">
             <div class="hidden md:block border-l border-premium-gold/30 pl-4">
                 <span class="font-light tracking-[0.3em] text-sm uppercase gold-text block">Alif</span>
                 <span class="text-[10px] text-slate-400 uppercase tracking-widest font-sans">Plastics Division</span>
@@ -68,24 +80,31 @@
         <header class="mb-16 text-center">
             <h1 class="text-4xl md:text-6xl font-light italic mb-4">Industrial Plastics</h1>
             <div class="w-20 h-px bg-premium-gold mx-auto mb-6"></div>
-            <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">Durable, high-density polyethylene containers engineered for chemical and industrial distribution.</p>
+            <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">
+                Durable, high-density polyethylene containers engineered for chemical and industrial distribution.
+            </p>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            <!-- Product 1 -->
             <div class="group cursor-pointer">
                 <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
-                    <i class="plastics1.JPG"></i>
+                    <img src="plastics1.JPG" alt="HDPE Container 1" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                    <i class="fas fa-flask text-6xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
                     <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
             </div>
 
+            <!-- Product 2 -->
             <div class="group cursor-pointer">
                 <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
-                    <i class="plastics2.JPG"></i>
+                    <img src="plastics2.JPG" alt="HDPE Container 2" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                    <i class="fas fa-industry text-6xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
                     <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/40 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
             </div>
-            
+
+            <!-- Icon Card 1 -->
             <div class="group cursor-pointer">
                 <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
                     <i class="fas fa-vial-circle-check text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
@@ -93,6 +112,7 @@
                 </div>
             </div>
 
+            <!-- Icon Card 2 -->
             <div class="group cursor-pointer">
                 <div class="relative overflow-hidden rounded-xl aspect-[16/9] shadow-2xl plastic-placeholder flex items-center justify-center">
                     <i class="fas fa-truck-ramp-box text-8xl text-premium-blue/10 dark:text-premium-gold/10 placeholder-icon transition-all duration-700"></i>
@@ -102,46 +122,48 @@
         </div>
     </main>
 
-<footer class="bg-white dark:bg-[#000d1d] pt-20 pb-12 px-8 border-t border-premium-gold/20">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-        
-        <div class="space-y-4">
-            <h4 class="gold-text uppercase tracking-widest text-sm font-sans font-bold">Alif</h4>
-            <p class="text-slate-500 dark:text-slate-400 font-sans text-sm leading-relaxed max-w-xs">
-                Pioneer in industrial chemical solutions and high-density plastic manufacturing in the Kurdistan Region.
-            </p>
-        </div>
-
-        <div class="space-y-4">
-            <h4 class="text-premium-blue dark:text-white uppercase tracking-widest text-xs font-sans font-bold">Inquiries</h4>
-            <div class="space-y-3 font-sans text-sm text-slate-500 dark:text-slate-400">
-                <a href="tel:+9640000000000" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
-                    <i class="fas fa-phone-alt text-premium-gold text-xs"></i>
-                    +964 (0) 750 899 7815
-                </a>
-                <a href="mailto:info@alifgroup.com" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
-                    <i class="fas fa-envelope text-premium-gold text-xs"></i>
-                    alifcompany999@gmail.com
-                </a>
+    <footer class="bg-white dark:bg-[#000d1d] pt-20 pb-12 px-8 border-t border-premium-gold/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div class="space-y-4">
+                <h4 class="gold-text uppercase tracking-widest text-sm font-sans font-bold">Alif</h4>
+                <p class="text-slate-500 dark:text-slate-400 font-sans text-sm leading-relaxed max-w-xs">
+                    Pioneer in industrial chemical solutions and high-density plastic manufacturing in the Kurdistan Region.
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <h4 class="text-premium-blue dark:text-white uppercase tracking-widest text-xs font-sans font-bold">Inquiries</h4>
+                <div class="space-y-3 font-sans text-sm text-slate-500 dark:text-slate-400">
+                    <a href="tel:+9647508997815" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
+                        <i class="fas fa-phone-alt text-premium-gold text-xs"></i> +964 (0) 750 899 7815
+                    </a>
+                    <a href="mailto:alifcompany999@gmail.com" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
+                        <i class="fas fa-envelope text-premium-gold text-xs"></i> alifcompany999@gmail.com
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto pt-8 border-t border-slate-100 dark:border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p class="text-slate-400 font-sans text-[10px] uppercase tracking-widest">
-            &copy; 2026 Alif Industrial Division. All Rights Reserved.
-        </p>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 text-[10px] uppercase tracking-widest text-premium-gold font-sans font-bold">
-            Back to Top
-            <i class="fas fa-chevron-up transition-transform group-hover:-translate-y-1"></i>
-        </button>
-    </div>
-</footer>
+        <div class="max-w-7xl mx-auto pt-8 border-t border-slate-100 dark:border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-slate-400 font-sans text-[10px] uppercase tracking-widest">
+                &copy; 2026 Alif Industrial Division. All Rights Reserved.
+            </p>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 text-[10px] uppercase tracking-widest text-premium-gold font-sans font-bold">
+                Back to Top <i class="fas fa-chevron-up transition-transform group-hover:-translate-y-1"></i>
+            </button>
+        </div>
+    </footer>
 
     <script>
         const btn = document.getElementById('theme-toggle');
         btn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
+            // Save preference to localStorage
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
         });
     </script>
 </body>
