@@ -25,14 +25,12 @@
         
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
 
-        /* Smooth floating animation for the geometric shapes */
         @keyframes orbit {
             0% { transform: translate(0, 0) rotate(0deg); }
             50% { transform: translate(30px, 50px) rotate(5deg); }
             100% { transform: translate(0, 0) rotate(0deg); }
         }
 
-        /* The "Reflective" Shimmer effect on the text */
         .shimmer-text {
             background: linear-gradient(90deg, #333, #fff, #333);
             background-size: 200% auto;
@@ -71,115 +69,117 @@
         <div class="absolute top-0 left-[70%] w-[1px] h-full bg-white/5"></div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 px-10 py-8 flex justify-between items-center bg-gradient-to-b from-black to-transparent">
+    <nav class="fixed top-0 w-full z-50 px-6 md:px-10 py-8 flex justify-between items-center bg-gradient-to-b from-black to-transparent">
         <a href="index.html" class="group flex items-center gap-4">
             <div class="w-10 h-10 border border-dogtas-gold flex items-center justify-center group-hover:bg-dogtas-gold transition-all">
                 <i class="fas fa-chevron-left text-xs group-hover:text-black"></i>
             </div>
-            <span class="tracking-[0.5em] text-xs font-light uppercase">Back to Peda</span>
+            <span class="tracking-[0.5em] text-[10px] md:text-xs font-light uppercase">Back</span>
         </a>
         <div class="text-xl font-black tracking-tighter shimmer-text">DOĞTAŞ</div>
     </nav>
 
-    <section class="relative min-h-screen flex flex-col justify-center px-10 md:px-24">
+    <section class="relative min-h-screen flex flex-col justify-center px-6 md:px-24 py-20">
         <div class="max-w-4xl z-10">
-            <h1 class="text-7xl md:text-9xl font-black leading-none mb-6 tracking-tighter">
+            <h1 class="text-6xl md:text-9xl font-black leading-none mb-6 tracking-tighter">
                 SLEEK.<br>MODERN.<br><span class="text-dogtas-gold">TURKISH.</span>
             </h1>
             <p class="text-slate-400 text-lg md:text-xl max-w-xl font-light leading-relaxed mb-10">
                 The pinnacle of Turkish furniture design has arrived in Duhok. Elevate your living space with minimalist aesthetics and unmatched comfort.
             </p>
-            <div class="flex gap-6">
+            <div class="flex flex-wrap gap-6">
                 <a href="#explore" class="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest text-xs hover:bg-dogtas-gold transition-colors">Explore Collection</a>
                 <a href="#contact" class="px-8 py-4 border border-white/20 font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-colors">Visit Showroom</a>
             </div>
         </div>
 
-        <div class="absolute right-24 top-1/2 -translate-y-1/2 hidden lg:block w-96">
-            <div class="glass-panel p-10 rounded-full w-96 h-96 flex flex-col items-center justify-center text-center animate-bounce" style="animation-duration: 10s;">
+        <!-- Corrected positioning for the floaty circle to avoid layout breaks -->
+        <div class="absolute right-10 md:right-24 top-1/2 -translate-y-1/2 hidden lg:block">
+            <div class="glass-panel p-10 rounded-full w-80 h-80 flex flex-col items-center justify-center text-center animate-bounce" style="animation-duration: 10s;">
                  <div class="text-dogtas-gold text-5xl mb-4"><i class="fas fa-couch"></i></div>
                  <div class="text-xs tracking-[0.3em] font-bold uppercase">Now Open</div>
-                 <div class="text-2xl font-light">Barzan Road, Duhok</div>
+                 <div class="text-xl font-light mt-2">Barzan Road, Duhok</div>
             </div>
         </div>
     </section>
 
-    <section id="explore" class="py-32 px-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+    <section id="explore" class="py-20 px-6 md:px-10 max-w-7xl mx-auto">
+        <!-- Changed gap and removed individual margins for a clean grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             
-            <div class="group relative overflow-hidden">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (1).JPG">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Living Concept</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Lounge Series 2026</p>
-                    </div>
+            <!-- Item 1 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (1).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Living Concept">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Living Concept</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Lounge Series 2026</p>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden md:mt-24">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (2).JPG" alt="Bedroom">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Master Suite</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
-                    </div>
+            <!-- Item 2 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (2).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bedroom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Master Suite</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden md:mt-24">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (3).JPG" alt="Bedroom">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Master Suite</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
-                    </div>
+            <!-- Item 3 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (3).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bedroom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Elegance Sleep</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Orthopedic Lux</p>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden md:mt-24">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (4).JPG" alt="Bedroom">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Master Suite</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
-                    </div>
-                </div>
-            </div>
-            <div class="group relative overflow-hidden md:mt-24">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (5).JPG" alt="Bedroom">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Master Suite</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
-                    </div>
+            <!-- Item 4 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (4).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bedroom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Modern Comfort</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Duhok Edition</p>
                 </div>
             </div>
 
-            <div class="group relative overflow-hidden md:mt-24">
-                <div class="h-[600px] bg-dogtas-gray relative flex items-center justify-center overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                    <img src="matress (6).JPG" alt="Bedroom">
-                    <div class="absolute bottom-10 left-10 z-20">
-                        <h3 class="text-3xl font-black italic">Master Suite</h3>
-                        <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">The Haven Collection</p>
-                    </div>
+            <!-- Item 5 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (5).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bedroom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Royal Rest</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">Turkish Heritage</p>
                 </div>
             </div>
+
+            <!-- Item 6 -->
+            <div class="group relative overflow-hidden h-[500px] bg-dogtas-gray">
+                <img src="matress (6).JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Bedroom">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+                <div class="absolute bottom-10 left-10 z-20">
+                    <h3 class="text-3xl font-black italic">Elite Design</h3>
+                    <p class="text-dogtas-gold tracking-widest text-xs uppercase font-bold">New Arrivals</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <footer id="contact" class="py-20 px-10 border-t border-white/5 text-center">
+    <footer id="contact" class="py-20 px-6 border-t border-white/5 text-center bg-black">
         <div class="text-6xl font-black mb-10 shimmer-text">DOĞTAŞ</div>
-        <div class="flex flex-col md:flex-row justify-center gap-10 text-slate-500 tracking-widest text-xs font-bold uppercase">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 text-slate-500 tracking-widest text-[10px] font-bold uppercase">
             <span><i class="fas fa-map-marker-alt text-dogtas-gold mr-2"></i> Duhok, Barzan Road</span>
-            <span><i class="fas fa-phone text-dogtas-gold mr-2"></i> +964 0750 341 3334</span>
-            <span><i class="fab fa-tiktok text-dogtas-gold mr-2"></i> @dogtas_duhok</span>
+            <a href="tel:+9647503413334" class="hover:text-white transition-colors">
+                <i class="fas fa-phone text-dogtas-gold mr-2"></i> +964 0750 341 3334
+            </a>
+            <a href="https://tiktok.com/@dogtas_duhok" class="hover:text-white transition-colors">
+                <i class="fab fa-tiktok text-dogtas-gold mr-2"></i> @dogtas_duhok
+            </a>
         </div>
     </footer>
 
