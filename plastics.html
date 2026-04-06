@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alif | Industrial Plastics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Alif | Premium Industrial Plastics</title>
+    
     <script>
         tailwind.config = { 
             darkMode: 'class',
@@ -15,135 +14,237 @@
                         'premium-blue': '#001B3D',
                         'premium-gold': '#D4AF37',
                         'gold-light': '#F3E5AB'
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 3s infinite linear',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
                     }
                 }
             }
         }
     </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
     <style>
-        .gold-text {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+        h1, .brand-font { font-family: 'Cinzel', serif; }
+
+        .gold-shimmer {
+            background: linear-gradient(90deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite;
         }
-        .plastic-placeholder {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-            transition: all 0.8s ease;
-        }
-        .dark .plastic-placeholder {
-            background: linear-gradient(135deg, #001229, #001B3D);
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.1);
         }
-        .group:hover .plastic-placeholder {
-            background: linear-gradient(135deg, #001B3D, #0a1f3c);
-            border-color: #D4AF37;
-        }
-        .group:hover .placeholder-icon {
-            color: #D4AF37;
-            transform: scale(1.1);
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .status-dot {
+            box-shadow: 0 0 8px #D4AF37;
         }
     </style>
 </head>
-<body class="bg-[#fdfdfd] text-premium-blue dark:bg-premium-blue dark:text-slate-100 font-serif transition-colors duration-500">
+<body class="bg-[#fdfdfd] text-premium-blue dark:bg-[#000d1d] dark:text-slate-100 transition-colors duration-700 overflow-x-hidden">
 
-    <nav class="sticky top-0 z-50 bg-white/95 dark:bg-premium-blue/95 backdrop-blur-xl px-8 py-5 flex justify-between items-center border-b border-premium-gold/30">
-        <a href="index.html" class="flex items-center gap-4 hover:opacity-80 transition-opacity">
-            <img src="aliflogo.JPG" onerror="this.src='https://placehold.co/200x60/001B3D/D4AF37?text=ALIF'" alt="Alif Logo" class="h-14 w-auto object-contain">
-            <div class="hidden md:block border-l border-premium-gold/30 pl-4">
-                <span class="font-light tracking-[0.3em] text-sm uppercase gold-text block">Alif</span>
-                <span class="text-[10px] text-slate-400 uppercase tracking-widest font-sans">Plastics Division</span>
-            </div>
-        </a>
-        <div class="flex items-center gap-4">
-            <a href="index.html" class="text-xs font-bold uppercase tracking-widest border border-premium-gold/50 text-premium-blue dark:text-white px-5 py-2.5 rounded-full hover:bg-premium-gold hover:text-premium-blue transition-all font-sans">
-                <i class="fas fa-home mr-2"></i> Home
+    <nav class="fixed top-0 w-full z-[100] transition-all duration-500 bg-white/70 dark:bg-premium-blue/70 backdrop-blur-md border-b border-premium-gold/10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="relative">
+                    <img src="aliflogo.JPG" onerror="this.src='https://placehold.co/100x40/001B3D/D4AF37?text=ALIF'" alt="Alif Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+                </div>
+                <div class="hidden sm:block border-l border-premium-gold/20 pl-4">
+                    <span class="text-xs uppercase tracking-[0.3em] font-bold gold-shimmer block">Alif Industries</span>
+                </div>
             </a>
-            <button id="theme-toggle" class="text-premium-gold hover:rotate-12 transition-transform">
-                <i class="fas fa-adjust text-lg"></i>
-            </button>
+
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="group relative text-[10px] uppercase tracking-[0.2em] font-bold py-2">
+                    <span class="relative z-10">Home</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-premium-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <button id="theme-toggle" class="w-10 h-10 rounded-full border border-premium-gold/20 flex items-center justify-center hover:bg-premium-gold/10 transition-all">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block text-premium-gold"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-16">
-        <header class="mb-16 text-center">
-            <h1 class="text-4xl md:text-6xl font-light italic mb-4">Industrial Plastics</h1>
-            <div class="w-20 h-px bg-premium-gold mx-auto mb-6"></div>
-            <p class="text-slate-500 dark:text-slate-400 font-sans font-light tracking-wide max-w-xl mx-auto">Durable, high-density polyethylene containers engineered for chemical and industrial distribution.</p>
-        </header>
+    <main class="pt-32 pb-20 px-6">
+        <section class="max-w-7xl mx-auto text-center mb-24 reveal">
+            <span class="text-premium-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-4 block animate-pulse">Excellence in Polymers</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+                Industrial <span class="gold-shimmer italic">Plastics</span>
+            </h1>
+            <div class="w-24 h-[2px] bg-gradient-to-r from-transparent via-premium-gold to-transparent mx-auto mb-8"></div>
+            <p class="text-slate-500 dark:text-slate-400 font-light max-w-2xl mx-auto text-lg leading-relaxed">
+                Precision engineering meets industrial durability. We provide high-density HDPE solutions designed for the most demanding chemical environments.
+            </p>
+        </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            <div class="group cursor-pointer">
-                <img src="plastics1.JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Industrial Plastics 1">
-                <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-6">
-                    <span class="text-premium-gold text-xs uppercase tracking-widest font-sans font-bold">Chemical Containment</span>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            
+            <div class="reveal group relative">
+                <div class="relative overflow-hidden rounded-2xl aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                    <img src="plastics1.JPG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Chemical Containment">
+                    
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-premium-gold animate-pulse status-dot"></div>
+                        <span class="text-[9px] uppercase tracking-widest text-white font-bold">HDPE Certified</span>
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue via-premium-blue/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full transform transition-transform duration-500">
+                        <h3 class="text-white text-2xl font-bold mb-2 flex items-center gap-3">
+                            Chemical Storage
+                            <i class="fas fa-arrow-right text-xs text-premium-gold opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all"></i>
+                        </h3>
+                        <p class="text-slate-300 text-sm font-light opacity-0 group-hover:opacity-100 transition-opacity duration-700">Reinforced wall structures for acidic environments.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="group cursor-pointer">
-                <img src="plastics2.JPG" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Industrial Plastics 2">
-                <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-6">
-                    <span class="text-premium-gold text-xs uppercase tracking-widest font-sans font-bold">Bulk Storage</span>
+            <div class="reveal group relative" style="transition-delay: 200ms;">
+                <div class="relative overflow-hidden rounded-2xl aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                    <img src="plastics2.JPG" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Bulk Logistics">
+                    
+                    <div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-premium-gold animate-pulse status-dot"></div>
+                        <span class="text-[9px] uppercase tracking-widest text-white font-bold">Heavy Duty</span>
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue via-premium-blue/20 to-transparent opacity-80"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h3 class="text-white text-2xl font-bold mb-2">Industrial Tooling</h3>
+                        <p class="text-slate-300 text-sm font-light">Custom molding for high-impact distribution sectors.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="group cursor-pointer">
-                <img src="plastics3.JPG" onerror="this.src='https://placehold.co/800x450/001B3D/D4AF37?text=Quality+Control'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Quality Control">
-                <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-6">
-                    <span class="text-premium-gold text-xs uppercase tracking-widest font-sans font-bold">Lab Certified</span>
+            <div class="reveal group relative">
+                <div class="relative overflow-hidden rounded-2xl aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                    <img src="plastics3.JPG" onerror="this.src='https://placehold.co/800x500/001B3D/D4AF37?text=Quality+Assurance'" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Quality Control">
+                    
+                    <div class="absolute inset-0 bg-premium-blue/40 mix-blend-multiply group-hover:bg-transparent transition-all"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="text-premium-gold text-[10px] uppercase font-bold tracking-widest mb-2 block">Process</span>
+                        <h3 class="text-white text-2xl font-bold">Quality Assurance</h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="group cursor-pointer">
-                <img src="plastics4.JPG" onerror="this.src='https://placehold.co/800x450/001B3D/D4AF37?text=Distribution'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Logistics">
-                <div class="absolute inset-0 bg-gradient-to-t from-premium-blue/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-6">
-                    <span class="text-premium-gold text-xs uppercase tracking-widest font-sans font-bold">Global Logistics</span>
+            <div class="reveal group relative" style="transition-delay: 200ms;">
+                <div class="relative overflow-hidden rounded-2xl aspect-[16/10] shadow-2xl transition-all duration-500 group-hover:-translate-y-2">
+                    <img src="plastics4.JPG" onerror="this.src='https://placehold.co/800x500/001B3D/D4AF37?text=Distribution'" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Logistics">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-premium-blue via-transparent to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <span class="text-premium-gold text-[10px] uppercase font-bold tracking-widest mb-2 block">Supply Chain</span>
+                        <h3 class="text-white text-2xl font-bold">Global Distribution</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-<footer class="bg-white dark:bg-[#000d1d] pt-20 pb-12 px-8 border-t border-premium-gold/20">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+    <footer class="bg-white dark:bg-[#000814] pt-24 pb-12 px-8 border-t border-premium-gold/10 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-premium-gold/5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 relative z-10">
+            <div class="space-y-8">
+                <div class="flex items-center gap-3">
+                    <img src="aliflogo.JPG" class="h-10 w-auto grayscale dark:invert brightness-200">
+                    <h4 class="gold-shimmer text-xl font-bold tracking-tighter">ALIF</h4>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 font-light leading-relaxed max-w-sm">
+                    Setting the standard for industrial high-density plastic manufacturing in the Kurdistan Region since inception.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full border border-premium-gold/20 flex items-center justify-center hover:bg-premium-gold hover:text-premium-blue transition-all"><i class="fab fa-linkedin-in text-sm"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-premium-gold/20 flex items-center justify-center hover:bg-premium-gold hover:text-premium-blue transition-all"><i class="fab fa-instagram text-sm"></i></a>
+                </div>
+            </div>
 
-        <div class="space-y-4">
-            <h4 class="gold-text uppercase tracking-widest text-sm font-sans font-bold">Alif</h4>
-            <p class="text-slate-500 dark:text-slate-400 font-sans text-sm leading-relaxed max-w-xs">
-                Pioneer in industrial chemical solutions and high-density plastic manufacturing in the Kurdistan Region.
-            </p>
-        </div>
-
-        <div class="space-y-4">
-            <h4 class="text-premium-blue dark:text-white uppercase tracking-widest text-xs font-sans font-bold">Inquiries</h4>
-            <div class="space-y-3 font-sans text-sm text-slate-500 dark:text-slate-400">
-                <a href="tel:+9640000000000" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
-                    <i class="fas fa-phone-alt text-premium-gold text-xs"></i>
-                    +964 (0) 000 000 0000
-                    +964 (0) 750 899 7815
-                </a>
-                <a href="mailto:info@alifgroup.com" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
-                    <i class="fas fa-envelope text-premium-gold text-xs"></i>
-                    info@alifgroup.com
-                    alifcompany999@gmail.com
-                </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div class="space-y-6">
+                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold text-premium-gold">Contact</h5>
+                    <div class="space-y-4 text-sm font-light text-slate-400">
+                        <a href="tel:+9647508997815" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
+                            <i class="fas fa-phone-alt text-[10px]"></i> +964 (0) 750 899 7815
+                        </a>
+                        <a href="mailto:alifcompany999@gmail.com" class="flex items-center gap-3 hover:text-premium-gold transition-colors">
+                            <i class="fas fa-envelope text-[10px]"></i> alifcompany999@gmail.com
+                        </a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h5 class="text-[10px] uppercase tracking-[0.3em] font-bold text-premium-gold">Headquarters</h5>
+                    <p class="text-sm font-light text-slate-400 leading-relaxed">
+                        Industrial Zone, Duhok<br>Kurdistan Region, Iraq
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto pt-8 border-t border-slate-100 dark:border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-6">
-        <p class="text-slate-400 font-sans text-[10px] uppercase tracking-widest">
-            &copy; 2026 Alif Industrial Division. All Rights Reserved.
-        </p>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 text-[10px] uppercase tracking-widest text-premium-gold font-sans font-bold">
-            Back to Top
-            <i class="fas fa-chevron-up transition-transform group-hover:-translate-y-1"></i>
-        </button>
-    </div>
-</footer>
+        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-premium-gold/5 flex flex-col md:row justify-between items-center gap-6">
+            <p class="text-[9px] uppercase tracking-[0.4em] text-slate-500">© 2026 Alif Industrial Division. Prestige Polymers.</p>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group text-[10px] uppercase tracking-widest text-premium-gold font-bold flex items-center gap-3">
+                Top <i class="fas fa-arrow-up transition-transform group-hover:-translate-y-1"></i>
+            </button>
+        </div>
+    </footer>
 
     <script>
+        // Dark Mode Logic
         const btn = document.getElementById('theme-toggle');
         btn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
+        });
+
+        // Simple Reveal Logic (Intersection Observer)
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Sticky Nav Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-3', 'shadow-lg');
+            } else {
+                nav.classList.remove('py-3', 'shadow-lg');
+            }
         });
     </script>
 </body>
