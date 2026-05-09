@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Peda Group | Industrial & Food Solutions</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        /* Base Resets & CSS Variables for Light/Dark Mode */
+        :root {
+            --theme-color: #1e3a8a; /* Corporate Blue */
+            --theme-color-hover: #152b66;
+            
+            /* Light Mode Variables */
+            --bg-body: #ffffff;
+            --bg-section: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-heading: #222222;
+            --text-main: #666666;
+            --header-bg: #ffffff;
+            --header-border: #eeeeee;
+        }
+
+        body.dark-mode {
+            /* Dark Mode Variables */
+            --bg-body: #0f172a;
+            --bg-section: #1e293b;
+            --bg-card: #1e293b;
+            --text-heading: #ffffff;
+            --text-main: #94a3b8;
+            --header-bg: #0f172a;
+            --header-border: #334155;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            font-size: 16px;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background-color: var(--bg-body);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--theme-color);
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-body);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s opacity;
+        }
+        .preloader .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(150, 150, 150, 0.2);
+            border-top: 5px solid var(--theme-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Typography & Titles */
+        .sec-title {
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .sec-title .sub-title {
+            position: relative;
+            display: block;
+            font-size: 14px;
+            color: var(--theme-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .sec-title h2 {
+            position: relative;
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1.2em;
+            transition: color 0.4s ease;
+        }
+        .sec-title .text {
+            margin-top: 15px;
+            font-size: 18px;
+            color: var(--text-main);
+            transition: color 0.4s ease;
+        }
+
+        /* Theme Button */
+        .theme-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--theme-color);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--text-heading);
+            z-index: -1;
+            transition: all 0.4s ease;
+        }
+        .theme-btn:hover::before {
+            width: 100%;
+        }
+        .theme-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Header Style */
+        .main-header {
+            position: relative;
+            z-index: 999;
+            width: 100%;
+        }
+        .header-top {
+            background-color: #0d1b2a;
+            padding: 10px 0;
+            color: #ffffff;
+            font-size: 13px;
+        }
+        .header-top .top-left ul, .header-top .top-right ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-top i {
+            color: var(--theme-color);
+            margin-right: 8px;
+        }
+        .header-top .lang-switch button {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .header-top .lang-switch button:hover {
+            background: var(--theme-color);
+        }
+
+        .header-lower {
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--header-border);
+            transition: all 0.4s ease;
+        }
+        .header-lower .main-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        .header-lower .logo img {
+            max-height: 60px;
+            transition: 0.3s;
+            border-radius: 8px; /* Slightly rounded */
+        }
+        .main-menu .navigation {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        .main-menu .navigation > li > a {
+            position: relative;
+            display: block;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-heading);
+            text-transform: capitalize;
+            transition: color 0.4s ease;
+        }
+        .main-menu .navigation > li > a:hover {
+            color: var(--theme-color);
+        }
+        .main-menu .navigation > li > a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--theme-color);
+            transition: 0.3s;
+        }
+        .main-menu .navigation > li > a:hover::after {
+            width: 100%;
+        }
+
+        /* Dark Mode Toggle Switch */
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-heading);
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: color 0.4s ease;
+            display: flex;
+            align-items: center;
+        }
+        .theme-toggle-btn:hover {
+            color: var(--theme-color);
+        }
+
+        /* Sticky Header */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 10px 0;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.4s ease, background-color 0.4s ease;
+        }
+        .sticky-header.fixed-header {
+            transform: translateY(0);
+        }
+        .sticky-header .main-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sticky-header .logo img {
+            max-height: 50px;
+            border-radius: 8px; /* Slightly rounded */
+        }
+
+        /* Swiper Slider */
+        .main-slider {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            background-color: #111;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+        }
+        .swiper-slide .slide-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            transition: transform 6s linear;
+        }
+        .swiper-slide-active .slide-image {
+            transform: scale(1);
+        }
+        .swiper-slide .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+        }
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: #ffffff;
+            max-width: 800px;
+            z-index: 10;
+        }
+        .slide-content .title {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            opacity: 0;
+        }
+        .slide-content h2 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            opacity: 0;
+        }
+        .swiper-slide-active .slide-content .title {
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        .swiper-slide-active .slide-content h2 {
+            animation: fadeInUp 1s ease 0.8s forwards;
+        }
+        .swiper-slide-active .slide-content .btn-box {
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.1s forwards;
+        }
+
+        /* About / Stats Section */
+        .about-section {
+            position: relative;
+            padding: 100px 0;
+            background: var(--bg-body);
+            transition: background-color 0.4s ease;
+        }
+        .about-section .anim-icons .icon {
+            position: absolute;
+            opacity: 0.1; /* Lower opacity for subtle effect in both modes */
+            z-index: 0;
+            color: var(--text-heading);
+        }
+        .bounce-y { animation: bounce-y 3s infinite ease-in-out; }
+        .bounce-x { animation: bounce-x 3s infinite ease-in-out; }
+        @keyframes bounce-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes bounce-x { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-20px); } }
+
+        .stat-block {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--bg-section);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--theme-color);
+            transition: all 0.4s ease;
+        }
+        .stat-block:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        .stat-block .count {
+            font-size: 50px;
+            font-weight: 800;
+            color: var(--text-heading);
+            line-height: 1;
+            margin-bottom: 10px;
+            transition: color 0.4s ease;
+        }
+        .stat-block .text {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--theme-color);
+        }
+
+        /* Brands (News) Section */
+        .brands-section {
+            padding: 90px 0;
+            background-color: var(--bg-section);
+            transition: background-color 0.4s ease;
+        }
+        .news-block {
+            margin-bottom: 40px;
+        }
+        .news-block .inner-box {
+            position: relative;
+            background-color: var(--bg-card);
+            border-radius: 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .news-block .inner-box:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .news-block .image-box {
+            position: relative;
+            overflow: hidden;
+        }
+        .news-block .image-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        .news-block .inner-box:hover .image-box img {
+            transform: scale(1.1);
+        }
+        .news-block .image-box .date {
+            position: absolute;
+            left: 20px;
+            bottom: -20px;
+            background-color: var(--theme-color);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 8px;
+            z-index: 2;
+            border: 3px solid var(--bg-card);
+            transition: border-color 0.4s ease;
+        }
+        .news-block .lower-content {
+            position: relative;
+            padding: 40px 30px 30px;
+        }
+        .news-block .lower-content .title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .news-block .lower-content .title a {
+            color: var(--text-heading);
+            transition: color 0.4s ease;
+        }
+        .news-block .lower-content .title a:hover {
+            color: var(--theme-color);
+        }
+        .news-block .lower-content .text {
+            color: var(--text-main);
+            margin-bottom: 0;
+            transition: color 0.4s ease;
+        }
+
+        /* Marquee Bar */
+        .marquee-bar {
+            background-color: var(--theme-color);
+            color: #ffffff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .marquee-content span { margin: 0 30px; }
+        .marquee-content i { font-size: 8px; margin: 0 10px; color: #f1c40f; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Footer */
+        .main-footer {
+            position: relative;
+            background-color: #111111;
+            color: #999999;
+            padding-top: 80px;
+        }
+        .main-footer .footer-widget {
+            margin-bottom: 40px;
+        }
+        .main-footer .widget-title {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .main-footer .widget-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--theme-color);
+        }
+        .main-footer .user-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .main-footer .user-links li {
+            margin-bottom: 12px;
+        }
+        .main-footer .user-links li a {
+            color: #aaaaaa;
+            transition: 0.3s;
+        }
+        .main-footer .user-links li a:hover {
+            color: var(--theme-color);
+            padding-left: 5px;
+        }
+        .main-footer .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .main-footer .info-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+        .main-footer .info-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--theme-color);
+        }
+        .digital-team {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 3px solid var(--theme-color);
+        }
+        .digital-team .team-member {
+            margin-bottom: 15px;
+        }
+        .digital-team .team-member:last-child {
+            margin-bottom: 0;
+        }
+        .digital-team .role {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--theme-color);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .digital-team .name {
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            margin: 0;
+        }
+        .footer-bottom {
+            background-color: #0a0a0a;
+            padding: 20px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Mobile Menu Toggler */
+        .mobile-nav-toggler {
+            display: none;
+            font-size: 24px;
+            color: var(--text-heading);
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .header-top { display: none; }
+            .main-menu { display: none; }
+            .mobile-nav-toggler { display: block; }
+            .slide-content h2 { font-size: 40px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8 top-left">
+                        <ul>
+                            <li><i class="fa fa-map-marker-alt"></i> Duhok Industrial City, Kurdistan Region, Iraq</li>
+                            <li><i class="fa fa-clock"></i> Sun-Thu 8AM-5PM</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 top-right d-flex justify-content-end">
+                        <ul class="lang-switch">
+                            <li><button onclick="changeLang('en')">EN</button></li>
+                            <li><button onclick="changeLang('ar')">AR</button></li>
+                            <li><button onclick="changeLang('ku')">KU</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-lower">
+            <div class="container">
+                <div class="main-box">
+                    <div class="logo-box">
+                        <div class="logo">
+                            <a href="index.html"><img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/1e3a8a/ffffff?text=PEDA+GROUP'" alt="Peda Group Logo" /></a>
+                        </div>
+                    </div>
+                    <div class="nav-outer d-flex align-items-center">
+                        <nav class="nav main-menu">
+                            <ul class="navigation">
+                                <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                                <li><a href="services.html" data-translate="nav_services">Our Brands</a></li>
+                                <li><a href="info.html" data-translate="nav_info">Info</a></li>
+                            </ul>
+                        </nav>
+                        
+                        <button class="theme-toggle-btn toggle-theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+
+                        <div class="mobile-nav-toggler"><i class="fa fa-bars"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sticky-header">
+            <div class="container">
+                <div class="main-box">
+                    <div class="logo">
+                        <a href="index.html"><img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/1e3a8a/ffffff?text=PEDA+GROUP'" alt="Peda Group Logo" /></a>
+                    </div>
+                    <div class="nav-outer d-flex align-items-center">
+                        <nav class="main-menu">
+                            <ul class="navigation">
+                                <li><a href="index.html" data-translate="nav_home">Home</a></li>
+                                <li><a href="services.html" data-translate="nav_services">Our Brands</a></li>
+                                <li><a href="info.html" data-translate="nav_info">Info</a></li>
+                            </ul>
+                        </nav>
+                        <button class="theme-toggle-btn toggle-theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <div class="mobile-nav-toggler"><i class="fa fa-bars"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            <span>Peda Food Factory</span><i class="fas fa-star"></i>
+            <span>Moreno Coffee Service</span><i class="fas fa-star"></i>
+            <span>Alif Chemical Industry</span><i class="fas fa-star"></i>
+            <span>Alif Plastics</span><i class="fas fa-star"></i>
+            <span>Doğtaş Furniture</span><i class="fas fa-star"></i>
+            <span>Peda Food Factory</span><i class="fas fa-star"></i>
+            <span>Moreno Coffee Service</span><i class="fas fa-star"></i>
+            <span>Alif Chemical Industry</span><i class="fas fa-star"></i>
+            <span>Alif Plastics</span><i class="fas fa-star"></i>
+            <span>Doğtaş Furniture</span>
+        </div>
+    </div>
+
+    <section class="main-slider">
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="alifslider.JPG" onerror="this.src='https://placehold.co/1920x1080/222/fff?text=Corporate+Overview'" class="slide-image" alt="Slide Image">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="slide-content">
+                            <div class="title" data-translate="nav_home">Corporate Overview</div>
+                            <h2 data-translate="section_title">Building<br>The Future</h2>
+                            <div class="btn-box">
+                                <a href="info.html" class="theme-btn" data-translate="nav_info">Discover More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="pastabowl.JPG" onerror="this.src='https://placehold.co/1920x1080/333/fff?text=Food+Production'" class="slide-image" alt="Slide Image">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="slide-content">
+                            <div class="title">Peda Food Factory</div>
+                            <h2>Quality Grain<br>Processing</h2>
+                            <div class="btn-box">
+                                <a href="peda.html" class="theme-btn">View Brand</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="moreno1.JPG" onerror="this.src='https://placehold.co/1920x1080/444/fff?text=Moreno+Coffee'" class="slide-image" alt="Slide Image">
+                    <div class="overlay"></div>
+                    <div class="container">
+                        <div class="slide-content">
+                            <div class="title">Moreno Coffee</div>
+                            <h2>Specialty Roasting<br>& Equipment</h2>
+                            <div class="btn-box">
+                                <a href="moreno.html" class="theme-btn">View Brand</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next" style="color: #fff;"></div>
+            <div class="swiper-button-prev" style="color: #fff;"></div>
+        </div>
+    </section>
+    <section class="about-section" id="about">
+        <div class="anim-icons">
+            <i class="fa fa-industry icon bounce-y" style="font-size: 150px; top: 10%; right: 10%;"></i>
+            <i class="fa fa-globe icon bounce-x" style="font-size: 100px; bottom: 10%; left: 5%;"></i>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5">
+                    <div class="sec-title">
+                        <span class="sub-title" data-translate="nav_home">Corporate Overview</span>
+                        <h2 data-translate="section_title">Building The Future</h2>
+                        <div class="text">
+                            Delivering unparalleled quality in food production, chemical engineering, and commercial infrastructure across Kurdistan. Our commitment to excellence ensures that we remain at the forefront of industrial advancements in the region.
+                        </div>
+                    </div>
+                    <a href="info.html" class="theme-btn">Learn About Us</a>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="stat-block">
+                                <div class="count counter" data-target="4">0</div>
+                                <div class="text">Core Brands</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="stat-block">
+                                <div class="count counter" data-target="100">0</div>
+                                <div class="text">Products +</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="stat-block">
+                                <div class="count counter" data-target="50">0</div>
+                                <div class="text">Employees</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="stat-block">
+                                <div class="count counter" data-target="10">0</div>
+                                <div class="text">Years Exp +</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section" id="brands">
+        <div class="container">
+            <div class="sec-title text-center">
+                <span class="sub-title" data-translate="nav_services">Our Brands</span>
+                <h2>Industrial & Retail Divisions</h2>
+            </div>
+
+            <div class="row">
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="peda.html"><img src="pedacardlogo.JPG" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Peda+Food'" alt="" /></a>
+                            </figure>
+                            <span class="date"><b>01</b></span>
+                        </div>
+                        <div class="lower-content">
+                            <h4 class="title"><a href="peda.html" data-translate="card_title_peda">Peda Food Factory</a></h4>
+                            <div class="text" data-translate="card_desc_peda">Leading the region in high-quality grain processing, automated food distribution, and sustainable packaging solutions.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="moreno.html"><img src="morenocardlogo.JPG" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Moreno+Coffee'" alt="" /></a>
+                            </figure>
+                            <span class="date"><b>02</b></span>
+                        </div>
+                        <div class="lower-content">
+                            <h4 class="title"><a href="moreno.html" data-translate="card_title_moreno">Moreno Coffee</a></h4>
+                            <div class="text" data-translate="card_desc_moreno">Specialty roasting and professional equipment service for enterprise hubs.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="chemical.html"><img src="aliflogo.JPG" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Alif+Chemical'" alt="" /></a>
+                            </figure>
+                            <span class="date"><b>03</b></span>
+                        </div>
+                        <div class="lower-content">
+                            <h4 class="title"><a href="chemical.html" data-translate="card_title_clean">Alif Chemical</a></h4>
+                            <div class="text" data-translate="card_desc_clean">Advanced industrial formulation and cleaning solutions.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="plastics.html"><img src="aliflogo.JPG" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Alif+Plastics'" alt="" /></a>
+                            </figure>
+                            <span class="date"><b>04</b></span>
+                        </div>
+                        <div class="lower-content">
+                            <h4 class="title"><a href="plastics.html" data-translate="card_title_plastics">Alif Plastics</a></h4>
+                            <div class="text" data-translate="card_desc_plastics">High-grade polymer manufacturing and industrial plastic packaging.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <div class="image-box">
+                            <figure class="image">
+                                <a href="dogtas.html"><img src="dogtaslogo.JPG" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Dogtas'" alt="" /></a>
+                            </figure>
+                            <span class="date"><b>05</b></span>
+                        </div>
+                        <div class="lower-content">
+                            <h4 class="title"><a href="dogtas.html" data-translate="card_title_dogtas">Doğtaş Duhok</a></h4>
+                            <div class="text" data-translate="card_desc_dogtas">Premium Turkish furniture collections designed for modern living spaces and executive offices.</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                
+                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-widget">
+                        <div class="logo mb-4">
+                            <a href="index.html"><img src="logo.JPG" onerror="this.src='https://placehold.co/240x80/1e3a8a/ffffff?text=PEDA+GROUP'" alt="" style="max-height: 60px; border-radius: 12px; object-fit: cover;" /></a>
+                        </div>
+                        <div class="text mb-4">
+                            Setting new standards for industrial quality, food production, and retail excellence in the Kurdistan region through local expertise.
+                        </div>
+                        <ul class="info-list">
+                            <li><i class="fa fa-map-marker-alt"></i> Duhok Industrial City,<br>Kurdistan Region, Iraq</li>
+                            <li><i class="fa fa-phone-alt"></i> +964 (0) 750 XXX XXXX</li>
+                            <li><i class="fa fa-envelope"></i> info@pedagroup.com</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-column col-lg-4 col-md-6 col-sm-12">
+                    <div class="footer-widget">
+                        <h3 class="widget-title">Directory</h3>
+                        <ul class="user-links">
+                            <li><a href="index.html">Home Page</a></li>
+                            <li><a href="services.html">Company Brands</a></li>
+                            <li><a href="info.html">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-column col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-widget">
+                        <h3 class="widget-title">Digital Team</h3>
+                        <div class="digital-team">
+                            <div class="team-member">
+                                <p class="role">Developer / Engineering</p>
+                                <p class="name">Sarwar Baroj</p>
+                            </div>
+                            <div class="team-member">
+                                <p class="role">UI/UX Designer</p>
+                                <p class="name">Parwar Baroj</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© Copyright 2026 - Peda Group. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Preloader
+            setTimeout(() => {
+                const preloader = document.querySelector('.preloader');
+                if(preloader) {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => preloader.style.display = 'none', 500);
+                }
+            }, 800);
+
+            // Dark Mode Logic
+            const themeToggleBtns = document.querySelectorAll('.toggle-theme');
+            const body = document.body;
+
+            // Check system preference or localStorage
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                body.classList.add('dark-mode');
+                themeToggleBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun"></i>');
+            }
+
+            themeToggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    body.classList.toggle('dark-mode');
+                    if (body.classList.contains('dark-mode')) {
+                        localStorage.setItem('theme', 'dark');
+                        themeToggleBtns.forEach(b => b.innerHTML = '<i class="fas fa-sun"></i>');
+                    } else {
+                        localStorage.setItem('theme', 'light');
+                        themeToggleBtns.forEach(b => b.innerHTML = '<i class="fas fa-moon"></i>');
+                    }
+                });
+            });
+
+            // Sticky Header
+            const stickyHeader = document.querySelector('.sticky-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) {
+                    stickyHeader.classList.add('fixed-header');
+                } else {
+                    stickyHeader.classList.remove('fixed-header');
+                }
+            });
+
+            // Swiper Slider Init
+            const swiper = new Swiper('.mySwiper', {
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 6000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                }
+            });
+
+            // Animated Counters
+            const counters = document.querySelectorAll('.counter');
+            let hasCounted = false;
+
+            const updateCount = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = 200;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(() => updateCount(counter), 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            window.addEventListener('scroll', () => {
+                if (hasCounted) return;
+                const aboutSection = document.getElementById('about');
+                if (aboutSection && window.scrollY + window.innerHeight > aboutSection.offsetTop) {
+                    counters.forEach(counter => updateCount(counter));
+                    hasCounted = true;
+                }
+            });
+
+            // Translation Dictionary
+            const dictionary = {
+                en: {
+                    nav_home: "Home", nav_services: "Our Brands", nav_info: "Info",
+                    section_title: "Building The Future",
+                    card_title_peda: "Peda Food Factory", card_desc_peda: "Leading the region in high-quality grain processing, automated food distribution, and sustainable packaging solutions.",
+                    card_title_moreno: "Moreno Coffee", card_desc_moreno: "Specialty roasting and professional equipment service for enterprise hubs.",
+                    card_title_clean: "Alif Chemical", card_desc_clean: "Advanced industrial formulation and cleaning solutions.",
+                    card_title_plastics: "Alif Plastics", card_desc_plastics: "High-grade polymer manufacturing and industrial plastic packaging.",
+                    card_title_dogtas: "Doğtaş Duhok", card_desc_dogtas: "Premium Turkish furniture collections designed for modern living spaces and executive offices."
+                },
+                ar: {
+                    nav_home: "الرئيسية", nav_services: "علاماتنا التجارية", nav_info: "معلومات",
+                    section_title: "بناء المستقبل",
+                    card_title_peda: "مصنع بيدا للأغذية", card_desc_peda: "نقود المنطقة في معالجة الحبوب عالية الجودة وتوزيع الأغذية الآلي وحلول التعبئة المستدامة.",
+                    card_title_moreno: "قهوة مورينو", card_desc_moreno: "تحميص متخصص وخدمة معدات احترافية لمراكز الأعمال.",
+                    card_title_clean: "أليف للكيمياويات", card_desc_clean: "تركيبات صناعية متقدمة وحلول تنظيف.",
+                    card_title_plastics: "أليف للبلاستيك", card_desc_plastics: "تصنيع بوليمرات عالية الجودة وتغليف بلاستيكي صناعي.",
+                    card_title_dogtas: "دوغتاش دهوك", card_desc_dogtas: "مجموعات أثاث تركية فاخرة مصممة لمساحات المعيشة الحديثة والمكاتب التنفيذية."
+                },
+                ku: {
+                    nav_home: "سەرەکی", nav_services: "براندەکانمان", nav_info: "زانیاری",
+                    section_title: "بنیاتنانی داهاتوو",
+                    card_title_peda: "کارگەی خۆراکی پێدا", card_desc_peda: "پێشەنگی ناوچەکە لە پرۆسەی دانەوێڵەی کوالێتی بەرز و دابەشکردنی خۆراکی ئۆتۆماتیکی.",
+                    card_title_moreno: "قاوەی مۆرینۆ", card_desc_moreno: "برژاندنی تایبەت و خزمەتگوزاری ئامێری پیشەیی بۆ سەنتەرەکانی کار.",
+                    card_title_clean: "ئەلیف کیمیاوی", card_desc_clean: "پێکهاتەی پیشەسازی پێشکەوتوو و چارەسەری پاککردنەوە.",
+                    card_title_plastics: "ئەلیف پلاستیک", card_desc_plastics: "بەرهەمهێنانی پۆلیمەری کوالێتی بەرز و پاکەتکردنی پلاستیکی پیشەسازی.",
+                    card_title_dogtas: "دۆغتاش دهۆک", card_desc_dogtas: "کۆکراوەی مۆبیلیاتی تورکی نایاب کە بۆ شوێنی نیشتەجێبوونی مۆدێرن دیزاین کراوە."
+                }
+            };
+
+            window.changeLang = function(lang) {
+                if (lang === 'ar' || lang === 'ku') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                }
+                
+                const elements = document.querySelectorAll('[data-translate]');
+                elements.forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (dictionary[lang][key]) {
+                        el.innerHTML = dictionary[lang][key];
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
